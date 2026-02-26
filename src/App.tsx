@@ -4,6 +4,17 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
+import About from "./pages/About";
+import Services from "./pages/Services";
+import Training from "./pages/Training";
+import Contact from "./pages/Contact";
+import FounderProfile from "./pages/FounderProfile";
+import Insights from "./pages/Insights";
+import CaseStudies from "./pages/CaseStudies";
+import Collaborations from "./pages/Collaborations";
+import AdracBusinessSchool from "./pages/AdracBusinessSchool";
+import DefactConsult from "./pages/DefactConsult";
+import CalebsApartments from "./pages/CalebsApartments";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -16,7 +27,17 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/training" element={<Training />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/founder" element={<FounderProfile />} />
+          <Route path="/insights" element={<Insights />} />
+          <Route path="/case-studies" element={<CaseStudies />} />
+          <Route path="/collaborations" element={<Collaborations />} />
+          <Route path="/adrac-business-school" element={<AdracBusinessSchool />} />
+          <Route path="/defact-consult" element={<DefactConsult />} />
+          <Route path="/calebs-apartments" element={<CalebsApartments />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
