@@ -233,11 +233,11 @@ const Index = () => {
             >
               <span className="text-sm font-heading font-semibold text-gold uppercase tracking-widest">Meet Our Founder</span>
               <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mt-2 mb-2">
-                Dr. Deji Awobotu <span className="text-primary">FCA, mni</span>
+                Dr. Deji Awobotu <span className="text-primary">FCA, F.CIoD, mni</span>
               </h2>
-              <p className="text-muted-foreground font-heading text-lg mb-4">Founder & Lead Consultant</p>
+              <p className="text-muted-foreground font-heading text-lg mb-4">Founder & Chief Executive</p>
               <p className="text-muted-foreground leading-relaxed mb-6">
-                A distinguished chartered accountant, national honours recipient, and thought leader in financial reporting, corporate governance, and professional education. Dr. Awobotu has spent decades shaping regulatory frameworks and building institutional capacity across Nigeria's public and private sectors.
+                A finance and accounting expert, policy strategist and capacity-building specialist with extensive experience across Nigeria's public and private sectors. He has played a significant role in strengthening financial reporting, governance and professional education through regulatory collaboration, executive training and institutional development.
               </p>
               <Link
                 to="/founder"

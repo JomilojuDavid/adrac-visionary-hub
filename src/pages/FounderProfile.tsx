@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import Layout from "@/components/layout/Layout";
-import SectionHeading from "@/components/ui/SectionHeading";
 import founderImage from "@/assets/founder-portrait.jpg";
 import { Award, BookOpen, Globe, Users, Briefcase, GraduationCap } from "lucide-react";
 
@@ -9,66 +8,73 @@ const sections = [
     icon: GraduationCap,
     title: "Education & Certifications",
     items: [
-      "Fellow, Institute of Chartered Accountants of Nigeria (FCA)",
-      "Member, National Institute (mni)",
-      "Doctorate in Accounting & Financial Management",
-      "Master's in Business Administration (MBA)",
-      "BSc Accounting (First Class Honours)",
-      "Certified Forensic Accountant",
-      "IFRS Certification (ACCA & ICAEW accredited)",
+      "PhD in Accounting and Finance – Ballsbridge University",
+      "Earlier degrees in Accounting",
+      "Member of the National Institute (mni) – Senior Executive Course, NIPSS, Kuru (2023)",
+      "Fellow, Institute of Chartered Accountants of Nigeria (ICAN)",
+      "Fellow, Chartered Institute of Taxation of Nigeria (CITN)",
+      "Fellow, Chartered Institute of Directors Nigeria (F.CIoD)",
+      "Fellow, Institute of Management Consultants",
+      "Fellow, Institute of Chartered Professionals",
+      "Certified Fraud Examiner (CFE) – USA",
+      "Certified Anti-Money Laundering Specialist (ACAMS) – USA",
     ],
   },
   {
     icon: Briefcase,
     title: "Leadership Roles",
     items: [
-      "Founder & Lead Consultant, ADRAC Professional Services Consulting",
-      "Founder, ADRAC Business School",
-      "Managing Director, Defact International Consult",
-      "Senior Partner, Financial Advisory Practice",
-      "Board Member, Multiple Financial Institutions",
+      "Founder & Chief Executive, ADRAC Professional Services Consulting (est. 2012)",
+      "Founder & Chief Executive, Defact International Consult (est. 2020)",
+      "Former Chief Finance Officer, Santrust Securities",
+      "Former Chief Internal Auditor, Pan Africa Capital Markets",
+      "Former Head of Asset Management, Goldman Assets Management",
+      "Former Head of Financial Audit, BGL Group",
     ],
   },
   {
     icon: Award,
-    title: "Regulatory Engagements",
+    title: "Regulatory & Governance Engagements",
     items: [
-      "Technical Consultant to Financial Reporting Council of Nigeria (FRC)",
-      "Resource Person, Institute of Chartered Accountants of Nigeria (ICAN)",
-      "Technical Adviser, Nigerian Upstream Petroleum Regulatory Commission (NUPRC)",
-      "Consultant to Nigerian Civil Aviation Authority (NCAA)",
-      "Adviser to Federal Airports Authority of Nigeria (FAAN)",
+      "Member, Governing Council of ICAN (2015–2024)",
+      "Convened the Inaugural Regulators and Operators Conference (2016)",
+      "Supported Lagos State Government's readiness for the World Bank SFTAS programme",
+      "Reviewed Lagos State's 2019 IPSAS Financial Statements",
+      "Appointed to the Lagos State Stamp Duties Collection and Recovery Committee (2020)",
+      "Led nationwide valuation and fair value measurement training with FRC (2025) – Lagos, Abuja, Port Harcourt, Kaduna",
+      "Partnered with FRC on nationwide IFRS for SMEs and IFRS 19 training – over 2,000 delegates across Lagos, Kano, Owerri, Abuja",
     ],
   },
   {
     icon: Globe,
-    title: "International Conferences & Projects",
+    title: "Key Areas of Expertise",
     items: [
-      "Speaker at IFRS Foundation Conferences",
-      "Participant at World Bank Financial Reporting Workshops",
-      "Led IPSAS Implementation Projects for State Governments",
-      "Facilitated Corporate Governance Reforms for Listed Companies",
-      "Keynote Speaker at Pan-African Accounting Conferences",
+      "IFRS and IPSAS application",
+      "Business valuation and fair value measurement",
+      "Forensic audit and fraud risk management",
+      "Anti-money laundering",
+      "Public financial management",
+      "Financial reporting",
+      "Corporate governance and ethics",
+      "Leadership development and executive training",
     ],
   },
   {
     icon: Users,
-    title: "Boards Served",
+    title: "Boards & Institutional Service",
     items: [
-      "Board of Directors, Leading Nigerian Financial Institutions",
-      "Governing Council, Professional Accounting Bodies",
-      "Advisory Board, Academic Institutions",
-      "Audit Committees of Listed Companies",
+      "Governing Council of ICAN (2015–2024)",
+      "Strategic initiatives across professional accounting bodies",
+      "Advisory roles with government agencies and financial institutions",
     ],
   },
   {
     icon: BookOpen,
-    title: "Social Impact",
+    title: "Personal & Social Impact",
     items: [
-      "Pro-bono training for emerging accountants",
-      "Scholarship programmes for accounting students",
-      "Community development initiatives through Caleb's Apartments",
-      "Mentorship of young professionals in finance and governance",
+      "Dedicated father to Arnold and Caleb",
+      "Passionate about mentoring young professionals",
+      "Supporting youth development through education and philanthropy",
     ],
   },
 ];
@@ -90,19 +96,25 @@ const FounderProfile = () => (
             <img src={founderImage} alt="Dr. Deji Awobotu" className="rounded-xl shadow-xl w-full sticky top-24" />
           </div>
           <div className="md:col-span-2">
-            <span className="text-sm font-heading font-semibold text-gold uppercase tracking-widest">Founder & Lead Consultant</span>
+            <span className="text-sm font-heading font-semibold text-gold uppercase tracking-widest">Founder & Chief Executive</span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mt-2 mb-6">
-              Dr. Deji Awobotu <span className="text-primary">FCA, mni</span>
+              Dr. Deji Awobotu <span className="text-primary">FCA, F.CIoD, mni</span>
             </h2>
             <div className="prose prose-lg max-w-none text-muted-foreground space-y-4">
               <p>
-                Dr. Deji Awobotu is a distinguished chartered accountant, national honours recipient, and one of Nigeria's foremost experts in financial reporting standards, corporate governance, and professional education.
+                Dr. Deji Awobotu is a finance and accounting expert, policy strategist and capacity-building specialist with extensive experience across Nigeria's public and private sectors. He has played a significant role in strengthening financial reporting, governance and professional education through regulatory collaboration, executive training and institutional development.
               </p>
               <p>
-                With decades of experience spanning public practice, regulatory advisory, and executive education, Dr. Awobotu has been instrumental in shaping Nigeria's financial reporting landscape. His work with the Financial Reporting Council (FRC), ICAN, NUPRC, NCAA, and various state governments has positioned him as a trusted authority in the profession.
+                He served on the Governing Council of ICAN from 2015 to 2024, where he led several strategic initiatives, including convening the Inaugural Regulators and Operators Conference in 2016. His governance insight shaped the Lagos State Government's readiness for the World Bank SFTAS programme, and he reviewed the State's 2019 IPSAS financial statements. In 2020, he was appointed to the Lagos State Stamp Duties Collection and Recovery Committee.
               </p>
               <p>
-                As the founder of ADRAC Professional Services Consulting and ADRAC Business School, he continues to champion the cause of building great minds for a better future—delivering practical, impact-driven programmes that transform organisations and advance professional standards.
+                As Founder and Chief Executive of ADRAC Professional Services Consulting (established 2012) and Defact International Consult (established 2020), he leads multidisciplinary teams delivering high-impact training and advisory services to regulators, government agencies and private institutions. In 2025, ADRAC executed a nationwide valuation and fair value measurement training in collaboration with the Financial Reporting Council of Nigeria (FRC), covering Lagos, Abuja, Port Harcourt and Kaduna. ADRAC also partnered with FRC to deliver a nationwide IFRS for SMEs and IFRS 19 training that attracted over 2,000 delegates across Lagos, Kano, Owerri and Abuja.
+              </p>
+              <p>
+                Dr. Awobotu's career spans senior roles in financial services, including Chief Finance Officer at Santrust Securities; Chief Internal Auditor at Pan Africa Capital Markets; Head of Asset Management at Goldman Assets Management; and Head of Financial Audit at BGL Group. These roles provided a solid foundation in financial analysis, corporate governance, audit, risk management and regulatory compliance.
+              </p>
+              <p>
+                He holds a PhD in Accounting and Finance from Ballsbridge University, with earlier degrees in Accounting. He earned the prestigious title of Member of the National Institute (mni) after completing the Senior Executive Course at NIPSS, Kuru in 2023. He is a Fellow of ICAN, CITN, the Chartered Institute of Directors Nigeria, the Institute of Management Consultants and the Institute of Chartered Professionals. His international certifications include CFE (USA) and ACAMS (USA).
               </p>
             </div>
           </div>
@@ -110,7 +122,7 @@ const FounderProfile = () => (
 
         {/* Detail sections */}
         <div className="space-y-12">
-          {sections.map((sec, i) => (
+          {sections.map((sec) => (
             <motion.div
               key={sec.title}
               initial={{ opacity: 0, y: 20 }}

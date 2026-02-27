@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
+import adracLogo from "@/assets/adrac-logo.jpg";
 
 const navItems = [
   { label: "Home", path: "/" },
@@ -39,9 +40,8 @@ const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-border">
       <nav className="container mx-auto flex items-center justify-between px-4 py-3 lg:px-8">
-        <Link to="/" className="flex flex-col">
-          <span className="text-xl font-heading font-bold text-primary tracking-tight">ADRAC</span>
-          <span className="text-[10px] font-body text-muted-foreground -mt-1 tracking-widest uppercase">Professional Services</span>
+        <Link to="/" className="flex items-center">
+          <img src={adracLogo} alt="ADRAC Consulting Services" className="h-12 w-auto" />
         </Link>
 
         {/* Desktop Nav */}
