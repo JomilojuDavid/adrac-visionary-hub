@@ -51,7 +51,7 @@ const CalebsApartments = () => (
               ))}
             </div>
 
-            <Link to="/contact" className="inline-flex items-center gap-2 bg-gold hover:bg-gold/90 text-gold-foreground font-heading font-semibold px-8 py-3 rounded-lg transition-all hover:scale-105">
+            <Link to="/calebs-apartments/book" className="inline-flex items-center gap-2 bg-gold hover:bg-gold/90 text-gold-foreground font-heading font-semibold px-8 py-3 rounded-lg transition-all hover:scale-105">
               Book Now <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

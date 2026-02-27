@@ -15,6 +15,7 @@ import Collaborations from "./pages/Collaborations";
 import AdracBusinessSchool from "./pages/AdracBusinessSchool";
 import DefactConsult from "./pages/DefactConsult";
 import CalebsApartments from "./pages/CalebsApartments";
+import BookCalebsApartments from "./pages/BookCalebsApartments";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -38,6 +39,7 @@ const App = () => (
           <Route path="/adrac-business-school" element={<AdracBusinessSchool />} />
           <Route path="/defact-consult" element={<DefactConsult />} />
           <Route path="/calebs-apartments" element={<CalebsApartments />} />
+          <Route path="/calebs-apartments/book" element={<BookCalebsApartments />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
