@@ -10,14 +10,16 @@ import Layout from "@/components/layout/Layout";
 import SectionHeading from "@/components/ui/SectionHeading";
 import trainingImage from "@/assets/training-room.jpg";
 import {
-  Target,
-  Eye,
   Heart,
   Shield,
   Award,
   TrendingUp,
   Users,
 } from "lucide-react";
+
+import MotionSection from "@/lib/animations/MotionSection";
+import MotionDiv from "@/lib/animations/MotionDiv";
+import { fadeUp, scaleIn } from "@/lib/animations/variants";
 
 /* =========================================
    RE-TRIGGERING COUNT UP COMPONENT
@@ -53,7 +55,7 @@ const CountUp = ({ from = 0, to, duration = 2, suffix = "" }: CountUpProps) => {
         ease: "easeOut",
       });
     } else {
-      motionValue.set(from); // reset when leaving view
+      motionValue.set(from);
     }
 
     return () => controls?.stop();
@@ -113,7 +115,7 @@ const stats = [
 const About = () => (
   <Layout>
     {/* HERO */}
-    <section className="relative py-24 md:py-32 overflow-hidden">
+    <MotionSection className="relative py-24 md:py-32 overflow-hidden" variant={fadeUp}>
       <img
         src={trainingImage}
         alt="ADRAC training"
@@ -124,24 +126,21 @@ const About = () => (
       <div className="hero-overlay absolute inset-0" />
 
       <div className="relative z-10 container mx-auto px-4 lg:px-8 text-center">
-        <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="text-4xl md:text-5xl font-heading font-bold text-primary-foreground mb-4"
-        >
+        <h1 className="text-4xl md:text-5xl font-heading font-bold text-primary-foreground mb-4">
           About ADRAC
-        </motion.h1>
-
+        </h1>
         <p className="text-xl text-primary-foreground/80 max-w-2xl mx-auto">
           A leading professional services firm building institutional capacity
           across Nigeria.
         </p>
       </div>
-    </section>
+    </MotionSection>
 
     {/* WHO WE ARE */}
-    <section className="section-padding bg-background">
+    <MotionSection
+      variant={fadeUp}
+      className="section-padding bg-background"
+    >
       <div className="container-narrow mx-auto">
         <SectionHeading title="Who We Are" centered={false} />
 
@@ -163,10 +162,13 @@ const About = () => (
           across Nigeria.
         </p>
       </div>
-    </section>
+    </MotionSection>
 
     {/* CORE VALUES */}
-    <section className="section-padding bg-surface">
+    <MotionSection
+      variant={fadeUp}
+      className="section-padding bg-surface"
+    >
       <div className="container-narrow mx-auto">
         <SectionHeading
           title="Core Values"
@@ -175,8 +177,9 @@ const About = () => (
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
           {values.map((v) => (
-            <div
+            <MotionDiv
               key={v.label}
+              variant={scaleIn}
               className="bg-card border border-border rounded-xl p-6 text-center hover:shadow-md transition-all"
             >
               <v.icon className="w-8 h-8 text-primary mx-auto mb-3" />
@@ -186,31 +189,34 @@ const About = () => (
               <p className="text-xs text-muted-foreground">
                 {v.desc}
               </p>
-            </div>
+            </MotionDiv>
           ))}
         </div>
       </div>
-    </section>
+    </MotionSection>
 
     {/* TRACK RECORD */}
-    <section className="section-padding bg-primary">
+    <MotionSection
+      variant={fadeUp}
+      className="section-padding bg-primary"
+    >
       <div className="container-narrow mx-auto text-center">
         <SectionHeading title="Our Track Record" light />
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat) => (
-            <div key={stat.label}>
+            <MotionDiv key={stat.label} variant={scaleIn}>
               <p className="text-3xl md:text-4xl font-heading font-bold text-gold">
                 <CountUp to={stat.num} suffix="+" />
               </p>
               <p className="text-sm text-primary-foreground/70 mt-1">
                 {stat.label}
               </p>
-            </div>
+            </MotionDiv>
           ))}
         </div>
       </div>
-    </section>
+    </MotionSection>
   </Layout>
 );
 
