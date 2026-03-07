@@ -1,12 +1,10 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
-  motion,
   useMotionValue,
-  useTransform,
-  animate,
   useInView,
+  animate,
 } from "framer-motion";
 import Layout from "@/components/layout/Layout";
 import SectionHeading from "@/components/ui/SectionHeading";
@@ -43,9 +41,7 @@ const CountUp = ({ from = 0, to, duration = 2, suffix = "" }: CountUpProps) => {
 
   const motionValue = useMotionValue(from);
 
-  const formatted = useTransform(motionValue, (latest) =>
-    Math.floor(latest).toLocaleString()
-  );
+  const [display, setDisplay] = useState(String(from));
 
   useEffect(() => {
     let controls: any;
@@ -63,11 +59,18 @@ const CountUp = ({ from = 0, to, duration = 2, suffix = "" }: CountUpProps) => {
     return () => controls?.stop();
   }, [isInView, from, to, duration, motionValue]);
 
+  useEffect(() => {
+    const unsubscribe = motionValue.on("change", (latest) => {
+      setDisplay(Math.floor(latest).toLocaleString());
+    });
+    return unsubscribe;
+  }, [motionValue]);
+
   return (
-    <motion.span ref={ref}>
-      {formatted}
+    <span ref={ref}>
+      {display}
       {suffix}
-    </motion.span>
+    </span>
   );
 };
 
