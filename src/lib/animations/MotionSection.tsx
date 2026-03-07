@@ -20,7 +20,8 @@ const MotionSection = ({
       initial="hidden"
       whileInView="visible"
       viewport={{
-        amount: 0.3,
+        once: false,
+        amount: 0.2,
       }}
       className={className}
     >
