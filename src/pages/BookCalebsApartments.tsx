@@ -135,7 +135,7 @@ const BookCalebsApartments = () => {
             <h1 className="text-4xl md:text-5xl font-heading font-bold text-primary-foreground mb-4">Book Your Stay</h1>
             <p className="text-lg text-primary-foreground/80 max-w-xl mx-auto">Premium serviced apartments — select your room, choose dates, and pay securely.</p>
             <div className="flex items-center justify-center gap-4 mt-6 text-primary-foreground/70 text-sm">
-              <span className="flex items-center gap-1"><MapPin className="w-4 h-4" /> Mowe-Ofada, Ogun State</span>
+              <span className="flex items-center gap-1"><MapPin className="w-4 h-4" /> Bluestone Estate BlueStone Estate Local Government, Deji Awobotu Avenue, Mowe, Obafemi Owode 110113, Ogun State</span>
               <span className="flex items-center gap-1"><Wifi className="w-4 h-4" /> Free WiFi</span>
               <span className="flex items-center gap-1"><Car className="w-4 h-4" /> Parking</span>
               <span className="flex items-center gap-1"><Shield className="w-4 h-4" /> 24/7 Security</span>
