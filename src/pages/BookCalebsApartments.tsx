@@ -28,7 +28,7 @@ declare global {
   }
 }
 
-const PAYSTACK_PUBLIC_KEY = "pk_test_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+const PAYSTACK_PUBLIC_KEY = "pk_test_13fd90a9b47a55f9ec5c06f5d4f27cc18871b774";
 
 const roomTypes = [
   {
@@ -91,7 +91,7 @@ const BookCalebsApartments = () => {
   };
 
   const handlePayment = () => {
-    if (PAYSTACK_PUBLIC_KEY.startsWith("pk_test_pk_test_13fd90a9b47a55f9ec5c06f5d4f27cc18871b774")) {
+    if (PAYSTACK_PUBLIC_KEY.startsWith("pk_test_xxxx")) {
       toast({ title: "Payment Not Configured", description: "Paystack gateway is not yet configured. Please contact support.", variant: "destructive" });
       return;
     }
