@@ -36,7 +36,7 @@ const DefactConsult = () => (
               key={svc.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, amount: 0.2 }}
               transition={{ delay: i * 0.1 }}
               className="bg-card border border-border rounded-xl p-8 hover:shadow-md hover:border-primary/20 transition-all"
             >

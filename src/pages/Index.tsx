@@ -290,7 +290,7 @@ const Index = () => {
                 custom={i}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.2 }}
                 variants={fadeUp}
                 className="bg-primary-foreground/10 backdrop-blur rounded-xl p-8 border border-primary-foreground/10"
               >

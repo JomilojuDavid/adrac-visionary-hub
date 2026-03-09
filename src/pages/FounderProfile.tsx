@@ -127,7 +127,7 @@ const FounderProfile = () => (
               key={sec.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, amount: 0.2 }}
               transition={{ delay: 0.1 }}
               className="bg-surface border border-border rounded-xl p-8"
             >
