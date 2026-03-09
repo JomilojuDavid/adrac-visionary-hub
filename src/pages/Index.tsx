@@ -220,7 +220,7 @@ const Index = () => {
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, amount: 0.2 }}
               transition={{ duration: 0.6 }}
             >
               <img src={founderImage} alt="Dr. Deji Awobotu" className="rounded-xl shadow-xl w-full max-w-md mx-auto" />
