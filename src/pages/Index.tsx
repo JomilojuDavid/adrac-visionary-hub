@@ -146,7 +146,7 @@ const Index = () => {
                 custom={i}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.2 }}
                 variants={fadeUp}
                 className="bg-card border border-border rounded-xl p-8 hover:shadow-lg hover:border-primary/20 transition-all group"
               >
