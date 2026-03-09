@@ -228,7 +228,7 @@ const Index = () => {
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, amount: 0.2 }}
               transition={{ duration: 0.6 }}
             >
               <span className="text-sm font-heading font-semibold text-gold uppercase tracking-widest">Meet Our Founder</span>
