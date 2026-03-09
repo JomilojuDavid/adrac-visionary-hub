@@ -170,7 +170,7 @@ const Index = () => {
                 custom={i}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.2 }}
                 variants={fadeUp}
                 className="flex items-start gap-3"
               >
