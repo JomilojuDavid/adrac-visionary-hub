@@ -48,7 +48,7 @@ const CaseStudies = () => (
             key={cs.title}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.2 }}
             className="bg-card border border-border rounded-xl overflow-hidden"
           >
             <div className="bg-primary/5 px-8 py-5 border-b border-border">
