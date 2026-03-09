@@ -146,7 +146,7 @@ const Index = () => {
                 custom={i}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.2 }}
                 variants={fadeUp}
                 className="bg-card border border-border rounded-xl p-8 hover:shadow-lg hover:border-primary/20 transition-all group"
               >
@@ -170,7 +170,7 @@ const Index = () => {
                 custom={i}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.2 }}
                 variants={fadeUp}
                 className="flex items-start gap-3"
               >
@@ -193,7 +193,7 @@ const Index = () => {
                 custom={i}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.2 }}
                 variants={fadeUp}
                 className="flex items-center gap-3 bg-card border border-border rounded-lg p-5 hover:border-primary/30 transition-all"
               >
@@ -220,7 +220,7 @@ const Index = () => {
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, amount: 0.2 }}
               transition={{ duration: 0.6 }}
             >
               <img src={founderImage} alt="Dr. Deji Awobotu" className="rounded-xl shadow-xl w-full max-w-md mx-auto" />
@@ -228,7 +228,7 @@ const Index = () => {
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, amount: 0.2 }}
               transition={{ duration: 0.6 }}
             >
               <span className="text-sm font-heading font-semibold text-gold uppercase tracking-widest">Meet Our Founder</span>
@@ -261,7 +261,7 @@ const Index = () => {
                 custom={i}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.2 }}
                 variants={fadeUp}
                 className="bg-card border border-border rounded-xl overflow-hidden hover:shadow-lg transition-all group"
               >
@@ -290,7 +290,7 @@ const Index = () => {
                 custom={i}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.2 }}
                 variants={fadeUp}
                 className="bg-primary-foreground/10 backdrop-blur rounded-xl p-8 border border-primary-foreground/10"
               >
