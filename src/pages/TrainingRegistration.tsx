@@ -55,10 +55,61 @@ const TrainingRegistration = () => {
     setFormData((prev) => ({ ...prev, [key]: value }));
   };
 
+  const feeAmount = parseFee(training?.fee);
+
+  const handlePayment = () => {
+    // Validate required fields first
+    const missingRequired = training?.formFields.filter(f => f.required && !formData[f.key]?.trim());
+    if (missingRequired && missingRequired.length > 0) {
+      toast({ title: "Please fill all required fields", description: `Missing: ${missingRequired.map(f => f.label).join(", ")}`, variant: "destructive" });
+      return;
+    }
+
+    const email = formData["email"] || "";
+    if (!email) {
+      toast({ title: "Email Required", description: "Please provide your email address for payment.", variant: "destructive" });
+      return;
+    }
+
+    setLoading(true);
+    const handler = window.PaystackPop.setup({
+      key: PAYSTACK_PUBLIC_KEY,
+      email,
+      amount: feeAmount * 100,
+      currency: "NGN",
+      ref: `TRAIN-${training!.id}-${Date.now()}-${Math.floor(Math.random() * 1000000)}`,
+      metadata: {
+        custom_fields: [
+          { display_name: "Training", variable_name: "training", value: training!.title },
+          { display_name: "Full Name", variable_name: "full_name", value: formData["name"] || "" },
+          { display_name: "Phone", variable_name: "phone", value: formData["phone"] || "" },
+          { display_name: "Organisation", variable_name: "organisation", value: formData["organisation"] || "" },
+          { display_name: "Job Title", variable_name: "job_title", value: formData["jobTitle"] || "" },
+        ],
+      },
+      callback: (response: { reference: string }) => {
+        setLoading(false);
+        setPaymentRef(response.reference);
+        setSubmitted(true);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        toast({ title: "Payment Successful! 🎉", description: `Ref: ${response.reference}. Confirmation sent to ${email}.` });
+      },
+      onClose: () => {
+        setLoading(false);
+        toast({ title: "Payment Cancelled", description: "Your registration has not been confirmed." });
+      },
+    });
+    handler.openIframe();
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (feeAmount > 0) {
+      handlePayment();
+    } else {
+      setSubmitted(true);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   const renderField = (field: TrainingFormField) => {
