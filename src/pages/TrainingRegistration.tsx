@@ -4,16 +4,36 @@ import { motion } from "framer-motion";
 import Layout from "@/components/layout/Layout";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { trainingEvents, TrainingFormField } from "@/lib/trainingData";
-import { CalendarDays, MapPin, ArrowLeft, CheckCircle } from "lucide-react";
+import { CalendarDays, MapPin, ArrowLeft, CheckCircle, CreditCard } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+
+declare global {
+  interface Window {
+    PaystackPop: {
+      setup: (options: Record<string, unknown>) => { openIframe: () => void };
+    };
+  }
+}
+
+const PAYSTACK_PUBLIC_KEY = "pk_test_13fd90a9b47a55f9ec5c06f5d4f27cc18871b774";
+
+const parseFee = (fee?: string): number => {
+  if (!fee) return 0;
+  const num = fee.replace(/[^0-9]/g, "");
+  return parseInt(num, 10) || 0;
+};
 
 const TrainingRegistration = () => {
   const { trainingId } = useParams<{ trainingId: string }>();
   const navigate = useNavigate();
+  const { toast } = useToast();
 
   const training = trainingEvents.find((t) => t.id === trainingId);
 
   const [formData, setFormData] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [paymentRef, setPaymentRef] = useState<string | null>(null);
 
   if (!training) {
     return (
