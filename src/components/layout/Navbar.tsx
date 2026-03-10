@@ -13,7 +13,6 @@ const navItems = [
     children: [
       { label: "Training & Programmes", path: "/training" },
       { label: "Training Calendar", path: "/training#calendar" },
-      { label: "Online Registration", path: "/training#register" },
     ],
   },
   {

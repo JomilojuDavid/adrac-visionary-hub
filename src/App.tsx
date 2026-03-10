@@ -18,6 +18,7 @@ const AdracBusinessSchool = lazy(() => import("./pages/AdracBusinessSchool"));
 const DefactConsult = lazy(() => import("./pages/DefactConsult"));
 const CalebsApartments = lazy(() => import("./pages/CalebsApartments"));
 const BookCalebsApartments = lazy(() => import("./pages/BookCalebsApartments"));
+const TrainingRegistration = lazy(() => import("./pages/TrainingRegistration"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -40,6 +41,7 @@ const App = () => (
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
             <Route path="/training" element={<Training />} />
+            <Route path="/training/register/:trainingId" element={<TrainingRegistration />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/founder" element={<FounderProfile />} />
             <Route path="/insights" element={<Insights />} />
