@@ -18,6 +18,7 @@ const AdracBusinessSchool = lazy(() => import("./pages/AdracBusinessSchool"));
 const DefactConsult = lazy(() => import("./pages/DefactConsult"));
 const CalebsApartments = lazy(() => import("./pages/CalebsApartments"));
 const BookCalebsApartments = lazy(() => import("./pages/BookCalebsApartments"));
+const TrainingRegistration = lazy(() => import("./pages/TrainingRegistration"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
