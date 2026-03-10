@@ -222,7 +222,7 @@ const TrainingRegistration = () => {
       {/* Registration Form */}
       <section className="section-padding bg-background">
         <div className="container-narrow mx-auto max-w-2xl">
-          <SectionHeading title="Registration Form" subtitle="Complete the form below to register. Our team will follow up with payment details." />
+          <SectionHeading title="Registration Form" subtitle={feeAmount > 0 ? `Complete the form below and pay ${training.fee} to confirm your spot.` : "Complete the form below to register. Our team will follow up with further details."} />
           <motion.form
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -240,11 +240,31 @@ const TrainingRegistration = () => {
               </div>
             ))}
 
+            {feeAmount > 0 && (
+              <div className="bg-muted rounded-lg p-4 flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-muted-foreground">Training Fee</p>
+                  <p className="text-xl font-heading font-bold text-foreground">{training.fee}</p>
+                </div>
+                <CreditCard className="w-6 h-6 text-muted-foreground" />
+              </div>
+            )}
+
             <button
               type="submit"
-              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-heading font-semibold py-3 rounded-lg transition-all hover:scale-[1.02]"
+              disabled={loading}
+              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-heading font-semibold py-3 rounded-lg transition-all hover:scale-[1.02] disabled:opacity-50 disabled:hover:scale-100 flex items-center justify-center gap-2"
             >
-              Submit Registration
+              {loading ? (
+                "Processing..."
+              ) : feeAmount > 0 ? (
+                <>
+                  <CreditCard className="w-4 h-4" />
+                  Pay {training.fee} & Register
+                </>
+              ) : (
+                "Submit Registration"
+              )}
             </button>
           </motion.form>
         </div>
