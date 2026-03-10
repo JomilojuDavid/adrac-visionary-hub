@@ -305,8 +305,44 @@ const Index = () => {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* Insights / Blog */}
       <section className="section-padding bg-background">
+        <div className="container-narrow mx-auto">
+          <SectionHeading title="Latest Insights" subtitle="Expert perspectives on finance, governance, and professional development." />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+            {[
+              { title: "Understanding IFRS 17: What Nigerian Insurers Need to Know", date: "Feb 20, 2026", category: "IFRS Standards" },
+              { title: "5 Corporate Governance Lessons from Recent Regulatory Actions", date: "Feb 15, 2026", category: "Governance" },
+              { title: "The Rise of Data Analytics in Internal Audit Functions", date: "Feb 10, 2026", category: "Audit" },
+            ].map((post, i) => (
+              <motion.div
+                key={post.title}
+                custom={i}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.2 }}
+                variants={fadeUp}
+                className="bg-card border border-border rounded-xl p-6 hover:shadow-lg hover:border-primary/20 transition-all group"
+              >
+                <span className="inline-block bg-primary/10 text-primary text-xs font-heading font-semibold px-3 py-1 rounded-full mb-3">{post.category}</span>
+                <h3 className="text-lg font-heading font-semibold text-card-foreground mb-2 group-hover:text-primary transition-colors">{post.title}</h3>
+                <p className="text-muted-foreground text-xs">{post.date}</p>
+              </motion.div>
+            ))}
+          </div>
+          <div className="text-center">
+            <Link
+              to="/insights"
+              className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-heading font-semibold px-8 py-3 rounded-lg transition-all hover:scale-105"
+            >
+              View All Insights <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="section-padding bg-surface">
         <div className="container-narrow mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
             Ready to Build Capacity?
