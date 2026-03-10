@@ -165,11 +165,16 @@ const TrainingRegistration = () => {
           <div className="container-narrow mx-auto max-w-2xl text-center">
             <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}>
               <CheckCircle className="w-16 h-16 text-primary mx-auto mb-6" />
-              <h1 className="text-3xl font-heading font-bold text-foreground mb-4">Registration Submitted!</h1>
+              <h1 className="text-3xl font-heading font-bold text-foreground mb-4">
+                {paymentRef ? "Payment Confirmed!" : "Registration Submitted!"}
+              </h1>
               <p className="text-muted-foreground mb-2">
                 Thank you for registering for <span className="font-semibold text-foreground">{training.title}</span>.
               </p>
-              <p className="text-muted-foreground mb-8">Our team will contact you shortly with payment details and further instructions.</p>
+              {paymentRef ? (
+                <p className="text-muted-foreground mb-2">Payment Reference: <span className="font-semibold text-foreground">{paymentRef}</span></p>
+              ) : null}
+              <p className="text-muted-foreground mb-8">Our team will contact you shortly with further instructions.</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   to="/training"
