@@ -95,7 +95,7 @@ const FounderProfile = () => (
           <div className="md:col-span-1">
             <img src={founderImage} alt="Dr. Deji Awobotu" className="rounded-xl shadow-xl w-full sticky top-24" />
           </div>
-          <div className="md:col-span-2">
+          <div className="md:col-span-2 bg-primary/5 rounded-xl p-8">
             <span className="text-sm font-heading font-semibold text-gold uppercase tracking-widest">Founder & Chief Executive</span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mt-2 mb-6">
               Dr. Deji Awobotu <span className="text-primary">FCA, F.CIoD, mni</span>
