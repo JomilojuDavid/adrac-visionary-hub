@@ -115,7 +115,7 @@
   }
 
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-emerald-700;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-green-700;
   }
 
   .hero-overlay {
