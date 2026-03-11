@@ -211,7 +211,7 @@ const Index = () => {
           <div className="text-center">
             <Link
               to="/training#calendar"
-              className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-heading font-semibold px-8 py-3 rounded-lg transition-all hover:scale-105"
+              className="inline-flex items-center gap-2 bg-cta hover:bg-cta/90 text-cta-foreground font-heading font-semibold px-8 py-3 rounded-lg transition-all hover:scale-105"
             >
               View Training Calendar <ArrowRight className="w-4 h-4" />
             </Link>
