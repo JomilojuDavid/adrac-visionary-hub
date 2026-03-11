@@ -178,7 +178,7 @@ const TrainingRegistration = () => {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   to="/training"
-                  className="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-heading font-semibold px-6 py-3 rounded-lg transition-all"
+                  className="inline-flex items-center justify-center gap-2 bg-cta hover:bg-cta/90 text-cta-foreground font-heading font-semibold px-6 py-3 rounded-lg transition-all"
                 >
                   <ArrowLeft className="w-4 h-4" /> Back to Training Calendar
                 </Link>
