@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { CheckCircle, BookOpen, Briefcase, Award, ArrowRight, Users, Shield, Globe, TrendingUp } from "lucide-react";
+import frcLogo from "@/assets/partners/FRC.jpg";
+import icanLogo from "@/assets/partners/ICAN.png";
+import ananLogo from "@/assets/partners/ANAN.png";
+import nuprcLogo from "@/assets/partners/NUPRC.png";
+import ncaaLogo from "@/assets/partners/NCAA.jpg";
+import faanLogo from "@/assets/partners/FAAN.jpg";
 import Layout from "@/components/layout/Layout";
 import SectionHeading from "@/components/ui/SectionHeading";
 import heroImage from "@/assets/hero-boardroom.jpg";
@@ -337,6 +343,38 @@ const Index = () => {
             >
               View All Insights <ArrowRight className="w-4 h-4" />
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Partners Logo Slider */}
+      <section className="py-16 bg-surface overflow-hidden">
+        <div className="container-narrow mx-auto mb-8">
+          <SectionHeading title="Our Partners & Collaborators" subtitle="Trusted by Nigeria's leading regulatory and professional bodies." />
+        </div>
+        <div className="relative">
+          <div className="flex animate-[scroll_25s_linear_infinite] w-max gap-16 items-center px-8">
+            {[
+              { src: frcLogo, name: "FRC" },
+              { src: icanLogo, name: "ICAN" },
+              { src: ananLogo, name: "ANAN" },
+              { src: nuprcLogo, name: "NUPRC" },
+              { src: ncaaLogo, name: "NCAA" },
+              { src: faanLogo, name: "FAAN" },
+              { src: frcLogo, name: "FRC" },
+              { src: icanLogo, name: "ICAN" },
+              { src: ananLogo, name: "ANAN" },
+              { src: nuprcLogo, name: "NUPRC" },
+              { src: ncaaLogo, name: "NCAA" },
+              { src: faanLogo, name: "FAAN" },
+            ].map((partner, i) => (
+              <img
+                key={i}
+                src={partner.src}
+                alt={partner.name}
+                className="h-16 md:h-20 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
+              />
+            ))}
           </div>
         </div>
       </section>
