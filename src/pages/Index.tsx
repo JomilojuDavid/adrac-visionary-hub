@@ -305,9 +305,6 @@ const Index = () => {
                   <p className="font-heading font-semibold text-primary-foreground">{t.name}</p>
                   <p className="text-primary-foreground/60 text-xs">{t.role}</p>
                 </div>
-                <div className="mb-4">
-            <iframe width="100%" height="315" src="https://www.youtube.com/watch?v=ZyXrhx_Li0s&t=15s" title="YouTube video 2" className="rounded" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-          </div>
               </motion.div>
             ))}
           </div>
