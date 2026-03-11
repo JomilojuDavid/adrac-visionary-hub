@@ -268,7 +268,7 @@ const BookCalebsApartments = () => {
                   </Button>
                 ) : <div />}
                 {step < 3 && (
-                  <Button onClick={() => goTo(step + 1)} disabled={!canProceed(step)} className="bg-primary hover:bg-primary/90 text-primary-foreground font-heading">
+                  <Button onClick={() => goTo(step + 1)} disabled={!canProceed(step)} className="bg-cta hover:bg-cta/90 text-cta-foreground font-heading">
                     Continue <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 )}

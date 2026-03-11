@@ -389,7 +389,7 @@ const Index = () => {
             Partner with ADRAC for world-class training, advisory, and professional development services.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact" className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-heading font-semibold px-8 py-4 rounded-lg transition-all hover:scale-105">
+            <Link to="/contact" className="inline-flex items-center gap-2 bg-cta hover:bg-cta/90 text-cta-foreground font-heading font-semibold px-8 py-4 rounded-lg transition-all hover:scale-105">
               Contact Us <ArrowRight className="w-4 h-4" />
             </Link>
             <Link to="/training" className="inline-flex items-center gap-2 border-2 border-primary text-primary hover:bg-primary/5 font-heading font-semibold px-8 py-4 rounded-lg transition-all">

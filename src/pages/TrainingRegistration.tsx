@@ -253,7 +253,7 @@ const TrainingRegistration = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-heading font-semibold py-3 rounded-lg transition-all hover:scale-[1.02] disabled:opacity-50 disabled:hover:scale-100 flex items-center justify-center gap-2"
+              className="w-full bg-cta hover:bg-cta/90 text-cta-foreground font-heading font-semibold py-3 rounded-lg transition-all hover:scale-[1.02] disabled:opacity-50 disabled:hover:scale-100 flex items-center justify-center gap-2"
             >
               {loading ? (
                 "Processing..."

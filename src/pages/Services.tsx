@@ -87,7 +87,7 @@ const Services = () => (
                 <h2 className="text-2xl font-heading font-bold text-foreground">{svc.title}</h2>
               </div>
               <p className="text-muted-foreground leading-relaxed mb-6">{svc.overview}</p>
-              <Link to="/contact" className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-heading font-semibold px-6 py-3 rounded-lg transition-all hover:scale-105 text-sm">
+              <Link to="/contact" className="inline-flex items-center gap-2 bg-cta hover:bg-cta/90 text-cta-foreground font-heading font-semibold px-6 py-3 rounded-lg transition-all hover:scale-105 text-sm">
                 Enquire Now <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
