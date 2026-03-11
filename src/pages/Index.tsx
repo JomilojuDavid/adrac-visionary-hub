@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { CheckCircle, BookOpen, Briefcase, Award, ArrowRight, Users, Shield, Globe, TrendingUp } from "lucide-react";
+import frcLogo from "@/assets/partners/FRC.jpg";
+import icanLogo from "@/assets/partners/ICAN.png";
+import ananLogo from "@/assets/partners/ANAN.png";
+import nuprcLogo from "@/assets/partners/NUPRC.png";
+import ncaaLogo from "@/assets/partners/NCAA.jpg";
+import faanLogo from "@/assets/partners/FAAN.jpg";
 import Layout from "@/components/layout/Layout";
 import SectionHeading from "@/components/ui/SectionHeading";
 import heroImage from "@/assets/hero-boardroom.jpg";
