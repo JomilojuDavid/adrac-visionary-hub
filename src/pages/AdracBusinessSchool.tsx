@@ -64,7 +64,7 @@ const AdracBusinessSchool = () => (
                 </li>
               ))}
             </ul>
-            <Link to="/training#register" className="mt-6 inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-heading font-semibold px-6 py-3 rounded-lg transition-all hover:scale-105 text-sm">
+            <Link to="/training#register" className="mt-6 inline-flex items-center gap-2 bg-cta hover:bg-cta/90 text-cta-foreground font-heading font-semibold px-6 py-3 rounded-lg transition-all hover:scale-105 text-sm">
               Enrol Now <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

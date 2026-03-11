@@ -106,7 +106,7 @@ const Contact = () => {
                     className="w-full bg-background border border-input rounded-lg px-4 py-3 text-sm text-foreground focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all resize-none"
                   />
                 </div>
-                <button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-heading font-semibold py-3 rounded-lg transition-all hover:scale-[1.02] flex items-center justify-center gap-2">
+                <button type="submit" className="w-full bg-cta hover:bg-cta/90 text-cta-foreground font-heading font-semibold py-3 rounded-lg transition-all hover:scale-[1.02] flex items-center justify-center gap-2">
                   <Send className="w-4 h-4" /> Send Message
                 </button>
               </form>

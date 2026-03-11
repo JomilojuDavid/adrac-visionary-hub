@@ -178,7 +178,7 @@ const TrainingRegistration = () => {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   to="/training"
-                  className="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-heading font-semibold px-6 py-3 rounded-lg transition-all"
+                  className="inline-flex items-center justify-center gap-2 bg-cta hover:bg-cta/90 text-cta-foreground font-heading font-semibold px-6 py-3 rounded-lg transition-all"
                 >
                   <ArrowLeft className="w-4 h-4" /> Back to Training Calendar
                 </Link>
@@ -253,7 +253,7 @@ const TrainingRegistration = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-heading font-semibold py-3 rounded-lg transition-all hover:scale-[1.02] disabled:opacity-50 disabled:hover:scale-100 flex items-center justify-center gap-2"
+              className="w-full bg-cta hover:bg-cta/90 text-cta-foreground font-heading font-semibold py-3 rounded-lg transition-all hover:scale-[1.02] disabled:opacity-50 disabled:hover:scale-100 flex items-center justify-center gap-2"
             >
               {loading ? (
                 "Processing..."
