@@ -347,6 +347,38 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Partners Logo Slider */}
+      <section className="py-16 bg-surface overflow-hidden">
+        <div className="container-narrow mx-auto mb-8">
+          <SectionHeading title="Our Partners & Collaborators" subtitle="Trusted by Nigeria's leading regulatory and professional bodies." />
+        </div>
+        <div className="relative">
+          <div className="flex animate-[scroll_25s_linear_infinite] w-max gap-16 items-center px-8">
+            {[
+              { src: frcLogo, name: "FRC" },
+              { src: icanLogo, name: "ICAN" },
+              { src: ananLogo, name: "ANAN" },
+              { src: nuprcLogo, name: "NUPRC" },
+              { src: ncaaLogo, name: "NCAA" },
+              { src: faanLogo, name: "FAAN" },
+              { src: frcLogo, name: "FRC" },
+              { src: icanLogo, name: "ICAN" },
+              { src: ananLogo, name: "ANAN" },
+              { src: nuprcLogo, name: "NUPRC" },
+              { src: ncaaLogo, name: "NCAA" },
+              { src: faanLogo, name: "FAAN" },
+            ].map((partner, i) => (
+              <img
+                key={i}
+                src={partner.src}
+                alt={partner.name}
+                className="h-16 md:h-20 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="section-padding bg-surface">
         <div className="container-narrow mx-auto text-center">
