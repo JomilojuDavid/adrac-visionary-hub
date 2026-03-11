@@ -19,6 +19,7 @@ const DefactConsult = lazy(() => import("./pages/DefactConsult"));
 const CalebsApartments = lazy(() => import("./pages/CalebsApartments"));
 const BookCalebsApartments = lazy(() => import("./pages/BookCalebsApartments"));
 const TrainingRegistration = lazy(() => import("./pages/TrainingRegistration"));
+const MediaGallery = lazy(() => import("./pages/MediaGallery"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -51,6 +52,7 @@ const App = () => (
             <Route path="/defact-consult" element={<DefactConsult />} />
             <Route path="/calebs-apartments" element={<CalebsApartments />} />
             <Route path="/calebs-apartments/book" element={<BookCalebsApartments />} />
+            <Route path="/media-gallery" element={<MediaGallery />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
