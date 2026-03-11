@@ -39,7 +39,7 @@ const services = [
 ];
 
 const trustReasons = [
-  "Strong regulatory collaborations (FRC, ICAN, NUPRC, NCAA)",
+  "Strong regulatory collaborations (FRC, NRS, SEC, NGS, PENCOM ICAN, NUPRC, NCAA)",
   "Expert trainers with real industry experience",
   "Nationwide technical training footprint",
   "Practical knowledge that improves corporate performance",
