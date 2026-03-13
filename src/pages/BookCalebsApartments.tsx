@@ -134,7 +134,7 @@ const BookCalebsApartments = () => {
   const today = new Date().toISOString().split("T")[0];
 
   return (
-    <Layout>
+    <CalebsLayout>
       {/* Hero */}
       <section className="relative py-20 md:py-28 overflow-hidden">
         <img src={apartmentsImage} alt="Caleb's Apartments" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
