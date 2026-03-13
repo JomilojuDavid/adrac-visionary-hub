@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight, Wifi, Car, Shield, Coffee, Users, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
-import Layout from "@/components/layout/Layout";
+import CalebsLayout from "@/components/layout/CalebsLayout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
