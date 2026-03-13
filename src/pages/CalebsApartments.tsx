@@ -74,7 +74,7 @@ const CalebsApartments = () => (
         </div>
       </div>
     </section>
-  </Layout>
+  </CalebsLayout>
 );
 
 export default CalebsApartments;
