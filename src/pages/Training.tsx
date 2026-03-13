@@ -41,12 +41,14 @@ const Training = () => {
                     {evt.fee && <span className="text-xs font-heading font-semibold text-foreground">{evt.fee}</span>}
                   </div>
                 </div>
-                <Link
-                  to={`/training/register/${evt.id}`}
+                <a
+                  href="https://tinyurl.com/FRC-New-Standards-Training"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-cta hover:bg-cta/90 text-cta-foreground font-heading font-semibold px-5 py-2.5 rounded-lg transition-all text-sm shrink-0"
                 >
                   Register <ArrowRight className="w-4 h-4" />
-                </Link>
+                </a>
               </motion.div>
             ))}
           </div>

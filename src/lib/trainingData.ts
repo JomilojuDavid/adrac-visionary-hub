@@ -40,7 +40,6 @@ export const trainingEvents: TrainingEvent[] = [
     location: "Unilag Multipurpose Hall, Akoka, Lagos",
     type: "In-Person",
     description: "Two-day intensive professional development programme at the University of Lagos.",
-    fee: "₦250,000",
     formFields: [...defaultFormFields],
   },
   {
@@ -50,7 +49,6 @@ export const trainingEvents: TrainingEvent[] = [
     location: "Graceland Event Centre, Grand Amari Hotel, Onitsha Road, Owerri, Imo State",
     type: "In-Person",
     description: "Two-day intensive professional development programme in Owerri.",
-    fee: "₦250,000",
     formFields: [...defaultFormFields],
   },
   {
@@ -60,7 +58,6 @@ export const trainingEvents: TrainingEvent[] = [
     location: "Army Officers Mess and Suites, HQ NAAC Obienu Barracks, Kano Road, Bauchi",
     type: "In-Person",
     description: "Two-day intensive professional development programme in Bauchi.",
-    fee: "₦250,000",
     formFields: [...defaultFormFields],
   },
   {
@@ -70,7 +67,6 @@ export const trainingEvents: TrainingEvent[] = [
     location: "Exclusive Serene Hotel, Wuye, Abuja",
     type: "In-Person",
     description: "Two-day intensive professional development programme in Abuja.",
-    fee: "₦250,000",
     formFields: [...defaultFormFields],
   },
   {
@@ -80,7 +76,6 @@ export const trainingEvents: TrainingEvent[] = [
     location: "Casoni Int'l Hotel, Stadium Road, Port Harcourt, Rivers State",
     type: "In-Person",
     description: "Two-day intensive professional development programme in Port Harcourt.",
-    fee: "₦250,000",
     formFields: [...defaultFormFields],
   },
   {
@@ -90,7 +85,6 @@ export const trainingEvents: TrainingEvent[] = [
     location: "Amani Events Centre, Tamandu Road, Kano",
     type: "In-Person",
     description: "Two-day intensive professional development programme in Kano.",
-    fee: "₦250,000",
     formFields: [...defaultFormFields],
   },
 ];
