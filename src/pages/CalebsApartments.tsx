@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Wifi, Car, Shield, Coffee, Tv, Wind } from "lucide-react";
-import Layout from "@/components/layout/Layout";
+import CalebsLayout from "@/components/layout/CalebsLayout";
 import SectionHeading from "@/components/ui/SectionHeading";
 import apartmentsImage from "@/assets/calebs-apartments.jpg";
 
