@@ -32,24 +32,34 @@ const PAYSTACK_PUBLIC_KEY = "pk_test_13fd90a9b47a55f9ec5c06f5d4f27cc18871b774";
 
 const roomTypes = [
   {
-    value: "studio", label: "Studio Apartment", price: 25000, image: studioImg,
-    description: "Cosy and efficient space perfect for solo travellers or short business stays.",
-    maxGuests: 2, size: "30 m²", features: ["Queen Bed", "Kitchenette", "WiFi", "Work Desk"],
+    value: "three-bed", label: "Three Bedroom", price: 150000, image: executiveImg,
+    description: "Expansive three-bedroom apartment perfect for families or group stays with premium finishes.",
+    maxGuests: 6, size: "120 m²", features: ["3 Bedrooms", "Living Room", "Full Kitchen", "Dining Area"],
   },
   {
-    value: "one-bed", label: "1-Bedroom Apartment", price: 40000, image: oneBedImg,
-    description: "Separate living and sleeping areas with full kitchen amenities.",
-    maxGuests: 3, size: "50 m²", features: ["King Bed", "Full Kitchen", "Smart TV", "Balcony"],
+    value: "two-bed", label: "Two Bedroom", price: 100000, image: twoBedImg,
+    description: "Spacious two-bedroom layout ideal for families or colleagues travelling together.",
+    maxGuests: 4, size: "80 m²", features: ["2 Bedrooms", "Living Room", "Full Kitchen", "Balcony"],
   },
   {
-    value: "two-bed", label: "2-Bedroom Apartment", price: 60000, image: twoBedImg,
-    description: "Spacious layout ideal for families or colleagues travelling together.",
-    maxGuests: 5, size: "80 m²", features: ["2 Beds", "Living Room", "Dining Area", "Laundry"],
+    value: "one-bed-diplomatic", label: "One Bedroom Diplomatic", price: 100000, image: oneBedImg,
+    description: "Top-tier one-bedroom suite with diplomatic-grade furnishings and exclusive amenities.",
+    maxGuests: 2, size: "65 m²", features: ["King Bed", "Lounge", "Smart TV", "Premium Finishes"],
   },
   {
-    value: "executive", label: "Executive Suite", price: 85000, image: executiveImg,
-    description: "Premium luxury suite with panoramic views and top-tier finishes.",
-    maxGuests: 4, size: "100 m²", features: ["King Bed", "Jacuzzi", "Lounge", "Butler Service"],
+    value: "one-bed-executive", label: "One Bedroom Executive", price: 80000, image: oneBedImg,
+    description: "Elegantly appointed one-bedroom apartment with executive-level comfort and style.",
+    maxGuests: 2, size: "55 m²", features: ["King Bed", "Work Desk", "Smart TV", "Kitchenette"],
+  },
+  {
+    value: "one-bed-classic", label: "One Bedroom Classic", price: 70000, image: studioImg,
+    description: "Well-furnished classic one-bedroom apartment with all essential comforts.",
+    maxGuests: 2, size: "45 m²", features: ["Queen Bed", "Kitchenette", "WiFi", "Smart TV"],
+  },
+  {
+    value: "one-bed-standard", label: "One Bedroom Standard", price: 60000, image: studioImg,
+    description: "Comfortable and affordable one-bedroom apartment for practical stays.",
+    maxGuests: 2, size: "40 m²", features: ["Queen Bed", "Kitchenette", "WiFi", "Work Desk"],
   },
 ];
 
