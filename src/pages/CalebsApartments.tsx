@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Wifi, Car, Shield, Coffee, Tv, Wind } from "lucide-react";
-import Layout from "@/components/layout/Layout";
+import CalebsLayout from "@/components/layout/CalebsLayout";
 import SectionHeading from "@/components/ui/SectionHeading";
 import apartmentsImage from "@/assets/calebs-apartments.jpg";
 
@@ -15,7 +15,7 @@ const amenities = [
 ];
 
 const CalebsApartments = () => (
-  <Layout>
+  <CalebsLayout>
     <section className="relative py-24 md:py-32 overflow-hidden">
       <img src={apartmentsImage} alt="Caleb's Apartments" className="absolute inset-0 w-full h-full object-cover" />
       <div className="hero-overlay absolute inset-0" />
@@ -51,7 +51,7 @@ const CalebsApartments = () => (
               ))}
             </div>
 
-            <Link to="/calebs-apartments/book" className="inline-flex items-center gap-2 bg-gold hover:bg-gold/90 text-gold-foreground font-heading font-semibold px-8 py-3 rounded-lg transition-all hover:scale-105">
+            <Link to="/calebs-apartments/book" className="inline-flex items-center gap-2 bg-calebs-gold hover:bg-calebs-gold/90 text-white font-heading font-semibold px-8 py-3 rounded-lg transition-all hover:scale-105">
               Book Now <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -74,7 +74,7 @@ const CalebsApartments = () => (
         </div>
       </div>
     </section>
-  </Layout>
+  </CalebsLayout>
 );
 
 export default CalebsApartments;

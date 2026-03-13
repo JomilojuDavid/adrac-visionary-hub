@@ -60,6 +60,10 @@ export default {
           foreground: "hsl(var(--cta-foreground))",
         },
         surface: "hsl(var(--surface))",
+        "calebs-rose": "hsl(var(--calebs-rose))",
+        "calebs-maroon": "hsl(var(--calebs-maroon))",
+        "calebs-gold": "hsl(var(--calebs-gold))",
+        "calebs-cream": "hsl(var(--calebs-cream))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
