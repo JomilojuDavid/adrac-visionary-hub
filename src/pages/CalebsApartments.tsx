@@ -15,7 +15,7 @@ const amenities = [
 ];
 
 const CalebsApartments = () => (
-  <Layout>
+  <CalebsLayout>
     <section className="relative py-24 md:py-32 overflow-hidden">
       <img src={apartmentsImage} alt="Caleb's Apartments" className="absolute inset-0 w-full h-full object-cover" />
       <div className="hero-overlay absolute inset-0" />
