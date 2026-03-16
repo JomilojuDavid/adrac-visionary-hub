@@ -20,6 +20,9 @@ const CalebsApartments = lazy(() => import("./pages/CalebsApartments"));
 const BookCalebsApartments = lazy(() => import("./pages/BookCalebsApartments"));
 const TrainingRegistration = lazy(() => import("./pages/TrainingRegistration"));
 const MediaGallery = lazy(() => import("./pages/MediaGallery"));
+const JobListings = lazy(() => import("./pages/JobListings"));
+const PostJob = lazy(() => import("./pages/PostJob"));
+const JobDetail = lazy(() => import("./pages/JobDetail"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
