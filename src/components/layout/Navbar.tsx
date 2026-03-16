@@ -5,8 +5,15 @@ import adracLogo from "@/assets/adrac-logo.jpg";
 
 const navItems = [
   { label: "Home", path: "/" },
-  { label: "About ADRAC", path: "/about" },
-  { label: "Our Services", path: "/services" },
+  {
+    label: "About ADRAC",
+    path: "/about",
+    children: [
+      { label: "About Us", path: "/about" },
+      { label: "Our Services", path: "/services" },
+      { label: "Collaborations", path: "/collaborations" },
+    ],
+  },
   {
     label: "Training",
     path: "/training",
@@ -24,9 +31,16 @@ const navItems = [
       { label: "Caleb's Apartments", path: "/calebs-apartments" },
     ],
   },
+  {
+    label: "Jobs",
+    path: "/jobs",
+    children: [
+      { label: "Browse Job Openings", path: "/jobs" },
+      { label: "Post a Job", path: "/jobs/post" },
+    ],
+  },
   { label: "Insights", path: "/insights" },
   { label: "Case Studies", path: "/case-studies" },
-  { label: "Collaborations", path: "/collaborations" },
   { label: "Founder", path: "/founder" },
   { label: "Contact", path: "/contact" },
 ];
