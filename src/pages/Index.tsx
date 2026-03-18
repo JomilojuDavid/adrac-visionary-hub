@@ -290,7 +290,11 @@ const Index = () => {
         <div className="container-narrow mx-auto">
           <SectionHeading title="What Our Clients Say" light />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((t, i) => (
+            {[
+              { id: "dQw4w9WgXcQ", title: "ADRAC IFRS Training Highlights" },
+              { id: "dQw4w9WgXcQ", title: "Corporate Governance Workshop" },
+              { id: "dQw4w9WgXcQ", title: "Client Success Stories" },
+            ].map((video, i) => (
               <motion.div
                 key={i}
                 custom={i}
@@ -298,51 +302,23 @@ const Index = () => {
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.2 }}
                 variants={fadeUp}
-                className="bg-primary-foreground/10 backdrop-blur rounded-xl p-8 border border-primary-foreground/10"
+                className="rounded-xl overflow-hidden border border-primary-foreground/10"
               >
-                <p className="text-primary-foreground/90 text-sm leading-relaxed mb-6 italic">"{t.quote}"</p>
-                <div>
-                  <p className="font-heading font-semibold text-primary-foreground">{t.name}</p>
-                  <p className="text-primary-foreground/60 text-xs">{t.role}</p>
+                <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
+                  <iframe
+                    className="absolute inset-0 w-full h-full"
+                    src={`https://www.youtube.com/embed/${video.id}`}
+                    title={video.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    loading="lazy"
+                  />
+                </div>
+                <div className="bg-primary-foreground/10 p-4">
+                  <p className="font-heading font-semibold text-primary-foreground text-sm">{video.title}</p>
                 </div>
               </motion.div>
             ))}
-          </div>
-
-          {/* Video Testimonials */}
-          <div className="mt-16">
-            <h3 className="text-2xl font-heading font-bold text-primary-foreground text-center mb-8">Watch Our Impact</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                { id: "dQw4w9WgXcQ", title: "ADRAC IFRS Training Highlights" },
-                { id: "dQw4w9WgXcQ", title: "Corporate Governance Workshop" },
-                { id: "dQw4w9WgXcQ", title: "Client Success Stories" },
-              ].map((video, i) => (
-                <motion.div
-                  key={i}
-                  custom={i}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: false, amount: 0.2 }}
-                  variants={fadeUp}
-                  className="rounded-xl overflow-hidden border border-primary-foreground/10"
-                >
-                  <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
-                    <iframe
-                      className="absolute inset-0 w-full h-full"
-                      src={`https://www.youtube.com/embed/${video.id}`}
-                      title={video.title}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="bg-primary-foreground/10 p-4">
-                    <p className="font-heading font-semibold text-primary-foreground text-sm">{video.title}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
