@@ -56,23 +56,6 @@ const programmes = [
   "Industry-Specific Technical Training",
 ];
 
-const testimonials = [
-  {
-    quote: "ADRAC's IFRS training transformed our finance team's competence. The practical approach and depth of knowledge delivered were exceptional.",
-    name: "Adebayo Olumide",
-    role: "CFO, Industrial Group",
-  },
-  {
-    quote: "We have relied on ADRAC for corporate governance advisory for three years. Their expertise and professionalism are second to none.",
-    name: "Funke Adeyemi",
-    role: "Company Secretary, Regulated Entity",
-  },
-  {
-    quote: "The forensic accounting programme was eye-opening. It has significantly improved our fraud detection capabilities.",
-    name: "Chinedu Okafor",
-    role: "Head of Internal Audit",
-  },
-];
 
 const subEntities = [
   {
