@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { CheckCircle, BookOpen, Briefcase, Award, ArrowRight, Users, Shield, Globe, TrendingUp } from "lucide-react";
+import StockMarketTicker from "@/components/home/StockMarketTicker";
+import ExchangeRateTicker from "@/components/home/ExchangeRateTicker";
 import frcLogo from "@/assets/partners/FRC.jpg";
 import icanLogo from "@/assets/partners/ICAN.png";
 import ananLogo from "@/assets/partners/ANAN.png";
@@ -338,6 +340,21 @@ const Index = () => {
             >
               View All Insights <ArrowRight className="w-4 h-4" />
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Market Data */}
+      <section className="section-padding bg-background">
+        <div className="container-narrow mx-auto">
+          <SectionHeading title="Market Watch" subtitle="Stay informed with live Nigerian market data and exchange rates." />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-card border border-border rounded-xl p-6">
+              <StockMarketTicker />
+            </div>
+            <div className="bg-card border border-border rounded-xl p-6">
+              <ExchangeRateTicker />
+            </div>
           </div>
         </div>
       </section>
