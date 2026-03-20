@@ -47,7 +47,7 @@ const StockMarketTicker = () => {
         <Activity className="w-5 h-5 text-gold" />
         <h3 className="font-heading font-bold text-foreground text-lg">NGX Live Market</h3>
         <span className="ml-auto text-xs text-muted-foreground flex items-center gap-1">
-          <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+          <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
           Live
         </span>
       </div>
