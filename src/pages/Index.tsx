@@ -276,8 +276,8 @@ const Index = () => {
           <SectionHeading title="What Our Clients Say" light />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { id: "dQw4w9WgXcQ", title: "ADRAC IFRS Training Highlights" },
-              { id: "dQw4w9WgXcQ", title: "Corporate Governance Workshop" },
+              { id: "Pp7kut9vZm8", title: "Our Founder's Interview on BVN" },
+              { id: "V1kw3UYqPls", title: "Interview with our Founder on Treasury Single Account" },
               { id: "dQw4w9WgXcQ", title: "Client Success Stories" },
             ].map((video, i) => (
               <motion.div
@@ -358,6 +358,7 @@ const Index = () => {
       <div className="bg-primary text-primary-foreground border border-primary/30 rounded-xl p-6 shadow-md [&_*]:text-primary-foreground">
   <StockMarketTicker />
 </div>
+
     {/*Exchange Rate*/}
 <div className="bg-primary text-primary-foreground border border-primary/30 rounded-xl p-6 shadow-md [&_*]:text-primary-foreground">
   <ExchangeRateTicker />
