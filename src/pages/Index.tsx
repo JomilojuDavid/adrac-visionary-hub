@@ -345,19 +345,27 @@ const Index = () => {
       </section>
 
       {/* Market Data */}
-      <section className="section-padding bg-background">
-        <div className="container-narrow mx-auto">
-          <SectionHeading title="Market Watch" subtitle="Stay informed with live Nigerian market data and exchange rates." />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-card border border-border rounded-xl p-6">
-              <StockMarketTicker />
-            </div>
-            <div className="bg-card border border-border rounded-xl p-6">
-              <ExchangeRateTicker />
-            </div>
-          </div>
-        </div>
-      </section>
+<section className="section-padding bg-background">
+  <div className="container-narrow mx-auto">
+    <SectionHeading
+      title="Market Watch"
+      subtitle="Stay informed with live Nigerian market data and exchange rates."
+    />
+
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      
+      {/* Stock Market */}
+      <div className="bg-primary text-primary-foreground border border-primary/30 rounded-xl p-6 shadow-md [&_*]:text-primary-foreground">
+  <StockMarketTicker />
+</div>
+    {/*Exchange Rate*/}
+<div className="bg-primary text-primary-foreground border border-primary/30 rounded-xl p-6 shadow-md [&_*]:text-primary-foreground">
+  <ExchangeRateTicker />
+</div>
+
+    </div>
+  </div>
+</section>
 
       {/* Partners Logo Slider */}
       <section className="py-16 bg-surface overflow-hidden">
