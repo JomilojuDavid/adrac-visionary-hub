@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { CheckCircle, BookOpen, Briefcase, Award, ArrowRight, Users, Shield, Globe, TrendingUp } from "lucide-react";
+import { CheckCircle, BookOpen, Briefcase, Award, ArrowRight } from "lucide-react";
 import StockMarketTicker from "@/components/home/StockMarketTicker";
 import ExchangeRateTicker from "@/components/home/ExchangeRateTicker";
 import frcLogo from "@/assets/partners/FRC.jpg";
@@ -16,6 +16,7 @@ import founderImage from "@/assets/founder-portrait.jpg";
 import businessSchoolImage from "@/assets/business-school.jpg";
 import defactImage from "@/assets/defact-consult.jpg";
 import apartmentsImage from "@/assets/calebs-apartments.jpg";
+import { useEffect, useState } from "react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -58,7 +59,6 @@ const programmes = [
   "Industry-Specific Technical Training",
 ];
 
-
 const subEntities = [
   {
     name: "ADRAC Business School",
@@ -80,7 +80,30 @@ const subEntities = [
   },
 ];
 
+interface Article {
+  title: string;
+  link: string;
+  pubDate: string;
+  contentSnippet: string;
+  category?: string;
+}
+
 const Index = () => {
+  const [latestNews, setLatestNews] = useState<Article[]>([]);
+
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/punch-news");
+        const data: Article[] = await res.json();
+        setLatestNews(data.slice(0, 3)); // top 3 latest news
+      } catch (error) {
+        console.error("Failed to fetch news:", error);
+      }
+    };
+    fetchNews();
+  }, []);
+
   return (
     <Layout>
       {/* Hero */}
@@ -122,6 +145,12 @@ const Index = () => {
             >
               Register for Training
             </Link>
+            <Link
+              to="/careers"
+              className="inline-flex items-center gap-2 border-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 font-heading font-semibold px-8 py-4 rounded-lg transition-all"
+            >
+              Careers
+            </Link>
           </motion.div>
         </div>
       </section>
@@ -150,56 +179,56 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Why Trust */}
-      <section className="section-padding bg-primary">
+      {/* Latest Insights */}
+      <section className="section-padding bg-background">
         <div className="container-narrow mx-auto">
-          <SectionHeading title="Why Clients Trust ADRAC" light />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {trustReasons.map((reason, i) => (
+          <SectionHeading title="Latest Insights" subtitle="Expert perspectives on finance, governance, and professional development." />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+            {latestNews.map((post, i) => (
               <motion.div
-                key={i}
+                key={post.title}
                 custom={i}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.2 }}
                 variants={fadeUp}
-                className="flex items-start gap-3"
+                className="bg-card border border-border rounded-xl p-6 hover:shadow-lg hover:border-primary/20 transition-all group"
               >
-                <CheckCircle className="w-5 h-5 text-gold shrink-0 mt-0.5" />
-                <p className="text-primary-foreground/90 text-sm">{reason}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Programme Categories */}
-      <section className="section-padding bg-surface">
-        <div className="container-narrow mx-auto">
-          <SectionHeading title="Programme Categories" subtitle="Explore our comprehensive range of professional development and certification programmes." />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
-            {programmes.map((prog, i) => (
-              <motion.div
-                key={prog}
-                custom={i}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.2 }}
-                variants={fadeUp}
-                className="flex items-center gap-3 bg-card border border-border rounded-lg p-5 hover:border-primary/30 transition-all"
-              >
-                <div className="w-2 h-2 rounded-full bg-gold shrink-0" />
-                <span className="font-heading font-medium text-sm text-card-foreground">{prog}</span>
+                <span className="inline-block bg-primary/10 text-primary text-xs font-heading font-semibold px-3 py-1 rounded-full mb-3">
+                  {post.category || "Latest News"}
+                </span>
+                <h3 className="text-lg font-heading font-semibold text-card-foreground mb-2 group-hover:text-primary transition-colors">
+                  {post.title}
+                </h3>
+                <p className="text-muted-foreground text-xs">{post.pubDate}</p>
               </motion.div>
             ))}
           </div>
           <div className="text-center">
             <Link
-              to="/training#calendar"
+              to="/insights"
               className="inline-flex items-center gap-2 bg-cta hover:bg-cta/90 text-cta-foreground font-heading font-semibold px-8 py-3 rounded-lg transition-all hover:scale-105"
             >
-              View Training Calendar <ArrowRight className="w-4 h-4" />
+              View All Insights <ArrowRight className="w-4 h-4" />
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Stock & Exchange Section */}
+      <section className="section-padding bg-background">
+        <div className="container-narrow mx-auto">
+          <SectionHeading
+            title="Market Watch"
+            subtitle="Stay informed with live Nigerian market data and exchange rates."
+          />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-primary text-primary-foreground border border-primary/30 rounded-xl p-6 shadow-md [&_*]:text-primary-foreground">
+              <StockMarketTicker />
+            </div>
+            <div className="bg-primary text-primary-foreground border border-primary/30 rounded-xl p-6 shadow-md [&_*]:text-primary-foreground">
+              <ExchangeRateTicker />
+            </div>
           </div>
         </div>
       </section>
@@ -308,66 +337,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Insights / Blog */}
-      <section className="section-padding bg-background">
-        <div className="container-narrow mx-auto">
-          <SectionHeading title="Latest Insights" subtitle="Expert perspectives on finance, governance, and professional development." />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
-            {[
-              { title: "Understanding IFRS 17: What Nigerian Insurers Need to Know", date: "Feb 20, 2026", category: "IFRS Standards" },
-              { title: "5 Corporate Governance Lessons from Recent Regulatory Actions", date: "Feb 15, 2026", category: "Governance" },
-              { title: "The Rise of Data Analytics in Internal Audit Functions", date: "Feb 10, 2026", category: "Audit" },
-            ].map((post, i) => (
-              <motion.div
-                key={post.title}
-                custom={i}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.2 }}
-                variants={fadeUp}
-                className="bg-card border border-border rounded-xl p-6 hover:shadow-lg hover:border-primary/20 transition-all group"
-              >
-                <span className="inline-block bg-primary/10 text-primary text-xs font-heading font-semibold px-3 py-1 rounded-full mb-3">{post.category}</span>
-                <h3 className="text-lg font-heading font-semibold text-card-foreground mb-2 group-hover:text-primary transition-colors">{post.title}</h3>
-                <p className="text-muted-foreground text-xs">{post.date}</p>
-              </motion.div>
-            ))}
-          </div>
-          <div className="text-center">
-            <Link
-              to="/insights"
-              className="inline-flex items-center gap-2 bg-cta hover:bg-cta/90 text-cta-foreground font-heading font-semibold px-8 py-3 rounded-lg transition-all hover:scale-105"
-            >
-              View All Insights <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Market Data */}
-<section className="section-padding bg-background">
-  <div className="container-narrow mx-auto">
-    <SectionHeading
-      title="Market Watch"
-      subtitle="Stay informed with live Nigerian market data and exchange rates."
-    />
-
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-      
-      {/* Stock Market */}
-      <div className="bg-primary text-primary-foreground border border-primary/30 rounded-xl p-6 shadow-md [&_*]:text-primary-foreground">
-  <StockMarketTicker />
-</div>
-
-    {/*Exchange Rate*/}
-<div className="bg-primary text-primary-foreground border border-primary/30 rounded-xl p-6 shadow-md [&_*]:text-primary-foreground">
-  <ExchangeRateTicker />
-</div>
-
-    </div>
-  </div>
-</section>
-
       {/* Partners Logo Slider */}
       <section className="py-16 bg-surface overflow-hidden">
         <div className="container-narrow mx-auto mb-8">
@@ -413,8 +382,8 @@ const Index = () => {
             <Link to="/contact" className="inline-flex items-center gap-2 bg-cta hover:bg-cta/90 text-cta-foreground font-heading font-semibold px-8 py-4 rounded-lg transition-all hover:scale-105">
               Contact Us <ArrowRight className="w-4 h-4" />
             </Link>
-            <Link to="/training" className="inline-flex items-center gap-2 border-2 border-primary text-primary hover:bg-primary/5 font-heading font-semibold px-8 py-4 rounded-lg transition-all">
-              Explore Training
+            <Link to="/training#register" className="inline-flex items-center gap-2 border-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 font-heading font-semibold px-8 py-4 rounded-lg transition-all">
+              Register for Training
             </Link>
           </div>
         </div>
