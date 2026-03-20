@@ -64,7 +64,7 @@ const StockMarketTicker = () => {
             </div>
             <div className="text-right flex items-center gap-3">
               <span className="font-heading font-semibold text-card-foreground">₦{stock.price.toLocaleString()}</span>
-              <span className={`flex items-center gap-0.5 text-xs font-semibold ${stock.change >= 0 ? "text-green-600" : "text-red-500"}`}>
+              <span className={`flex items-center gap-0.5 text-xs font-semibold ${stock.change >= 0 ? "text-primary" : "text-destructive"}`}>
                 {stock.change >= 0 ? <TrendingUp className="w-3 h-3" /> : <TrendingDown className="w-3 h-3" />}
                 {stock.changePercent >= 0 ? "+" : ""}{stock.changePercent}%
               </span>
