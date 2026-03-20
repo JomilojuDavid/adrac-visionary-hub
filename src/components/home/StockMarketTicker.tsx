@@ -47,7 +47,7 @@ const StockMarketTicker = () => {
         <Activity className="w-5 h-5 text-gold" />
         <h3 className="font-heading font-bold text-foreground text-lg">NGX Live Market</h3>
         <span className="ml-auto text-xs text-muted-foreground flex items-center gap-1">
-          <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+          <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
           Live
         </span>
       </div>
@@ -64,7 +64,7 @@ const StockMarketTicker = () => {
             </div>
             <div className="text-right flex items-center gap-3">
               <span className="font-heading font-semibold text-card-foreground">₦{stock.price.toLocaleString()}</span>
-              <span className={`flex items-center gap-0.5 text-xs font-semibold ${stock.change >= 0 ? "text-green-600" : "text-red-500"}`}>
+              <span className={`flex items-center gap-0.5 text-xs font-semibold ${stock.change >= 0 ? "text-primary" : "text-destructive"}`}>
                 {stock.change >= 0 ? <TrendingUp className="w-3 h-3" /> : <TrendingDown className="w-3 h-3" />}
                 {stock.changePercent >= 0 ? "+" : ""}{stock.changePercent}%
               </span>
