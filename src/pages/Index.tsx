@@ -94,13 +94,28 @@ const Index = () => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const res = await fetch("http://localhost:5000/punch-news");
+        // ✅ CHANGE: production-ready endpoint (replace later)
+        const res = await fetch("https://your-backend-domain.com/punch-news");
+
+        if (!res.ok) throw new Error("Failed request");
+
         const data: Article[] = await res.json();
-        setLatestNews(data.slice(0, 3)); // top 3 latest news
+        setLatestNews(data.slice(0, 3));
       } catch (error) {
         console.error("Failed to fetch news:", error);
+
+        // ✅ fallback to prevent UI breaking
+        setLatestNews([
+          {
+            title: "Unable to load latest news",
+            link: "#",
+            pubDate: "",
+            contentSnippet: "",
+          },
+        ]);
       }
     };
+
     fetchNews();
   }, []);
 
@@ -133,22 +148,13 @@ const Index = () => {
             transition={{ duration: 0.7, delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <Link
-              to="/services"
-              className="inline-flex items-center gap-2 bg-gold hover:bg-gold/90 text-gold-foreground font-heading font-semibold px-8 py-4 rounded-lg transition-all hover:scale-105"
-            >
+            <Link to="/services" className="inline-flex items-center gap-2 bg-gold hover:bg-gold/90 text-gold-foreground font-heading font-semibold px-8 py-4 rounded-lg transition-all hover:scale-105">
               View Our Services <ArrowRight className="w-4 h-4" />
             </Link>
-            <Link
-              to="/training#register"
-              className="inline-flex items-center gap-2 border-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 font-heading font-semibold px-8 py-4 rounded-lg transition-all"
-            >
+            <Link to="/training#register" className="inline-flex items-center gap-2 border-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 font-heading font-semibold px-8 py-4 rounded-lg transition-all">
               Register for Training
             </Link>
-            <Link
-              to="/careers"
-              className="inline-flex items-center gap-2 border-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 font-heading font-semibold px-8 py-4 rounded-lg transition-all"
-            >
+            <Link to="/careers" className="inline-flex items-center gap-2 border-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 font-heading font-semibold px-8 py-4 rounded-lg transition-all">
               Careers
             </Link>
           </motion.div>
@@ -161,15 +167,7 @@ const Index = () => {
           <SectionHeading title="What We Do" subtitle="Comprehensive professional services designed to elevate corporate performance and build sustainable institutional capacity." />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {services.map((svc, i) => (
-              <motion.div
-                key={svc.title}
-                custom={i}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.2 }}
-                variants={fadeUp}
-                className="bg-card border border-border rounded-xl p-8 hover:shadow-lg hover:border-primary/20 transition-all group"
-              >
+              <motion.div key={svc.title} custom={i} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.2 }} variants={fadeUp} className="bg-card border border-border rounded-xl p-8 hover:shadow-lg hover:border-primary/20 transition-all group">
                 <svc.icon className="w-10 h-10 text-primary mb-4 group-hover:scale-110 transition-transform" />
                 <h3 className="text-xl font-heading font-semibold mb-3 text-card-foreground">{svc.title}</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">{svc.description}</p>
@@ -185,15 +183,7 @@ const Index = () => {
           <SectionHeading title="Latest Insights" subtitle="Expert perspectives on finance, governance, and professional development." />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
             {latestNews.map((post, i) => (
-              <motion.div
-                key={post.title}
-                custom={i}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.2 }}
-                variants={fadeUp}
-                className="bg-card border border-border rounded-xl p-6 hover:shadow-lg hover:border-primary/20 transition-all group"
-              >
+              <motion.div key={post.title} custom={i} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.2 }} variants={fadeUp} className="bg-card border border-border rounded-xl p-6 hover:shadow-lg hover:border-primary/20 transition-all group">
                 <span className="inline-block bg-primary/10 text-primary text-xs font-heading font-semibold px-3 py-1 rounded-full mb-3">
                   {post.category || "Latest News"}
                 </span>
@@ -205,23 +195,17 @@ const Index = () => {
             ))}
           </div>
           <div className="text-center">
-            <Link
-              to="/insights"
-              className="inline-flex items-center gap-2 bg-cta hover:bg-cta/90 text-cta-foreground font-heading font-semibold px-8 py-3 rounded-lg transition-all hover:scale-105"
-            >
+            <Link to="/insights" className="inline-flex items-center gap-2 bg-cta hover:bg-cta/90 text-cta-foreground font-heading font-semibold px-8 py-3 rounded-lg transition-all hover:scale-105">
               View All Insights <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Stock & Exchange Section */}
+      {/* Market Section */}
       <section className="section-padding bg-background">
         <div className="container-narrow mx-auto">
-          <SectionHeading
-            title="Market Watch"
-            subtitle="Stay informed with live Nigerian market data and exchange rates."
-          />
+          <SectionHeading title="Market Watch" subtitle="Stay informed with live Nigerian market data and exchange rates." />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-primary text-primary-foreground border border-primary/30 rounded-xl p-6 shadow-md [&_*]:text-primary-foreground">
               <StockMarketTicker />
