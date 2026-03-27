@@ -16,6 +16,7 @@ import founderImage from "@/assets/founder-portrait.jpg";
 import businessSchoolImage from "@/assets/business-school.jpg";
 import defactImage from "@/assets/defact-consult.jpg";
 import apartmentsImage from "@/assets/calebs-apartments.jpg";
+import Lightbox from "yet-another-react-lightbox";
 import { useEffect, useState } from "react";
 
 const fadeUp = {
