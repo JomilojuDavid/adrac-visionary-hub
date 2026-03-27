@@ -1,30 +1,129 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Masonry from "react-masonry-css";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import Lightbox from "yet-another-react-lightbox";
+
+interface GalleryImage {
+  id: string;
+  src: string;
+  width: number;
+  height: number;
+}
 
 const MediaGallery = () => {
+  const [images, setImages] = useState<GalleryImage[]>([]);
+  const [visibleCount, setVisibleCount] = useState(20);
+  const [index, setIndex] = useState(-1);
+
+  const IMAGES_PER_LOAD = 20;
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/gallery");
+        setImages(res.data);
+      } catch (err) {
+        console.error("Error fetching images:", err);
+      }
+    };
+
+    fetchImages();
+  }, []);
+
+  const loadMore = () => {
+    setVisibleCount((prev) => prev + IMAGES_PER_LOAD);
+  };
+
+  const breakpointColumnsObj = {
+    default: 4,
+    1100: 3,
+    768: 2,
+    500: 1,
+  };
+
   return (
-    <div className="container mx-auto p-5">
-      <h1 className="text-3xl font-bold mb-5">Media Gallery</h1>
-      <div className="mb-10">
-        <h2 className="text-2xl font-semibold">Photos from Past Trainings</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-          {/* Example Photo Items */}
-          <img src="/path/to/photo1.jpg" alt="Training Photo 1" className="rounded shadow-lg" />
-          <img src="/path/to/photo2.jpg" alt="Training Photo 2" className="rounded shadow-lg" />
-          <img src="/path/to/photo3.jpg" alt="Training Photo 3" className="rounded shadow-lg" />
-          {/* Add more photos as needed */}
-        </div>
+    <div className="container mx-auto px-4 py-10">
+      <h1 className="text-3xl font-bold mb-8">Media Gallery</h1>
+
+      {/* Photos Section */}
+      <div className="mb-12">
+        <h2 className="text-2xl font-semibold mb-6">
+          Photos from Past Trainings
+        </h2>
+
+        <Masonry
+          breakpointCols={breakpointColumnsObj}
+          className="flex gap-4"
+          columnClassName="flex flex-col gap-4"
+        >
+          {images.slice(0, visibleCount).map((img, i) => (
+            <div
+              key={img.id}
+              className="overflow-hidden rounded-xl shadow-md cursor-pointer group"
+              onClick={() => setIndex(i)}
+            >
+              <LazyLoadImage
+                src={img.src}
+                alt="Gallery"
+                effect="blur"
+                className="w-full h-auto transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
+          ))}
+        </Masonry>
+
+        {/* Load More */}
+        {visibleCount < images.length && (
+          <div className="text-center mt-10">
+            <button
+              onClick={loadMore}
+              className="px-6 py-3 bg-black text-white rounded-lg hover:opacity-80 transition"
+            >
+              Load More
+            </button>
+          </div>
+        )}
       </div>
+
+      {/* Lightbox */}
+      <Lightbox
+        open={index >= 0}
+        close={() => setIndex(-1)}
+        slides={images.map((img) => ({ src: img.src }))}
+        index={index}
+      />
+
+      {/* Videos Section (UNCHANGED) */}
       <div>
-        <h2 className="text-2xl font-semibold">Videos from Past Trainings</h2>
-        <div className="mt-4">
-          {/* Example Video Items */}
-          <div className="mb-4">
-            <iframe width="100%" height="315" src="https://www.youtube.com/embed/example_video_1" title="YouTube video 1" className="rounded" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+        <h2 className="text-2xl font-semibold mb-6">
+          Videos from Past Trainings
+        </h2>
+
+        <div className="space-y-6">
+          <div>
+            <iframe
+              width="100%"
+              height="315"
+              src="https://www.youtube.com/embed/example_video_1"
+              title="YouTube video 1"
+              className="rounded-xl shadow-md"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
           </div>
-          <div className="mb-4">
-            <iframe width="100%" height="315" src="https://www.youtube.com/embed/example_video_2" title="YouTube video 2" className="rounded" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+
+          <div>
+            <iframe
+              width="100%"
+              height="315"
+              src="https://www.youtube.com/embed/example_video_2"
+              title="YouTube video 2"
+              className="rounded-xl shadow-md"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
           </div>
-          {/* Add more videos as needed */}
         </div>
       </div>
     </div>
