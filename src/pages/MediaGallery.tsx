@@ -73,7 +73,7 @@ const MediaGallery = () => {
           ))}
         </Masonry>
 
-        {/* Load More images */}
+        {/* Load More */}
         {visibleCount < images.length && (
           <div className="text-center mt-10">
             <button
