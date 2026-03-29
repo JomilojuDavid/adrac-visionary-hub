@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import Masonry from "react-masonry-css";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import Lightbox from "yet-another-react-lightbox";
@@ -21,8 +20,9 @@ const MediaGallery = () => {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/gallery");
-        setImages(res.data);
+        const res = await fetch("http://localhost:5000/gallery");
+        const data = await res.json();
+        setImages(data);
       } catch (err) {
         console.error("Error fetching images:", err);
       }
