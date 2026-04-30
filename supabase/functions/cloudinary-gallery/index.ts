@@ -22,9 +22,19 @@ Deno.serve(async (req) => {
     const expression = encodeURIComponent(`folder:${FOLDER}/*`);
 
     const fetchType = async (resourceType: "image" | "video") => {
-      const url = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/resources/search?expression=${expression}%20AND%20resource_type:${resourceType}&max_results=500&sort_by=public_id`;
+      const url = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/resources/search`;
+      const body = {
+        expression: `folder:${FOLDER}/* AND resource_type:${resourceType}`,
+        max_results: 500,
+        sort_by: [{ created_at: "desc" }],
+      };
       const r = await fetch(url, {
-        headers: { Authorization: `Basic ${auth}` },
+        method: "POST",
+        headers: {
+          Authorization: `Basic ${auth}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
       });
       if (!r.ok) {
         const txt = await r.text();
