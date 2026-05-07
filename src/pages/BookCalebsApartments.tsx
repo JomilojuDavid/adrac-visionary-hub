@@ -11,6 +11,7 @@ import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 import RoomCard from "@/components/booking/RoomCard";
 import BookingSummary from "@/components/booking/BookingSummary";
 import StepIndicator from "@/components/booking/StepIndicator";
