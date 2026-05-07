@@ -4,7 +4,7 @@ const corsHeaders = {
 };
 
 const CLOUD_NAME = "dwxlbgncw";
-const FOLDER = "Training LAGOS";
+const FOLDER = ""; // empty = fetch all assets across the account
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
