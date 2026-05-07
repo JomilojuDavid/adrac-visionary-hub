@@ -24,7 +24,7 @@ Deno.serve(async (req) => {
     const fetchType = async (resourceType: "image" | "video") => {
       const url = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/resources/search`;
       const body = {
-        expression: `folder:${FOLDER}/* AND resource_type:${resourceType}`,
+        expression: `(folder:"${FOLDER}" OR folder:"${FOLDER}/*" OR asset_folder:"${FOLDER}" OR asset_folder:"${FOLDER}/*") AND resource_type:${resourceType}`,
         max_results: 500,
         sort_by: [{ created_at: "desc" }],
       };
