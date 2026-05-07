@@ -6,6 +6,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import { trainingEvents, TrainingFormField } from "@/lib/trainingData";
 import { CalendarDays, MapPin, ArrowLeft, CheckCircle, CreditCard } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 declare global {
   interface Window {
