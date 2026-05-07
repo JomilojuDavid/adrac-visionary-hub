@@ -18,17 +18,22 @@ Deno.serve(async (req) => {
       throw new Error("Cloudinary credentials not configured");
     }
 
+    const url = new URL(req.url);
+    const debug = url.searchParams.get("debug") === "1";
+    const folderParam = url.searchParams.get("folder") ?? FOLDER;
+
     const auth = btoa(`${apiKey}:${apiSecret}`);
-    const expression = encodeURIComponent(`folder:${FOLDER}/*`);
 
     const fetchType = async (resourceType: "image" | "video") => {
-      const url = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/resources/search`;
+      const expression = folderParam
+        ? `(folder="${folderParam}" OR folder="${folderParam}/*" OR asset_folder="${folderParam}" OR asset_folder="${folderParam}/*") AND resource_type:${resourceType}`
+        : `resource_type:${resourceType}`;
       const body = {
-        expression: `(folder:"${FOLDER}" OR folder:"${FOLDER}/*" OR asset_folder:"${FOLDER}" OR asset_folder:"${FOLDER}/*") AND resource_type:${resourceType}`,
+        expression,
         max_results: 500,
         sort_by: [{ created_at: "desc" }],
       };
-      const r = await fetch(url, {
+      const r = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/resources/search`, {
         method: "POST",
         headers: {
           Authorization: `Basic ${auth}`,
@@ -45,6 +50,26 @@ Deno.serve(async (req) => {
     };
 
     const [imgs, vids] = await Promise.all([fetchType("image"), fetchType("video")]);
+
+    if (debug) {
+      // Also list root folders for inspection
+      const foldersRes = await fetch(
+        `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/folders`,
+        { headers: { Authorization: `Basic ${auth}` } },
+      );
+      const folders = foldersRes.ok ? await foldersRes.json() : { error: await foldersRes.text() };
+      return new Response(
+        JSON.stringify({
+          folderQueried: folderParam,
+          imageCount: imgs.length,
+          videoCount: vids.length,
+          folders,
+          sampleImage: imgs[0] ?? null,
+          sampleVideo: vids[0] ?? null,
+        }, null, 2),
+        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 200 },
+      );
+    }
 
     const images = imgs.map((r: any) => ({
       id: r.asset_id ?? r.public_id,
