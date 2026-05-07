@@ -122,10 +122,34 @@ const BookCalebsApartments = () => {
         ],
       },
       callback: (response: { reference: string }) => {
-        setLoading(false);
-        toast({ title: "Booking Confirmed! 🎉", description: `Payment successful. Ref: ${response.reference}. Confirmation sent to ${form.email}.` });
-        setForm({ fullName: "", email: "", phone: "", roomType: "", checkIn: "", checkOut: "", guests: "1", specialRequests: "" });
-        setStep(1);
+        (async () => {
+          const { data, error } = await supabase.functions.invoke("verify-paystack", {
+            body: {
+              reference: response.reference,
+              payload: {
+                type: "booking",
+                fullName: form.fullName,
+                email: form.email,
+                phone: form.phone,
+                roomType: form.roomType,
+                roomLabel: selectedRoom?.label,
+                checkIn: form.checkIn,
+                checkOut: form.checkOut,
+                guests: form.guests,
+                nights,
+                specialRequests: form.specialRequests,
+              },
+            },
+          });
+          setLoading(false);
+          if (error || !data?.verified) {
+            toast({ title: "Payment Verification Failed", description: error?.message || "Please contact support with your reference.", variant: "destructive" });
+            return;
+          }
+          toast({ title: "Booking Confirmed! 🎉", description: `Payment verified. Ref: ${response.reference}. Confirmation sent to ${form.email}.` });
+          setForm({ fullName: "", email: "", phone: "", roomType: "", checkIn: "", checkOut: "", guests: "1", specialRequests: "" });
+          setStep(1);
+        })();
       },
       onClose: () => { setLoading(false); toast({ title: "Payment Cancelled", description: "Your booking has not been confirmed." }); },
     });
