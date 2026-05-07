@@ -4,7 +4,7 @@ const corsHeaders = {
 };
 
 const CLOUD_NAME = "dwxlbgncw";
-const FOLDER = "Home";
+const FOLDER = "Training LAGOS";
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
