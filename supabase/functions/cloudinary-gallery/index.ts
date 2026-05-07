@@ -26,7 +26,7 @@ Deno.serve(async (req) => {
 
     const fetchType = async (resourceType: "image" | "video") => {
       const expression = folderParam
-        ? `(folder="${folderParam}" OR folder="${folderParam}/*" OR asset_folder="${folderParam}" OR asset_folder="${folderParam}/*") AND resource_type:${resourceType}`
+        ? `(folder:"${folderParam}" OR folder:"${folderParam}/*" OR asset_folder:"${folderParam}" OR asset_folder:"${folderParam}/*") AND resource_type:${resourceType}`
         : `resource_type:${resourceType}`;
       const body = {
         expression,
