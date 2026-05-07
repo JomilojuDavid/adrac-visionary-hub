@@ -14,7 +14,120 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      bookings: {
+        Row: {
+          amount_kobo: number
+          check_in: string | null
+          check_out: string | null
+          created_at: string
+          currency: string
+          email: string
+          full_name: string
+          guests: number | null
+          id: string
+          nights: number | null
+          paystack_response: Json | null
+          phone: string | null
+          reference: string
+          room_label: string | null
+          room_type: string | null
+          special_requests: string | null
+          status: string
+        }
+        Insert: {
+          amount_kobo: number
+          check_in?: string | null
+          check_out?: string | null
+          created_at?: string
+          currency?: string
+          email: string
+          full_name: string
+          guests?: number | null
+          id?: string
+          nights?: number | null
+          paystack_response?: Json | null
+          phone?: string | null
+          reference: string
+          room_label?: string | null
+          room_type?: string | null
+          special_requests?: string | null
+          status?: string
+        }
+        Update: {
+          amount_kobo?: number
+          check_in?: string | null
+          check_out?: string | null
+          created_at?: string
+          currency?: string
+          email?: string
+          full_name?: string
+          guests?: number | null
+          id?: string
+          nights?: number | null
+          paystack_response?: Json | null
+          phone?: string | null
+          reference?: string
+          room_label?: string | null
+          room_type?: string | null
+          special_requests?: string | null
+          status?: string
+        }
+        Relationships: []
+      }
+      training_registrations: {
+        Row: {
+          amount_kobo: number
+          created_at: string
+          currency: string
+          email: string
+          form_data: Json | null
+          full_name: string | null
+          id: string
+          job_title: string | null
+          organisation: string | null
+          paystack_response: Json | null
+          phone: string | null
+          reference: string
+          status: string
+          training_id: string
+          training_title: string
+        }
+        Insert: {
+          amount_kobo: number
+          created_at?: string
+          currency?: string
+          email: string
+          form_data?: Json | null
+          full_name?: string | null
+          id?: string
+          job_title?: string | null
+          organisation?: string | null
+          paystack_response?: Json | null
+          phone?: string | null
+          reference: string
+          status?: string
+          training_id: string
+          training_title: string
+        }
+        Update: {
+          amount_kobo?: number
+          created_at?: string
+          currency?: string
+          email?: string
+          form_data?: Json | null
+          full_name?: string | null
+          id?: string
+          job_title?: string | null
+          organisation?: string | null
+          paystack_response?: Json | null
+          phone?: string | null
+          reference?: string
+          status?: string
+          training_id?: string
+          training_title?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

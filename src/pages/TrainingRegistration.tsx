@@ -6,6 +6,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import { trainingEvents, TrainingFormField } from "@/lib/trainingData";
 import { CalendarDays, MapPin, ArrowLeft, CheckCircle, CreditCard } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 declare global {
   interface Window {
@@ -88,11 +89,33 @@ const TrainingRegistration = () => {
         ],
       },
       callback: (response: { reference: string }) => {
-        setLoading(false);
-        setPaymentRef(response.reference);
-        setSubmitted(true);
-        window.scrollTo({ top: 0, behavior: "smooth" });
-        toast({ title: "Payment Successful! 🎉", description: `Ref: ${response.reference}. Confirmation sent to ${email}.` });
+        (async () => {
+          const { data, error } = await supabase.functions.invoke("verify-paystack", {
+            body: {
+              reference: response.reference,
+              payload: {
+                type: "training",
+                trainingId: training!.id,
+                trainingTitle: training!.title,
+                email,
+                fullName: formData["name"],
+                phone: formData["phone"],
+                organisation: formData["organisation"],
+                jobTitle: formData["jobTitle"],
+                formData,
+              },
+            },
+          });
+          setLoading(false);
+          if (error || !data?.verified) {
+            toast({ title: "Payment Verification Failed", description: error?.message || "Please contact support with your reference.", variant: "destructive" });
+            return;
+          }
+          setPaymentRef(response.reference);
+          setSubmitted(true);
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          toast({ title: "Payment Successful! 🎉", description: `Ref: ${response.reference}. Confirmation sent to ${email}.` });
+        })();
       },
       onClose: () => {
         setLoading(false);
