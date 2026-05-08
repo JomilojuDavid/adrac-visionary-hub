@@ -22,6 +22,7 @@ const navItems = [
     children: [
       { label: "Training & Programmes", path: "/training" },
       { label: "Training Calendar", path: "/training#calendar" },
+      { label: "Media & Gallery", path: "/media-gallery", noNotice: true },
     ],
   },
   {
