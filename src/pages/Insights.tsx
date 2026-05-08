@@ -19,22 +19,57 @@ const Insights = () => {
   const [articles, setArticles] = useState<Article[]>([]);
   const [featuredPost, setFeaturedPost] = useState<Article | null>(null);
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
+    const SOURCES = [
+      { name: "Punch", url: "https://punchng.com/feed/" },
+      { name: "Guardian Nigeria", url: "https://guardian.ng/feed/" },
+      { name: "Vanguard", url: "https://www.vanguardngr.com/feed/" },
+      { name: "Premium Times", url: "https://www.premiumtimesng.com/feed" },
+      { name: "BusinessDay", url: "https://businessday.ng/feed/" },
+    ];
+
+    const stripHtml = (html: string) =>
+      html?.replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim() ?? "";
+
     const fetchNews = async () => {
       try {
-        const res = await fetch("http://localhost:5000/punch-news");
-        const data: Article[] = await res.json();
+        const results = await Promise.allSettled(
+          SOURCES.map((s) =>
+            fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(s.url)}`)
+              .then((r) => r.json())
+              .then((d) =>
+                (d.items || []).slice(0, 6).map((item: any) => ({
+                  title: item.title,
+                  link: item.link,
+                  pubDate: new Date(item.pubDate).toDateString(),
+                  contentSnippet: stripHtml(item.description).slice(0, 220),
+                  category: s.name,
+                }))
+              )
+          )
+        );
 
-        if (data.length > 0) {
-          setFeaturedPost(data[0]); // first item as featured
-          setArticles(data.slice(1)); // rest for grid
+        const merged: Article[] = results
+          .filter((r): r is PromiseFulfilledResult<Article[]> => r.status === "fulfilled")
+          .flatMap((r) => r.value)
+          .sort(() => Math.random() - 0.5);
+
+        if (merged.length > 0) {
+          setFeaturedPost(merged[0]);
+          setArticles(merged.slice(1, 13));
         }
       } catch (error) {
         console.error("Failed to fetch news:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchNews();
+    const interval = setInterval(fetchNews, 30 * 60 * 1000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
