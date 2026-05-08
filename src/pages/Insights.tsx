@@ -141,13 +141,16 @@ const Insights = () => {
           {/* Posts Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {articles.map((post, i) => (
-              <motion.div
-                key={post.title}
+              <motion.a
+                key={post.link || post.title}
+                href={post.link}
+                target="_blank"
+                rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false, amount: 0.2 }}
                 transition={{ delay: i * 0.05 }}
-                className="bg-card border border-border rounded-xl p-6 hover:shadow-md hover:border-primary/20 transition-all cursor-pointer"
+                className="block bg-card border border-border rounded-xl p-6 hover:shadow-md hover:border-primary/20 transition-all"
               >
                 <span className="inline-block bg-primary/10 text-primary text-xs font-heading font-semibold px-3 py-1 rounded-full mb-3">
                   {post.category || "News"}
@@ -156,7 +159,7 @@ const Insights = () => {
                   {post.title}
                 </h3>
                 <p className="text-xs text-muted-foreground">{post.pubDate}</p>
-              </motion.div>
+              </motion.a>
             ))}
           </div>
 
