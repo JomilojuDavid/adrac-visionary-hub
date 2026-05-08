@@ -140,7 +140,7 @@ const Navbar = () => {
                     <ul className="pl-4">
                       {item.children.map((child) => (
                         <li key={child.label}>
-                          {"showNotice" in item && item.showNotice ? (
+                          {"showNotice" in item && item.showNotice && !("noNotice" in child && (child as any).noNotice) ? (
                             <button
                               onClick={handleTrainingClick}
                               className="block w-full text-left px-3 py-1.5 text-xs text-muted-foreground hover:text-primary"
