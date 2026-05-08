@@ -22,6 +22,7 @@ const navItems = [
     children: [
       { label: "Training & Programmes", path: "/training" },
       { label: "Training Calendar", path: "/training#calendar" },
+      { label: "Media & Gallery", path: "/media-gallery", noNotice: true },
     ],
   },
   {
@@ -89,7 +90,7 @@ const Navbar = () => {
                   <ul className="absolute top-full left-0 bg-background border border-border rounded-lg shadow-lg py-2 min-w-[200px] animate-fade-in z-50">
                     {item.children.map((child) => (
                       <li key={child.label}>
-                        {"showNotice" in item && item.showNotice ? (
+                        {"showNotice" in item && item.showNotice && !("noNotice" in child && (child as any).noNotice) ? (
                           <button
                             onClick={handleTrainingClick}
                             className="block w-full text-left px-4 py-2 text-sm hover:bg-primary/5 hover:text-primary transition-colors"
@@ -139,7 +140,7 @@ const Navbar = () => {
                     <ul className="pl-4">
                       {item.children.map((child) => (
                         <li key={child.label}>
-                          {"showNotice" in item && item.showNotice ? (
+                          {"showNotice" in item && item.showNotice && !("noNotice" in child && (child as any).noNotice) ? (
                             <button
                               onClick={handleTrainingClick}
                               className="block w-full text-left px-3 py-1.5 text-xs text-muted-foreground hover:text-primary"
