@@ -19,22 +19,57 @@ const Insights = () => {
   const [articles, setArticles] = useState<Article[]>([]);
   const [featuredPost, setFeaturedPost] = useState<Article | null>(null);
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
+    const SOURCES = [
+      { name: "Punch", url: "https://punchng.com/feed/" },
+      { name: "Guardian Nigeria", url: "https://guardian.ng/feed/" },
+      { name: "Vanguard", url: "https://www.vanguardngr.com/feed/" },
+      { name: "Premium Times", url: "https://www.premiumtimesng.com/feed" },
+      { name: "BusinessDay", url: "https://businessday.ng/feed/" },
+    ];
+
+    const stripHtml = (html: string) =>
+      html?.replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim() ?? "";
+
     const fetchNews = async () => {
       try {
-        const res = await fetch("http://localhost:5000/punch-news");
-        const data: Article[] = await res.json();
+        const results = await Promise.allSettled(
+          SOURCES.map((s) =>
+            fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(s.url)}`)
+              .then((r) => r.json())
+              .then((d) =>
+                (d.items || []).slice(0, 6).map((item: any) => ({
+                  title: item.title,
+                  link: item.link,
+                  pubDate: new Date(item.pubDate).toDateString(),
+                  contentSnippet: stripHtml(item.description).slice(0, 220),
+                  category: s.name,
+                }))
+              )
+          )
+        );
 
-        if (data.length > 0) {
-          setFeaturedPost(data[0]); // first item as featured
-          setArticles(data.slice(1)); // rest for grid
+        const merged: Article[] = results
+          .filter((r): r is PromiseFulfilledResult<Article[]> => r.status === "fulfilled")
+          .flatMap((r) => r.value)
+          .sort(() => Math.random() - 0.5);
+
+        if (merged.length > 0) {
+          setFeaturedPost(merged[0]);
+          setArticles(merged.slice(1, 13));
         }
       } catch (error) {
         console.error("Failed to fetch news:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchNews();
+    const interval = setInterval(fetchNews, 30 * 60 * 1000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -57,11 +92,18 @@ const Insights = () => {
       <section className="section-padding bg-background">
         <div className="container-narrow mx-auto">
           {/* Featured Post */}
+          {loading && !featuredPost && (
+            <div className="text-center py-12 text-muted-foreground">Loading latest news…</div>
+          )}
+
           {featuredPost && (
-            <motion.div
+            <motion.a
+              href={featuredPost.link}
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-card border border-border rounded-xl p-8 md:p-12 mb-12"
+              className="block bg-card border border-border rounded-xl p-8 md:p-12 mb-12 hover:border-primary/30 hover:shadow-lg transition-all"
             >
               <span className="inline-block bg-primary/10 text-primary text-xs font-heading font-semibold px-3 py-1 rounded-full mb-4">
                 {featuredPost.category || "Latest News"}
@@ -77,7 +119,7 @@ const Insights = () => {
                   <Calendar className="w-4 h-4" /> {featuredPost.pubDate}
                 </span>
               </div>
-            </motion.div>
+            </motion.a>
           )}
 
           {/* Categories */}
@@ -99,13 +141,16 @@ const Insights = () => {
           {/* Posts Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {articles.map((post, i) => (
-              <motion.div
-                key={post.title}
+              <motion.a
+                key={post.link || post.title}
+                href={post.link}
+                target="_blank"
+                rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false, amount: 0.2 }}
                 transition={{ delay: i * 0.05 }}
-                className="bg-card border border-border rounded-xl p-6 hover:shadow-md hover:border-primary/20 transition-all cursor-pointer"
+                className="block bg-card border border-border rounded-xl p-6 hover:shadow-md hover:border-primary/20 transition-all"
               >
                 <span className="inline-block bg-primary/10 text-primary text-xs font-heading font-semibold px-3 py-1 rounded-full mb-3">
                   {post.category || "News"}
@@ -114,7 +159,7 @@ const Insights = () => {
                   {post.title}
                 </h3>
                 <p className="text-xs text-muted-foreground">{post.pubDate}</p>
-              </motion.div>
+              </motion.a>
             ))}
           </div>
 
