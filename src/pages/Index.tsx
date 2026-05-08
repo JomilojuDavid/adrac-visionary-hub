@@ -93,31 +93,57 @@ const Index = () => {
   const [latestNews, setLatestNews] = useState<Article[]>([]);
 
   useEffect(() => {
+    const SOURCES = [
+      { name: "Punch", url: "https://punchng.com/feed/" },
+      { name: "Guardian Nigeria", url: "https://guardian.ng/feed/" },
+      { name: "Vanguard", url: "https://www.vanguardngr.com/feed/" },
+      { name: "BusinessDay", url: "https://businessday.ng/feed/" },
+    ];
+
+    const stripHtml = (html: string) =>
+      html?.replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim() ?? "";
+
     const fetchNews = async () => {
       try {
-        // ✅ CHANGE: production-ready endpoint (replace later)
-        const res = await fetch("https://your-backend-domain.com/punch-news");
+        const results = await Promise.allSettled(
+          SOURCES.map((s) =>
+            fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(s.url)}`)
+              .then((r) => r.json())
+              .then((d) =>
+                (d.items || []).slice(0, 3).map((item: any) => ({
+                  title: item.title,
+                  link: item.link,
+                  pubDate: new Date(item.pubDate).toDateString(),
+                  contentSnippet: stripHtml(item.description).slice(0, 160),
+                  category: s.name,
+                }))
+              )
+          )
+        );
 
-        if (!res.ok) throw new Error("Failed request");
+        const merged: Article[] = results
+          .filter((r): r is PromiseFulfilledResult<Article[]> => r.status === "fulfilled")
+          .flatMap((r) => r.value);
 
-        const data: Article[] = await res.json();
-        setLatestNews(data.slice(0, 3));
+        // pick top 3 (one per source preferred)
+        const seen = new Set<string>();
+        const top: Article[] = [];
+        for (const a of merged) {
+          if (!seen.has(a.category || "")) {
+            top.push(a);
+            seen.add(a.category || "");
+          }
+          if (top.length === 3) break;
+        }
+        setLatestNews(top.length ? top : merged.slice(0, 3));
       } catch (error) {
         console.error("Failed to fetch news:", error);
-
-        // ✅ fallback to prevent UI breaking
-        setLatestNews([
-          {
-            title: "Unable to load latest news",
-            link: "#",
-            pubDate: "",
-            contentSnippet: "",
-          },
-        ]);
       }
     };
 
     fetchNews();
+    const interval = setInterval(fetchNews, 30 * 60 * 1000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
