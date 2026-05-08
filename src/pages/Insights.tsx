@@ -92,11 +92,18 @@ const Insights = () => {
       <section className="section-padding bg-background">
         <div className="container-narrow mx-auto">
           {/* Featured Post */}
+          {loading && !featuredPost && (
+            <div className="text-center py-12 text-muted-foreground">Loading latest news…</div>
+          )}
+
           {featuredPost && (
-            <motion.div
+            <motion.a
+              href={featuredPost.link}
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-card border border-border rounded-xl p-8 md:p-12 mb-12"
+              className="block bg-card border border-border rounded-xl p-8 md:p-12 mb-12 hover:border-primary/30 hover:shadow-lg transition-all"
             >
               <span className="inline-block bg-primary/10 text-primary text-xs font-heading font-semibold px-3 py-1 rounded-full mb-4">
                 {featuredPost.category || "Latest News"}
@@ -112,7 +119,7 @@ const Insights = () => {
                   <Calendar className="w-4 h-4" /> {featuredPost.pubDate}
                 </span>
               </div>
-            </motion.div>
+            </motion.a>
           )}
 
           {/* Categories */}
