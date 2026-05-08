@@ -26,20 +26,37 @@ const ExchangeRateTicker = () => {
   const [lastUpdated, setLastUpdated] = useState(new Date());
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setRates(prev =>
-        prev.map(rate => {
-          const fluctBuy = (Math.random() - 0.5) * rate.buy * 0.003;
-          const fluctSell = (Math.random() - 0.5) * rate.sell * 0.003;
-          return {
-            ...rate,
-            buy: parseFloat((rate.buy + fluctBuy).toFixed(2)),
-            sell: parseFloat((rate.sell + fluctSell).toFixed(2)),
-          };
-        })
-      );
-      setLastUpdated(new Date());
-    }, 5000);
+    const fetchRates = async () => {
+      try {
+        // Free, no-key FX API. Returns NGN per 1 unit of base currency.
+        const codes = initialRates.map((r) => r.code);
+        const results = await Promise.all(
+          codes.map((code) =>
+            fetch(`https://open.er-api.com/v6/latest/${code}`)
+              .then((r) => r.json())
+              .then((d) => ({ code, ngn: d?.rates?.NGN as number | undefined }))
+              .catch(() => ({ code, ngn: undefined }))
+          )
+        );
+
+        setRates((prev) =>
+          prev.map((r) => {
+            const live = results.find((x) => x.code === r.code)?.ngn;
+            if (!live || !isFinite(live)) return r;
+            // Apply a small parallel-market spread (~1%) for buy/sell
+            const buy = parseFloat((live * 0.995).toFixed(2));
+            const sell = parseFloat((live * 1.008).toFixed(2));
+            return { ...r, buy, sell };
+          })
+        );
+        setLastUpdated(new Date());
+      } catch (err) {
+        console.error("FX fetch failed:", err);
+      }
+    };
+
+    fetchRates();
+    const interval = setInterval(fetchRates, 5 * 60 * 1000); // refresh every 5 min
     return () => clearInterval(interval);
   }, []);
 

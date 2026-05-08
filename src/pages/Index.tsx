@@ -93,31 +93,57 @@ const Index = () => {
   const [latestNews, setLatestNews] = useState<Article[]>([]);
 
   useEffect(() => {
+    const SOURCES = [
+      { name: "Punch", url: "https://punchng.com/feed/" },
+      { name: "Guardian Nigeria", url: "https://guardian.ng/feed/" },
+      { name: "Vanguard", url: "https://www.vanguardngr.com/feed/" },
+      { name: "BusinessDay", url: "https://businessday.ng/feed/" },
+    ];
+
+    const stripHtml = (html: string) =>
+      html?.replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim() ?? "";
+
     const fetchNews = async () => {
       try {
-        // ✅ CHANGE: production-ready endpoint (replace later)
-        const res = await fetch("https://your-backend-domain.com/punch-news");
+        const results = await Promise.allSettled(
+          SOURCES.map((s) =>
+            fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(s.url)}`)
+              .then((r) => r.json())
+              .then((d) =>
+                (d.items || []).slice(0, 3).map((item: any) => ({
+                  title: item.title,
+                  link: item.link,
+                  pubDate: new Date(item.pubDate).toDateString(),
+                  contentSnippet: stripHtml(item.description).slice(0, 160),
+                  category: s.name,
+                }))
+              )
+          )
+        );
 
-        if (!res.ok) throw new Error("Failed request");
+        const merged: Article[] = results
+          .filter((r): r is PromiseFulfilledResult<Article[]> => r.status === "fulfilled")
+          .flatMap((r) => r.value);
 
-        const data: Article[] = await res.json();
-        setLatestNews(data.slice(0, 3));
+        // pick top 3 (one per source preferred)
+        const seen = new Set<string>();
+        const top: Article[] = [];
+        for (const a of merged) {
+          if (!seen.has(a.category || "")) {
+            top.push(a);
+            seen.add(a.category || "");
+          }
+          if (top.length === 3) break;
+        }
+        setLatestNews(top.length ? top : merged.slice(0, 3));
       } catch (error) {
         console.error("Failed to fetch news:", error);
-
-        // ✅ fallback to prevent UI breaking
-        setLatestNews([
-          {
-            title: "Unable to load latest news",
-            link: "#",
-            pubDate: "",
-            contentSnippet: "",
-          },
-        ]);
       }
     };
 
     fetchNews();
+    const interval = setInterval(fetchNews, 30 * 60 * 1000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -184,7 +210,18 @@ const Index = () => {
           <SectionHeading title="Latest Insights" subtitle="Expert perspectives on finance, governance, and professional development." />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
             {latestNews.map((post, i) => (
-              <motion.div key={post.title} custom={i} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.2 }} variants={fadeUp} className="bg-card border border-border rounded-xl p-6 hover:shadow-lg hover:border-primary/20 transition-all group">
+              <motion.a
+                key={post.link || post.title}
+                href={post.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                custom={i}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.2 }}
+                variants={fadeUp}
+                className="block bg-card border border-border rounded-xl p-6 hover:shadow-lg hover:border-primary/20 transition-all group"
+              >
                 <span className="inline-block bg-primary/10 text-primary text-xs font-heading font-semibold px-3 py-1 rounded-full mb-3">
                   {post.category || "Latest News"}
                 </span>
@@ -192,7 +229,7 @@ const Index = () => {
                   {post.title}
                 </h3>
                 <p className="text-muted-foreground text-xs">{post.pubDate}</p>
-              </motion.div>
+              </motion.a>
             ))}
           </div>
           <div className="text-center">
