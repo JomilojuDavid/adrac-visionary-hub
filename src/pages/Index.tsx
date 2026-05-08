@@ -210,7 +210,18 @@ const Index = () => {
           <SectionHeading title="Latest Insights" subtitle="Expert perspectives on finance, governance, and professional development." />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
             {latestNews.map((post, i) => (
-              <motion.div key={post.title} custom={i} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.2 }} variants={fadeUp} className="bg-card border border-border rounded-xl p-6 hover:shadow-lg hover:border-primary/20 transition-all group">
+              <motion.a
+                key={post.link || post.title}
+                href={post.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                custom={i}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.2 }}
+                variants={fadeUp}
+                className="block bg-card border border-border rounded-xl p-6 hover:shadow-lg hover:border-primary/20 transition-all group"
+              >
                 <span className="inline-block bg-primary/10 text-primary text-xs font-heading font-semibold px-3 py-1 rounded-full mb-3">
                   {post.category || "Latest News"}
                 </span>
@@ -218,7 +229,7 @@ const Index = () => {
                   {post.title}
                 </h3>
                 <p className="text-muted-foreground text-xs">{post.pubDate}</p>
-              </motion.div>
+              </motion.a>
             ))}
           </div>
           <div className="text-center">
