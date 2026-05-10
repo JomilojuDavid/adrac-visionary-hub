@@ -9,71 +9,86 @@ interface Stock {
   changePercent: number;
 }
 
-// Helper to calculate fake change values
-function calculateChange(price: number) {
-  const change = (Math.random() - 0.5) * price * 0.02;
-  const changePercent = (change / price) * 100;
-  return { change, changePercent };
+// Realistic fallback stocks (USD prices) — shown when API fails or is rate-limited
+const FALLBACK_STOCKS_USD: Stock[] = [
+  { symbol: "AAPL", price: 185.5, change: 1.25, changePercent: 0.68 },
+  { symbol: "MSFT", price: 415.2, change: -2.1, changePercent: -0.5 },
+  { symbol: "GOOGL", price: 165.8, change: 0.9, changePercent: 0.55 },
+  { symbol: "AMZN", price: 178.4, change: 2.3, changePercent: 1.31 },
+  { symbol: "META", price: 490.1, change: -4.5, changePercent: -0.91 },
+  { symbol: "TSLA", price: 175.3, change: 3.2, changePercent: 1.86 },
+];
+
+function convertToNgn(stocks: Stock[], rate: number): Stock[] {
+  return stocks.map((s) => ({
+    ...s,
+    price: s.price * rate,
+    change: s.change * rate,
+  }));
 }
 
 const StockMarketTicker = () => {
   const [stocks, setStocks] = useState<Stock[]>([]);
   const [loading, setLoading] = useState(true);
-  const [exchangeRate, setExchangeRate] = useState<number>(1); // USD->NGN
 
   useEffect(() => {
-    const fetchMarketData = async () => {
+    let ngnRate = 1;
+
+    const fetchData = async () => {
       try {
-        // 1) Fetch stock prices from FMP
-        const stockSymbols = "AAPL,MSFT,GOOG"; // You can customize
+        // 1) Fetch USD → NGN rate
+        const fxRes = await fetch(
+          "https://api.exchangerate.host/latest?base=USD"
+        );
+        const fxData = await fxRes.json();
+        ngnRate = fxData.rates?.NGN ?? 1;
+      } catch (err) {
+        console.error("Exchange rate API error:", err);
+        ngnRate = 1580; // rough fallback
+      }
+
+      try {
+        // 2) Fetch live stock prices from FMP
+        const stockSymbols = "AAPL,MSFT,GOOGL";
         const stockRes = await fetch(
           `https://financialmodelingprep.com/api/v3/quote-short/${stockSymbols}?apikey=demo`
         );
         const stockData = await stockRes.json();
 
-        // Format stocks into your shape
-        const formattedStocks: Stock[] = stockData.map((s: any) => {
-          const { change, changePercent } = calculateChange(s.price);
-          return {
-            symbol: s.symbol,
-            price: s.price * exchangeRate, // convert to NGN if needed
-            change,
-            changePercent,
-          };
-        });
-
-        setStocks(formattedStocks);
+        // Guard against non-array (rate-limit / error) responses
+        if (Array.isArray(stockData) && stockData.length > 0) {
+          const formatted: Stock[] = stockData.map((s: any) => {
+            const price = (s.price ?? 100) * ngnRate;
+            const changeRaw = (Math.random() - 0.5) * price * 0.02;
+            const changePercent = (changeRaw / price) * 100;
+            return {
+              symbol: s.symbol,
+              price,
+              change: changeRaw,
+              changePercent,
+            };
+          });
+          setStocks(formatted);
+        } else {
+          // Rate-limited or error → use fallback data
+          setStocks(convertToNgn(FALLBACK_STOCKS_USD, ngnRate));
+        }
       } catch (err) {
         console.error("Stock API error:", err);
+        setStocks(convertToNgn(FALLBACK_STOCKS_USD, ngnRate));
       } finally {
         setLoading(false);
       }
     };
 
-    const fetchExchangeRate = async () => {
-      try {
-        // 2) Fetch currency data from exchangerate.host
-        const fxRes = await fetch(
-          "https://api.exchangerate.host/latest?base=USD"
-        );
-        const fxData = await fxRes.json();
-        // Use USD->NGN rate if available
-        const rate = fxData.rates?.NGN ?? 1;
-        setExchangeRate(rate);
-      } catch (err) {
-        console.error("Exchange rate API error:", err);
-      }
-    };
+    fetchData();
 
-    fetchExchangeRate();       // First get FX rate
-    fetchMarketData();         // Then fetch stocks
-
-    // Refresh every 30 seconds
-    const interval = setInterval(fetchMarketData, 30000);
+    // Refresh every 60 seconds (30s is aggressive for demo key)
+    const interval = setInterval(fetchData, 60000);
     return () => clearInterval(interval);
-  }, [exchangeRate]);
+  }, []);
 
-  if (loading) return <p className="text-white">Loading stock data...</p>;
+  if (loading) return <p className="text-white">Loading market data…</p>;
   if (!stocks.length) return <p className="text-white">No stock data available.</p>;
 
   return (
@@ -104,7 +119,7 @@ const StockMarketTicker = () => {
 
             <div className="text-right flex items-center gap-3">
               <span className="font-heading font-semibold text-white">
-                ₦{stock.price.toLocaleString()}
+                ₦{Math.round(stock.price).toLocaleString()}
               </span>
 
               <span
