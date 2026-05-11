@@ -16,7 +16,7 @@ declare global {
   }
 }
 
-const PAYSTACK_PUBLIC_KEY = "pk_test_13fd90a9b47a55f9ec5c06f5d4f27cc18871b774";
+const PAYSTACK_PUBLIC_KEY = "pk_live_478b54a25ef0c1f91edf804a2afb6348d4fe9c9a";
 
 const parseFee = (fee?: string): number => {
   if (!fee) return 0;
