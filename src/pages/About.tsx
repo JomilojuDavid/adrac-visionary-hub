@@ -150,21 +150,28 @@ const About = () => (
         <SectionHeading title="Who We Are" centered={false} />
 
         <p className="text-muted-foreground leading-relaxed mb-4">
-          ADRAC Professional Services Consulting is a premier training,
-          consulting, and advisory firm specialising in IFRS/IPSAS,
-          corporate governance, forensic accounting, tax advisory, and
-          executive leadership development.
+          ADRAC Professional Services Consulting is a leading professional
+          services and management consulting firm providing high-quality
+          advisory, training, assurance, compliance, financial reporting,
+          tax, governance, and public financial management services to both
+          public and private sector organisations.
         </p>
 
         <p className="text-muted-foreground leading-relaxed mb-4">
-          Founded by Dr. Deji Awobotu FCA, mni, ADRAC has established a
-          nationwide reputation for delivering practical, high-impact
-          professional development programmes.
+          The firm is built on a strong foundation of technical excellence,
+          integrity, professionalism, and practical experience. ADRAC works
+          with ministries, departments, agencies, regulators, financial
+          institutions, private companies, development-focused organisations,
+          and professional bodies to strengthen financial management, improve
+          reporting quality, build institutional capacity, manage risk, and
+          support sustainable growth.
         </p>
 
         <p className="text-muted-foreground leading-relaxed">
-          ADRAC continues to set the standard for professional excellence
-          across Nigeria.
+          ADRAC combines deep technical knowledge with practical
+          implementation experience. We understand not only what standards
+          and regulations require, but also the realities organisations face
+          in implementing them.
         </p>
       </div>
     </MotionSection>
