@@ -330,7 +330,7 @@ const Index = () => {
               { id: "Pp7kut9vZm8", title: "Our Founder's Interview on BVN" },
               { id: "V1kw3UYqPls", title: "Interview with our Founder on Treasury Single Account" },
               {
-                src: "https://res.cloudinary.com/dwxlbgncw/video/upload/f_auto,q_auto/v1778925843/copy_DA55D8EC-CD44-4696-898A-8A204990DE5C_hvt1zg.mov",
+                src: "https://res.cloudinary.com/dwxlbgncw/video/upload/f_mp4,q_auto/v1778925843/copy_DA55D8EC-CD44-4696-898A-8A204990DE5C_hvt1zg",
                 title: "Our Founder's Interview at Our Last Training",
                 type: "cloudinary",
               },
@@ -346,12 +346,10 @@ const Index = () => {
               >
                 <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
                   {video.type === "cloudinary" ? (
-                    <video
-                      className="absolute inset-0 w-full h-full"
-                      src={video.src}
-                      controls
-                      preload="none"
-                    />
+                    <video className="absolute inset-0 w-full h-full" controls preload="none">
+                      <source src={video.src} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
                   ) : (
                     <iframe
                       className="absolute inset-0 w-full h-full"
