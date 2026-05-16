@@ -15,6 +15,12 @@ import {
   Award,
   TrendingUp,
   Users,
+  CheckCircle,
+  Lightbulb,
+  Lock,
+  Target,
+  Eye,
+  Compass,
 } from "lucide-react";
 
 import MotionSection from "@/lib/animations/MotionSection";
@@ -79,31 +85,23 @@ const CountUp = ({ from = 0, to, duration = 2, suffix = "" }: CountUpProps) => {
 ========================================= */
 
 const values = [
-  {
-    icon: Heart,
-    label: "Integrity",
-    desc: "We uphold the highest ethical standards in all engagements.",
-  },
-  {
-    icon: Shield,
-    label: "Professionalism",
-    desc: "Excellence in delivery, communication, and conduct.",
-  },
-  {
-    icon: Award,
-    label: "Excellence",
-    desc: "Continuous pursuit of quality and impact in every service.",
-  },
-  {
-    icon: Users,
-    label: "Service",
-    desc: "Client-centric approach focused on building lasting partnerships.",
-  },
-  {
-    icon: TrendingUp,
-    label: "Impact",
-    desc: "Measurable results that transform organisations and careers.",
-  },
+  { icon: Heart, label: "Integrity", desc: "We uphold the highest ethical standards in every engagement." },
+  { icon: Shield, label: "Professionalism", desc: "Excellence in delivery, communication, and professional conduct." },
+  { icon: Award, label: "Excellence", desc: "Continuous pursuit of quality and impact in every service." },
+  { icon: CheckCircle, label: "Accountability", desc: "We take ownership and stand behind the work we deliver." },
+  { icon: Lightbulb, label: "Innovation", desc: "Practical, forward-thinking solutions to evolving challenges." },
+  { icon: Lock, label: "Confidentiality", desc: "Trust safeguarded by discretion and professional confidentiality." },
+  { icon: Users, label: "Client Focus", desc: "Tailored support centred on client needs and outcomes." },
+];
+
+const whyAdrac = [
+  "Deep technical expertise",
+  "Strong understanding of regulators and industry expectations",
+  "Practical, implementable solutions",
+  "High-quality training and advisory support",
+  "Professional confidentiality and integrity",
+  "Timely and client-focused service delivery",
+  "Strong understanding of both public and private sector environments",
 ];
 
 const stats = [
