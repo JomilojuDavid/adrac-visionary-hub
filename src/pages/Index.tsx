@@ -329,7 +329,11 @@ const Index = () => {
             {[
               { id: "Pp7kut9vZm8", title: "Our Founder's Interview on BVN" },
               { id: "V1kw3UYqPls", title: "Interview with our Founder on Treasury Single Account" },
-              { id: "dQw4w9WgXcQ", title: "Client Success Stories" },
+              {
+                src: "https://res.cloudinary.com/dwxlbgncw/video/upload/f_auto,q_auto/v1778925843/copy_DA55D8EC-CD44-4696-898A-8A204990DE5C_hvt1zg.mov",
+                title: "Our Founder's Interview at Our Last Training",
+                type: "cloudinary",
+              },
             ].map((video, i) => (
               <motion.div
                 key={i}
@@ -341,14 +345,23 @@ const Index = () => {
                 className="rounded-xl overflow-hidden border border-primary-foreground/10"
               >
                 <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
-                  <iframe
-                    className="absolute inset-0 w-full h-full"
-                    src={`https://www.youtube.com/embed/${video.id}`}
-                    title={video.title}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    loading="lazy"
-                  />
+                  {video.type === "cloudinary" ? (
+                    <video
+                      className="absolute inset-0 w-full h-full"
+                      src={video.src}
+                      controls
+                      preload="none"
+                    />
+                  ) : (
+                    <iframe
+                      className="absolute inset-0 w-full h-full"
+                      src={`https://www.youtube.com/embed/${video.id}`}
+                      title={video.title}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      loading="lazy"
+                    />
+                  )}
                 </div>
                 <div className="bg-primary-foreground/10 p-4">
                   <p className="font-heading font-semibold text-primary-foreground text-sm">{video.title}</p>
