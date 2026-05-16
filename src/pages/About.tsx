@@ -15,6 +15,12 @@ import {
   Award,
   TrendingUp,
   Users,
+  CheckCircle,
+  Lightbulb,
+  Lock,
+  Target,
+  Eye,
+  Compass,
 } from "lucide-react";
 
 import MotionSection from "@/lib/animations/MotionSection";
@@ -79,31 +85,23 @@ const CountUp = ({ from = 0, to, duration = 2, suffix = "" }: CountUpProps) => {
 ========================================= */
 
 const values = [
-  {
-    icon: Heart,
-    label: "Integrity",
-    desc: "We uphold the highest ethical standards in all engagements.",
-  },
-  {
-    icon: Shield,
-    label: "Professionalism",
-    desc: "Excellence in delivery, communication, and conduct.",
-  },
-  {
-    icon: Award,
-    label: "Excellence",
-    desc: "Continuous pursuit of quality and impact in every service.",
-  },
-  {
-    icon: Users,
-    label: "Service",
-    desc: "Client-centric approach focused on building lasting partnerships.",
-  },
-  {
-    icon: TrendingUp,
-    label: "Impact",
-    desc: "Measurable results that transform organisations and careers.",
-  },
+  { icon: Heart, label: "Integrity", desc: "We uphold the highest ethical standards in every engagement." },
+  { icon: Shield, label: "Professionalism", desc: "Excellence in delivery, communication, and professional conduct." },
+  { icon: Award, label: "Excellence", desc: "Continuous pursuit of quality and impact in every service." },
+  { icon: CheckCircle, label: "Accountability", desc: "We take ownership and stand behind the work we deliver." },
+  { icon: Lightbulb, label: "Innovation", desc: "Practical, forward-thinking solutions to evolving challenges." },
+  { icon: Lock, label: "Confidentiality", desc: "Trust safeguarded by discretion and professional confidentiality." },
+  { icon: Users, label: "Client Focus", desc: "Tailored support centred on client needs and outcomes." },
+];
+
+const whyAdrac = [
+  "Deep technical expertise",
+  "Strong understanding of regulators and industry expectations",
+  "Practical, implementable solutions",
+  "High-quality training and advisory support",
+  "Professional confidentiality and integrity",
+  "Timely and client-focused service delivery",
+  "Strong understanding of both public and private sector environments",
 ];
 
 const stats = [
@@ -176,10 +174,35 @@ const About = () => (
       </div>
     </MotionSection>
 
+    {/* VISION & MISSION */}
+    <MotionSection variant={fadeUp} className="section-padding bg-surface">
+      <div className="container-narrow mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+        <MotionDiv variant={scaleIn} className="bg-card border border-border rounded-xl p-8">
+          <Eye className="w-10 h-10 text-primary mb-4" />
+          <h3 className="text-2xl font-heading font-bold mb-3">Vision</h3>
+          <p className="text-muted-foreground leading-relaxed">
+            To be a leading and trusted professional services firm delivering
+            practical, innovative, and world-class solutions that strengthen
+            organisations and build lasting value.
+          </p>
+        </MotionDiv>
+        <MotionDiv variant={scaleIn} className="bg-card border border-border rounded-xl p-8">
+          <Compass className="w-10 h-10 text-primary mb-4" />
+          <h3 className="text-2xl font-heading font-bold mb-3">Mission</h3>
+          <p className="text-muted-foreground leading-relaxed">
+            To support organisations in achieving excellence in financial
+            reporting, governance, financial management, compliance, and
+            institutional development through practical advisory services,
+            high-impact training, and professional support.
+          </p>
+        </MotionDiv>
+      </div>
+    </MotionSection>
+
     {/* CORE VALUES */}
     <MotionSection
       variant={fadeUp}
-      className="section-padding bg-surface"
+      className="section-padding bg-background"
     >
       <div className="container-narrow mx-auto">
         <SectionHeading
@@ -187,7 +210,7 @@ const About = () => (
           subtitle="The principles that guide everything we do."
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {values.map((v) => (
             <MotionDiv
               key={v.label}
@@ -204,6 +227,32 @@ const About = () => (
             </MotionDiv>
           ))}
         </div>
+      </div>
+    </MotionSection>
+
+    {/* WHY ADRAC */}
+    <MotionSection variant={fadeUp} className="section-padding bg-surface">
+      <div className="container-narrow mx-auto">
+        <SectionHeading
+          title="Why ADRAC"
+          subtitle="What distinguishes ADRAC is our ability to combine strong technical knowledge with practical experience and implementation support."
+        />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {whyAdrac.map((item) => (
+            <MotionDiv
+              key={item}
+              variant={scaleIn}
+              className="flex items-start gap-3 bg-card border border-border rounded-lg p-5"
+            >
+              <Target className="w-5 h-5 text-gold shrink-0 mt-0.5" />
+              <p className="text-sm text-foreground">{item}</p>
+            </MotionDiv>
+          ))}
+        </div>
+        <p className="text-muted-foreground leading-relaxed mt-8 text-center italic">
+          We do not provide generic recommendations. We provide solutions that
+          are tailored, practical, realistic, and designed to produce results.
+        </p>
       </div>
     </MotionSection>
 

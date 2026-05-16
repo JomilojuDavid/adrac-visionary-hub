@@ -1,57 +1,130 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, FileText, BarChart3, Shield, Search, Calculator, TrendingUp, Monitor, Users } from "lucide-react";
+import { ArrowRight, FileText, ShieldCheck, BarChart3, Calculator, Search, Lock, Landmark, Gavel, GraduationCap, Handshake, Briefcase } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import SectionHeading from "@/components/ui/SectionHeading";
 
 const services = [
   {
     icon: FileText,
-    title: "IFRS / IPSAS Training & Implementation",
-    overview: "Comprehensive training and implementation support for International Financial Reporting Standards and International Public Sector Accounting Standards.",
-    benefits: ["Deep understanding of standards", "Practical implementation guidance", "Regulatory compliance assurance", "Customised organisational training"],
+    title: "Financial Reporting and Advisory Services",
+    overview: "Comprehensive support in the preparation, review, interpretation, and improvement of financial statements — helping clients comply with applicable standards while producing reports that are clear, reliable, and useful for decision-making.",
+    benefits: [
+      "IFRS, IPSAS, and IFRS for SMEs implementation",
+      "Preparation and review of annual financial statements",
+      "Group reporting, consolidation and disclosure enhancement",
+      "Financial reporting health checks and gap assessments",
+    ],
+  },
+  {
+    icon: ShieldCheck,
+    title: "Regulatory Compliance and Financial Statement Review",
+    overview: "We help organisations meet the requirements of regulators and oversight bodies, reduce avoidable sanctions, and strengthen the credibility of their financial reporting.",
+    benefits: [
+      "Pre-submission financial statement review",
+      "Compliance with FRC, SEC, NGX, CAMA and sector rules",
+      "Post-inspection remediation support",
+      "Identification of red flags and regulatory concerns",
+    ],
   },
   {
     icon: BarChart3,
-    title: "Financial Reporting Advisory",
-    overview: "Expert advisory services on financial reporting, helping organisations produce accurate, compliant, and transparent financial statements.",
-    benefits: ["Improved reporting accuracy", "Regulatory compliance", "Stakeholder confidence", "Best practice adoption"],
-  },
-  {
-    icon: Shield,
-    title: "Corporate Governance & Ethics Training",
-    overview: "Building ethical leadership and governance frameworks that meet international standards and local regulatory requirements.",
-    benefits: ["Board effectiveness", "Regulatory alignment", "Risk mitigation", "Ethical culture development"],
-  },
-  {
-    icon: Search,
-    title: "Forensic Accounting & Fraud Investigation",
-    overview: "Specialised forensic accounting services to detect, investigate, and prevent financial fraud and irregularities.",
-    benefits: ["Fraud detection", "Investigation support", "Internal controls strengthening", "Litigation support"],
+    title: "Financial Management and Performance Improvement",
+    overview: "Helping management teams move beyond routine reporting to effective financial planning, monitoring, and decision-making that drives performance.",
+    benefits: [
+      "Budgeting, forecasting and budgetary control",
+      "Cash flow, treasury and working capital support",
+      "Finance function transformation",
+      "Financial dashboards and KPIs",
+    ],
   },
   {
     icon: Calculator,
-    title: "Tax Advisory & Transfer Pricing",
-    overview: "Strategic tax advisory and transfer pricing documentation to ensure compliance and optimise tax positions.",
-    benefits: ["Tax compliance", "Transfer pricing documentation", "Tax risk management", "Regulatory alignment"],
+    title: "Tax Advisory and Tax Compliance Services",
+    overview: "Practical and technically sound tax advisory services that help clients comply with tax laws, reduce tax risk, and manage their tax affairs responsibly.",
+    benefits: [
+      "Corporate tax, VAT and withholding tax advisory",
+      "Transfer pricing advisory and documentation",
+      "Tax health checks and risk management",
+      "Support during tax audits and investigations",
+    ],
   },
   {
-    icon: TrendingUp,
-    title: "Valuation Services & Training",
-    overview: "Professional valuation services and training for business, asset, and financial instrument valuations.",
-    benefits: ["Accurate valuations", "Standards compliance", "Transaction support", "Capacity building"],
+    icon: Search,
+    title: "Fraud Risk Management and Forensic Investigation",
+    overview: "Specialist support in fraud prevention, detection, forensic investigation, and response to financial misconduct — delivered confidentially and evidence-based.",
+    benefits: [
+      "Fraud risk assessment and prevention frameworks",
+      "Investigation of suspected fraud and irregularities",
+      "Asset tracing and investigation reporting",
+      "Staff training on fraud indicators",
+    ],
   },
   {
-    icon: Monitor,
-    title: "Digital Age Audit & Internal Audit Support",
-    overview: "Modernising internal audit functions with digital tools, data analytics, and contemporary audit methodologies.",
-    benefits: ["Digital audit capabilities", "Data-driven insights", "Process efficiency", "Risk-based audit approach"],
+    icon: Lock,
+    title: "Internal Control, Risk and Compliance Services",
+    overview: "Strengthening internal control systems and improving the ability to identify, assess, manage, and monitor risks across the organisation.",
+    benefits: [
+      "Internal control review and redesign",
+      "Enterprise risk management support",
+      "Risk and control matrix preparation",
+      "Policies and standard operating procedures",
+    ],
   },
   {
-    icon: Users,
-    title: "Leadership & Executive Education",
-    overview: "High-impact leadership programmes designed for C-suite executives, directors, and senior managers across industries.",
-    benefits: ["Strategic thinking", "Leadership excellence", "Industry networking", "Career advancement"],
+    icon: Landmark,
+    title: "Public Financial Management Advisory",
+    overview: "Solutions tailored to government institutions and public sector organisations that improve accountability, transparency, and service delivery.",
+    benefits: [
+      "IPSAS implementation and advisory",
+      "Public sector budgeting and expenditure control",
+      "Audit readiness for MDAs",
+      "Donor-funded project and reform support",
+    ],
+  },
+  {
+    icon: Gavel,
+    title: "Audit, Assurance and Governance Advisory",
+    overview: "Working with boards, audit committees, and assurance functions to strengthen governance and improve oversight effectiveness.",
+    benefits: [
+      "Audit readiness and governance framework reviews",
+      "Board and audit committee advisory and training",
+      "Internal audit strengthening",
+      "Assurance mapping and oversight design",
+    ],
+  },
+  {
+    icon: GraduationCap,
+    title: "Capacity Building, Executive Training and Professional Development",
+    overview: "High-impact training programmes for regulators, MDAs, corporates, financial institutions, boards, and professional bodies — practical, case-based, and interactive.",
+    benefits: [
+      "IFRS, IPSAS and finance for non-finance executives",
+      "Governance, ethics, AML and compliance",
+      "Internal audit, risk and forensic accounting",
+      "Sustainability reporting and assurance",
+    ],
+  },
+  {
+    icon: Handshake,
+    title: "Regulator Relationship Management and Stakeholder Engagement",
+    overview: "Helping organisations engage regulators and stakeholders professionally and proactively — from inspection readiness to remediation.",
+    benefits: [
+      "Preparation for regulatory inspections",
+      "Drafting responses to regulatory queries",
+      "Pre-submission document review",
+      "Stakeholder communication support",
+    ],
+  },
+  {
+    icon: Briefcase,
+    title: "Management Consultancy and Strategic Advisory",
+    overview: "Broader management consulting for organisations seeking to improve performance, governance, operational effectiveness, and strategic direction.",
+    benefits: [
+      "Organisational review and restructuring",
+      "Strategic planning and policy development",
+      "Performance management systems",
+      "Executive advisory and transformation support",
+    ],
   },
 ];
 
