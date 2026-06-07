@@ -221,12 +221,19 @@ const DefactConfywills = () => (
           <div className="bg-white/5 border border-white/10 rounded-xl p-6 backdrop-blur">
             <Phone className="w-6 h-6 text-[#f5c842] mb-3" />
             <p className="text-white/70 text-sm">Call us</p>
-            <p className="font-heading font-semibold">0812 345 6789</p>
+            <p className="font-heading font-semibold">0704 548 633</p>
           </div>
           <div className="bg-white/5 border border-white/10 rounded-xl p-6 backdrop-blur">
             <Globe className="w-6 h-6 text-[#f5c842] mb-3" />
             <p className="text-white/70 text-sm">Website</p>
-            <p className="font-heading font-semibold break-all">www.defactconfywills.ng</p>
+            <a
+              href="https://adracconsulting.com/defact-confywills"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-heading font-semibold break-all text-[#f5c842] hover:underline"
+            >
+              adracconsulting.com/defact-confywills
+            </a>
           </div>
           <div className="bg-white/5 border border-white/10 rounded-xl p-6 backdrop-blur">
             <MapPin className="w-6 h-6 text-[#f5c842] mb-3" />
