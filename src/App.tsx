@@ -16,6 +16,7 @@ const CaseStudies = lazy(() => import("./pages/CaseStudies"));
 const Collaborations = lazy(() => import("./pages/Collaborations"));
 const AdracBusinessSchool = lazy(() => import("./pages/AdracBusinessSchool"));
 const DefactConsult = lazy(() => import("./pages/DefactConsult"));
+const DefactConfywills = lazy(() => import("./pages/DefactConfywills"));
 const CalebsApartments = lazy(() => import("./pages/CalebsApartments"));
 const BookCalebsApartments = lazy(() => import("./pages/BookCalebsApartments"));
 const TrainingRegistration = lazy(() => import("./pages/TrainingRegistration"));
@@ -53,6 +54,7 @@ const App = () => (
             <Route path="/collaborations" element={<Collaborations />} />
             <Route path="/adrac-business-school" element={<AdracBusinessSchool />} />
             <Route path="/defact-consult" element={<DefactConsult />} />
+            <Route path="/defact-confywills" element={<DefactConfywills />} />
             <Route path="/calebs-apartments" element={<CalebsApartments />} />
             <Route path="/calebs-apartments/book" element={<BookCalebsApartments />} />
             <Route path="/media-gallery" element={<MediaGallery />} />
