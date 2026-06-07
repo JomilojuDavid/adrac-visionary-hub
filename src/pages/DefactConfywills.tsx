@@ -221,7 +221,7 @@ const DefactConfywills = () => (
           <div className="bg-white/5 border border-white/10 rounded-xl p-6 backdrop-blur">
             <Phone className="w-6 h-6 text-[#f5c842] mb-3" />
             <p className="text-white/70 text-sm">Call us</p>
-            <p className="font-heading font-semibold">0704 548 633</p>
+            <p className="font-heading font-semibold">0704586335</p>
           </div>
           <div className="bg-white/5 border border-white/10 rounded-xl p-6 backdrop-blur">
             <Globe className="w-6 h-6 text-[#f5c842] mb-3" />
