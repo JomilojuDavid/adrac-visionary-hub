@@ -31,6 +31,7 @@ const navItems = [
     children: [
       { label: "ADRAC Business School", path: "/adrac-business-school" },
       { label: "Defact International Consult", path: "/defact-consult" },
+      { label: "Defact & Confywills", path: "/defact-confywills" },
       { label: "Caleb's Apartments", path: "/calebs-apartments" },
     ],
   },
