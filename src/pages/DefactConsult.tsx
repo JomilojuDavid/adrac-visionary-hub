@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Globe, BarChart3, Shield, Briefcase } from "lucide-react";
@@ -14,6 +15,10 @@ const services = [
 
 const DefactConsult = () => (
   <Layout>
+    <Helmet>
+      <title>Defact International Consult | Cross-Border Advisory &amp; Compliance Nigeria</title>
+      <meta name="description" content="Specialised international consulting in financial advisory, regulatory compliance, corporate restructuring, and transaction advisory services." />
+    </Helmet>
     <section className="relative py-24 md:py-32 overflow-hidden">
       <img src={defactImage} alt="Defact International Consult" className="absolute inset-0 w-full h-full object-cover" />
       <div className="hero-overlay absolute inset-0" />

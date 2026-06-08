@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, GraduationCap, Award, Users, BookOpen } from "lucide-react";
@@ -16,6 +17,10 @@ const programmes = [
 
 const AdracBusinessSchool = () => (
   <Layout>
+    <Helmet>
+      <title>ADRAC Business School | Executive Education &amp; Certifications Nigeria</title>
+      <meta name="description" content="Premier executive education institution offering IFRS/IPSAS certification, corporate governance diploma, forensic accounting, and leadership development programmes." />
+    </Helmet>
     <section className="relative py-24 md:py-32 overflow-hidden">
       <img src={businessSchoolImage} alt="ADRAC Business School" className="absolute inset-0 w-full h-full object-cover" />
       <div className="hero-overlay absolute inset-0" />
