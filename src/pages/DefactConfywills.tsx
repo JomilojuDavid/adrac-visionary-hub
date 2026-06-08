@@ -21,7 +21,7 @@ import {
 } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import SectionHeading from "@/components/ui/SectionHeading";
-import flyerAsset from "@/assets/defact-confywills-flyer.jpg.asset.json";
+import flyerAsset from "@/assets/defact-confywills-flyer.jpeg.asset.json";
 
 const collectItems = [
   { icon: Tv, title: "Old Electronics", desc: "TVs, phones, laptops, speakers, etc." },
