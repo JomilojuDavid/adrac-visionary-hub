@@ -49,6 +49,10 @@ const whyChoose = [
 
 const DefactConfywills = () => (
   <DefactConfywillsLayout>
+    <Helmet>
+      <title>Defact &amp; Confywills | E-Waste Recycling &amp; Logistics Nigeria</title>
+      <meta name="description" content="Sustainable e-waste collection, recycling, and logistics services in Nigeria. Dispose of old electronics, appliances, and furniture responsibly while earning value." />
+    </Helmet>
     {/* Hero */}
     <section className="relative py-24 md:py-32 overflow-hidden bg-[#0e3b1f]">
       <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_30%_20%,#c9a227_0%,transparent_50%)]" />
