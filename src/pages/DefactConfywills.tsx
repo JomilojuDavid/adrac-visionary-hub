@@ -19,9 +19,9 @@ import {
   Fan,
   Package,
 } from "lucide-react";
-import Layout from "@/components/layout/Layout";
+import DefactConfywillsLayout from "@/components/layout/DefactConfywillsLayout";
 import SectionHeading from "@/components/ui/SectionHeading";
-import flyerAsset from "@/assets/defact-confywills-flyer.jpg.asset.json";
+import flyerAsset from "@/assets/defact-confywills-flyer.jpeg.asset.json";
 
 const collectItems = [
   { icon: Tv, title: "Old Electronics", desc: "TVs, phones, laptops, speakers, etc." },
@@ -47,7 +47,7 @@ const whyChoose = [
 ];
 
 const DefactConfywills = () => (
-  <Layout>
+  <DefactConfywillsLayout>
     {/* Hero */}
     <section className="relative py-24 md:py-32 overflow-hidden bg-[#0e3b1f]">
       <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_30%_20%,#c9a227_0%,transparent_50%)]" />
@@ -249,7 +249,7 @@ const DefactConfywills = () => (
         </Link>
       </div>
     </section>
-  </Layout>
+  </DefactConfywillsLayout>
 );
 
 export default DefactConfywills;
