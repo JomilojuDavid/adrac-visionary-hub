@@ -19,7 +19,7 @@ import {
   Fan,
   Package,
 } from "lucide-react";
-import Layout from "@/components/layout/Layout";
+import DefactConfywillsLayout from "@/components/layout/DefactConfywillsLayout";
 import SectionHeading from "@/components/ui/SectionHeading";
 import flyerAsset from "@/assets/defact-confywills-flyer.jpeg.asset.json";
 
