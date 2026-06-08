@@ -44,6 +44,7 @@ const Footer = () => {
               <li><Link to="/adrac-business-school" className="hover:text-primary-foreground transition-colors">ADRAC Business School</Link></li>
               <li><Link to="/defact-consult" className="hover:text-primary-foreground transition-colors">Defact International Consult</Link></li>
               <li><Link to="/calebs-apartments" className="hover:text-primary-foreground transition-colors">Caleb's Apartments</Link></li>
+              <li><Link to="/defact-confywills" className="hover:text-primary-foreground transition-colors">Defact & Confywills</Link></li>
             </ul>
           </div>
 
