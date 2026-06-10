@@ -79,7 +79,20 @@ const BookCalebsApartments = () => {
     fullName: "", email: "", phone: "", roomType: "",
     checkIn: "", checkOut: "", guests: "1", specialRequests: "",
   });
+  const [idInfo, setIdInfo] = useState<ExtractedIdInfo | null>(null);
   const [loading, setLoading] = useState(false);
+
+  const handleIdExtracted = (info: ExtractedIdInfo) => {
+    if (!info || Object.keys(info).length === 0) {
+      setIdInfo(null);
+      return;
+    }
+    setIdInfo(info);
+    setForm((prev) => ({
+      ...prev,
+      fullName: info.fullName || prev.fullName,
+    }));
+  };
 
   const selectedRoom = roomTypes.find((r) => r.value === form.roomType);
   const nights = form.checkIn && form.checkOut
