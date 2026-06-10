@@ -105,7 +105,8 @@ const BookCalebsApartments = () => {
 
   const canProceed = (s: number) => {
     if (s === 1) return !!form.roomType;
-    if (s === 2) return !!(form.fullName.trim() && form.email.trim() && form.phone.trim() && form.checkIn && form.checkOut && nights > 0);
+    if (s === 2) return !!(idInfo && idInfo.fullName);
+    if (s === 3) return !!(form.fullName.trim() && form.email.trim() && form.phone.trim() && form.checkIn && form.checkOut && nights > 0);
     return true;
   };
 
