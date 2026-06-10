@@ -331,7 +331,7 @@ const BookCalebsApartments = () => {
                     <ArrowLeft className="w-4 h-4 mr-2" /> Back
                   </Button>
                 ) : <div />}
-                {step < 3 && (
+                {step < 4 && (
                   <Button onClick={() => goTo(step + 1)} disabled={!canProceed(step)} className="bg-cta hover:bg-cta/90 text-cta-foreground font-heading">
                     Continue <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
@@ -351,14 +351,14 @@ const BookCalebsApartments = () => {
                 totalAmount={totalAmount}
                 onPay={handlePayment}
                 loading={loading}
-                disabled={!canProceed(2)}
-                step={step}
+                disabled={!canProceed(3)}
+                step={step === 4 ? 3 : 0}
               />
             </div>
           </div>
 
           {/* Mobile Summary */}
-          {selectedRoom && nights > 0 && step === 3 && (
+          {selectedRoom && nights > 0 && step === 4 && (
             <div className="lg:hidden mt-8">
               <BookingSummary
                 roomLabel={selectedRoom.label}
@@ -370,8 +370,8 @@ const BookCalebsApartments = () => {
                 totalAmount={totalAmount}
                 onPay={handlePayment}
                 loading={loading}
-                disabled={!canProceed(2)}
-                step={step}
+                disabled={!canProceed(3)}
+                step={3}
               />
             </div>
           )}
