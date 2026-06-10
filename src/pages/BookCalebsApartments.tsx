@@ -15,6 +15,7 @@ import { supabase } from "@/integrations/supabase/client";
 import RoomCard from "@/components/booking/RoomCard";
 import BookingSummary from "@/components/booking/BookingSummary";
 import StepIndicator from "@/components/booking/StepIndicator";
+import IdVerificationStep, { ExtractedIdInfo } from "@/components/booking/IdVerificationStep";
 import apartmentsImage from "@/assets/calebs-apartments.jpg";
 import studioImg from "@/assets/rooms/studio.jpg";
 import oneBedImg from "@/assets/rooms/one-bed.jpg";
