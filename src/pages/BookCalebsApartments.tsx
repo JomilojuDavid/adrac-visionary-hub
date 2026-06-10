@@ -220,7 +220,14 @@ const BookCalebsApartments = () => {
 
                 {step === 2 && (
                   <motion.div key="step2" custom={direction} variants={slideVariants} initial="enter" animate="center" exit="exit" transition={{ duration: 0.3 }}>
-                    <h2 className="font-heading font-bold text-foreground text-2xl mb-6">Guest Information</h2>
+                    <IdVerificationStep onExtracted={handleIdExtracted} extracted={idInfo} />
+                  </motion.div>
+                )}
+
+                {step === 3 && (
+                  <motion.div key="step3" custom={direction} variants={slideVariants} initial="enter" animate="center" exit="exit" transition={{ duration: 0.3 }}>
+                    <h2 className="font-heading font-bold text-foreground text-2xl mb-2">Guest Information</h2>
+                    <p className="text-sm text-muted-foreground mb-6">We've pre-filled your name from your verified ID. Please complete the remaining details.</p>
                     <div className="bg-card rounded-xl border border-border p-6 md:p-8 space-y-5">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="space-y-2">
@@ -263,12 +270,17 @@ const BookCalebsApartments = () => {
                         <Label htmlFor="specialRequests">Special Requests</Label>
                         <Textarea id="specialRequests" placeholder="Any special requirements or requests..." value={form.specialRequests} onChange={(e) => handleChange("specialRequests", e.target.value)} maxLength={500} />
                       </div>
+                      {idInfo && (
+                        <div className="rounded-lg bg-muted/40 border border-border p-3 text-xs text-muted-foreground">
+                          <span className="font-semibold text-foreground">Verified ID on file:</span> {idInfo.idType} {idInfo.idNumber ? `• ${idInfo.idNumber}` : ""}
+                        </div>
+                      )}
                     </div>
                   </motion.div>
                 )}
 
-                {step === 3 && (
-                  <motion.div key="step3" custom={direction} variants={slideVariants} initial="enter" animate="center" exit="exit" transition={{ duration: 0.3 }}>
+                {step === 4 && (
+                  <motion.div key="step4" custom={direction} variants={slideVariants} initial="enter" animate="center" exit="exit" transition={{ duration: 0.3 }}>
                     <h2 className="font-heading font-bold text-foreground text-2xl mb-6">Review Your Booking</h2>
                     <div className="bg-card rounded-xl border border-border p-6 md:p-8 space-y-6">
                       {selectedRoom && (
@@ -288,6 +300,8 @@ const BookCalebsApartments = () => {
                           ["Guests", form.guests],
                           ["Check-in", form.checkIn ? new Date(form.checkIn + "T00:00:00").toLocaleDateString("en-NG", { weekday: "short", day: "numeric", month: "short", year: "numeric" }) : ""],
                           ["Check-out", form.checkOut ? new Date(form.checkOut + "T00:00:00").toLocaleDateString("en-NG", { weekday: "short", day: "numeric", month: "short", year: "numeric" }) : ""],
+                          ...(idInfo?.idType ? [["ID Type", idInfo.idType] as [string, string]] : []),
+                          ...(idInfo?.idNumber ? [["ID Number", idInfo.idNumber] as [string, string]] : []),
                         ].map(([label, val]) => (
                           <div key={label} className="flex justify-between py-2 border-b border-border">
                             <span className="text-muted-foreground">{label}</span>
