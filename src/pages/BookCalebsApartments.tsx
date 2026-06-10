@@ -163,6 +163,7 @@ const BookCalebsApartments = () => {
           }
           toast({ title: "Booking Confirmed! 🎉", description: `Payment verified. Ref: ${response.reference}. Confirmation sent to ${form.email}.` });
           setForm({ fullName: "", email: "", phone: "", roomType: "", checkIn: "", checkOut: "", guests: "1", specialRequests: "" });
+          setIdInfo(null);
           setStep(1);
         })();
       },
