@@ -361,6 +361,7 @@ const BookCalebsApartments = () => {
             {/* Sidebar Summary */}
             <div className="hidden lg:block">
               <BookingSummary
+                house={selectedRoom?.house || ""}
                 roomLabel={selectedRoom?.label || ""}
                 roomPrice={selectedRoom?.price || 0}
                 nights={nights}
