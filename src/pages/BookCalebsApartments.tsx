@@ -218,9 +218,19 @@ const BookCalebsApartments = () => {
                 {step === 1 && (
                   <motion.div key="step1" custom={direction} variants={slideVariants} initial="enter" animate="center" exit="exit" transition={{ duration: 0.3 }}>
                     <h2 className="font-heading font-bold text-foreground text-2xl mb-6">Choose Your Room</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                      {roomTypes.map((room) => (
-                        <RoomCard key={room.value} {...room} selected={form.roomType === room.value} onSelect={(v) => handleChange("roomType", v)} />
+                    <div className="space-y-10">
+                      {["Caleb's House", "Arnold House"].map((house) => (
+                        <div key={house}>
+                          <div className="flex items-center gap-3 mb-4">
+                            <h3 className="font-heading font-bold text-xl text-foreground">{house}</h3>
+                            <div className="flex-1 h-px bg-border" />
+                          </div>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            {roomTypes.filter((r) => r.house === house).map((room) => (
+                              <RoomCard key={room.value} {...room} selected={form.roomType === room.value} onSelect={(v) => handleChange("roomType", v)} />
+                            ))}
+                          </div>
+                        </div>
                       ))}
                     </div>
                   </motion.div>
