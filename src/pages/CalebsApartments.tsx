@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Wifi, Car, Shield, Coffee, Tv, Wind } from "lucide-react";
+import { ArrowRight, Wifi, Car, Shield, Coffee, Tv, Wind, Home } from "lucide-react";
 import CalebsLayout from "@/components/layout/CalebsLayout";
 import SectionHeading from "@/components/ui/SectionHeading";
 import apartmentsImage from "@/assets/calebs-apartments.jpg";
@@ -14,6 +14,26 @@ const amenities = [
   { icon: Wind, label: "Air Conditioning" },
 ];
 
+const housePricing = [
+  {
+    name: "Caleb's House",
+    rooms: [
+      { label: "1 Bedroom Standard", price: "₦35,000" },
+      { label: "1 Bedroom Deluxe", price: "₦45,000" },
+      { label: "1 Bedroom Executive", price: "₦55,000" },
+      { label: "2 Bedroom", price: "₦100,000" },
+      { label: "3 Bedroom", price: "₦130,000" },
+    ],
+  },
+  {
+    name: "Arnold House",
+    rooms: [
+      { label: "1 Bedroom", price: "₦25,000" },
+      { label: "2 Bedroom", price: "₦50,000" },
+    ],
+  },
+];
+
 const CalebsApartments = () => (
   <CalebsLayout>
     <section className="relative py-24 md:py-32 overflow-hidden">
@@ -21,7 +41,7 @@ const CalebsApartments = () => (
       <div className="hero-overlay absolute inset-0" />
       <div className="relative z-10 container mx-auto px-4 lg:px-8 text-center">
         <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="text-4xl md:text-5xl font-heading font-bold text-primary-foreground mb-4">
-          Caleb's Apartments
+          Caleb's Apartments & Suites
         </motion.h1>
         <p className="text-xl text-primary-foreground/80 max-w-2xl mx-auto">
           Premium serviced accommodation for corporate travellers and training participants.
@@ -71,6 +91,43 @@ const CalebsApartments = () => (
               />
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Pricing */}
+    <section className="section-padding bg-muted/30">
+      <div className="container mx-auto px-4 lg:px-8">
+        <SectionHeading title="Price List" centered />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mt-10">
+          {housePricing.map((house) => (
+            <motion.div
+              key={house.name}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false }}
+              transition={{ duration: 0.5 }}
+              className="bg-card rounded-xl border border-border p-6 md:p-8"
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <Home className="w-6 h-6 text-gold" />
+                <h3 className="font-heading font-bold text-xl text-foreground">{house.name}</h3>
+              </div>
+              <ul className="space-y-4">
+                {house.rooms.map((room) => (
+                  <li key={room.label} className="flex justify-between items-center text-sm">
+                    <span className="text-muted-foreground">{room.label}</span>
+                    <span className="font-heading font-bold text-foreground">{room.price} <span className="text-xs text-muted-foreground font-normal">/ night</span></span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
+        </div>
+        <div className="text-center mt-10">
+          <Link to="/calebs-apartments/book" className="inline-flex items-center gap-2 bg-calebs-gold hover:bg-calebs-gold/90 text-white font-heading font-semibold px-8 py-3 rounded-lg transition-all hover:scale-105">
+            Book Your Stay <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
       </div>
     </section>
