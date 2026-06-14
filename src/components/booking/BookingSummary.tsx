@@ -1,7 +1,8 @@
-import { CalendarDays, Users, CreditCard } from "lucide-react";
+import { CalendarDays, Users, CreditCard, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface BookingSummaryProps {
+  house?: string;
   roomLabel: string;
   roomPrice: number;
   nights: number;
@@ -25,13 +26,20 @@ const formatDate = (d: string) => {
   });
 };
 
-const BookingSummary = ({ roomLabel, roomPrice, nights, checkIn, checkOut, guests, totalAmount, onPay, loading, disabled, step }: BookingSummaryProps) => (
+const BookingSummary = ({ house, roomLabel, roomPrice, nights, checkIn, checkOut, guests, totalAmount, onPay, loading, disabled, step }: BookingSummaryProps) => (
   <div className="bg-card rounded-xl border border-border shadow-sm p-6 sticky top-24 space-y-5">
     <h3 className="font-heading font-bold text-foreground text-lg">Booking Summary</h3>
 
     {roomLabel ? (
       <>
         <div className="space-y-3">
+          {house && (
+            <div className="flex items-center gap-2 text-sm">
+              <Home className="w-4 h-4 text-muted-foreground shrink-0" />
+              <span className="text-muted-foreground">House</span>
+              <span className="ml-auto font-medium text-foreground">{house}</span>
+            </div>
+          )}
           <div className="flex justify-between text-sm">
             <span className="text-muted-foreground">Room</span>
             <span className="font-medium text-foreground">{roomLabel}</span>

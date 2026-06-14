@@ -33,35 +33,42 @@ declare global {
 const PAYSTACK_PUBLIC_KEY = "pk_live_478b54a25ef0c1f91edf804a2afb6348d4fe9c9a";
 
 const roomTypes = [
+  // Caleb's House
   {
-    value: "three-bed", label: "Three Bedroom", price: 150000, image: executiveImg,
+    value: "calebs-3bed", house: "Caleb's House", label: "3 Bedroom", price: 130000, image: executiveImg,
     description: "Expansive three-bedroom apartment perfect for families or group stays with premium finishes.",
     maxGuests: 6, size: "120 m²", features: ["3 Bedrooms", "Living Room", "Full Kitchen", "Dining Area"],
   },
   {
-    value: "two-bed", label: "Two Bedroom", price: 100000, image: twoBedImg,
+    value: "calebs-2bed", house: "Caleb's House", label: "2 Bedroom", price: 100000, image: twoBedImg,
     description: "Spacious two-bedroom layout ideal for families or colleagues travelling together.",
     maxGuests: 4, size: "80 m²", features: ["2 Bedrooms", "Living Room", "Full Kitchen", "Balcony"],
   },
   {
-    value: "one-bed-diplomatic", label: "One Bedroom Diplomatic", price: 100000, image: oneBedImg,
-    description: "Top-tier one-bedroom suite with diplomatic-grade furnishings and exclusive amenities.",
-    maxGuests: 2, size: "65 m²", features: ["King Bed", "Lounge", "Smart TV", "Premium Finishes"],
-  },
-  {
-    value: "one-bed-executive", label: "One Bedroom Executive", price: 80000, image: oneBedImg,
+    value: "calebs-1bed-exec", house: "Caleb's House", label: "1 Bedroom Executive", price: 55000, image: executiveImg,
     description: "Elegantly appointed one-bedroom apartment with executive-level comfort and style.",
     maxGuests: 2, size: "55 m²", features: ["King Bed", "Work Desk", "Smart TV", "Kitchenette"],
   },
   {
-    value: "one-bed-classic", label: "One Bedroom Classic", price: 70000, image: studioImg,
-    description: "Well-furnished classic one-bedroom apartment with all essential comforts.",
-    maxGuests: 2, size: "45 m²", features: ["Queen Bed", "Kitchenette", "WiFi", "Smart TV"],
+    value: "calebs-1bed-deluxe", house: "Caleb's House", label: "1 Bedroom Deluxe", price: 45000, image: oneBedImg,
+    description: "Well-furnished deluxe one-bedroom apartment with enhanced amenities and comfort.",
+    maxGuests: 2, size: "48 m²", features: ["Queen Bed", "Kitchenette", "WiFi", "Smart TV"],
   },
   {
-    value: "one-bed-standard", label: "One Bedroom Standard", price: 60000, image: studioImg,
+    value: "calebs-1bed-std", house: "Caleb's House", label: "1 Bedroom Standard", price: 35000, image: studioImg,
     description: "Comfortable and affordable one-bedroom apartment for practical stays.",
     maxGuests: 2, size: "40 m²", features: ["Queen Bed", "Kitchenette", "WiFi", "Work Desk"],
+  },
+  // Arnold House
+  {
+    value: "arnold-2bed", house: "Arnold House", label: "2 Bedroom", price: 50000, image: twoBedImg,
+    description: "Spacious two-bedroom apartment ideal for families or colleagues at great value.",
+    maxGuests: 4, size: "75 m²", features: ["2 Bedrooms", "Living Room", "Kitchen", "Balcony"],
+  },
+  {
+    value: "arnold-1bed", house: "Arnold House", label: "1 Bedroom", price: 25000, image: studioImg,
+    description: "Comfortable one-bedroom apartment with all essential amenities at an affordable rate.",
+    maxGuests: 2, size: "38 m²", features: ["Queen Bed", "Kitchenette", "WiFi", "Smart TV"],
   },
 ];
 
@@ -211,9 +218,19 @@ const BookCalebsApartments = () => {
                 {step === 1 && (
                   <motion.div key="step1" custom={direction} variants={slideVariants} initial="enter" animate="center" exit="exit" transition={{ duration: 0.3 }}>
                     <h2 className="font-heading font-bold text-foreground text-2xl mb-6">Choose Your Room</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                      {roomTypes.map((room) => (
-                        <RoomCard key={room.value} {...room} selected={form.roomType === room.value} onSelect={(v) => handleChange("roomType", v)} />
+                    <div className="space-y-10">
+                      {["Caleb's House", "Arnold House"].map((house) => (
+                        <div key={house}>
+                          <div className="flex items-center gap-3 mb-4">
+                            <h3 className="font-heading font-bold text-xl text-foreground">{house}</h3>
+                            <div className="flex-1 h-px bg-border" />
+                          </div>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            {roomTypes.filter((r) => r.house === house).map((room) => (
+                              <RoomCard key={room.value} {...room} selected={form.roomType === room.value} onSelect={(v) => handleChange("roomType", v)} />
+                            ))}
+                          </div>
+                        </div>
                       ))}
                     </div>
                   </motion.div>
@@ -288,8 +305,9 @@ const BookCalebsApartments = () => {
                         <div className="flex gap-4 items-center">
                           <img src={selectedRoom.image} alt={selectedRoom.label} className="w-24 h-20 rounded-lg object-cover" loading="lazy" />
                           <div>
+                            <p className="text-xs text-gold font-semibold uppercase tracking-wide">{selectedRoom.house}</p>
                             <h3 className="font-heading font-bold text-foreground">{selectedRoom.label}</h3>
-                            <p className="text-sm text-muted-foreground">{selectedRoom.size} · Up to {selectedRoom.maxGuests} guests</p>
+                            <p className="text-muted-foreground">{selectedRoom.size} · Up to {selectedRoom.maxGuests} guests</p>
                           </div>
                         </div>
                       )}
@@ -343,6 +361,7 @@ const BookCalebsApartments = () => {
             {/* Sidebar Summary */}
             <div className="hidden lg:block">
               <BookingSummary
+                house={selectedRoom?.house || ""}
                 roomLabel={selectedRoom?.label || ""}
                 roomPrice={selectedRoom?.price || 0}
                 nights={nights}
@@ -362,6 +381,7 @@ const BookCalebsApartments = () => {
           {selectedRoom && nights > 0 && step === 4 && (
             <div className="lg:hidden mt-8">
               <BookingSummary
+                house={selectedRoom.house}
                 roomLabel={selectedRoom.label}
                 roomPrice={selectedRoom.price}
                 nights={nights}
