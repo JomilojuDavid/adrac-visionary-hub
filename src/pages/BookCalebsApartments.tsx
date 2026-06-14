@@ -307,7 +307,7 @@ const BookCalebsApartments = () => {
                           <div>
                             <p className="text-xs text-gold font-semibold uppercase tracking-wide">{selectedRoom.house}</p>
                             <h3 className="font-heading font-bold text-foreground">{selectedRoom.label}</h3>
-                            <p className truncated-foreground">{selectedRoom.size} · Up to {selectedRoom.maxGuests} guests</p>
+                            <p className="text-muted-foreground">{selectedRoom.size} · Up to {selectedRoom.maxGuests} guests</p>
                           </div>
                         </div>
                       )}
