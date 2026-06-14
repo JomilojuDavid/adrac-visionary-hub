@@ -185,11 +185,18 @@ const Navbar = () => {
             >
               <X className="w-5 h-5" />
             </button>
-            <img
-              src={trainingNotice}
-              alt="FRC Training Notice - Mandatory Application of New IFRS and IPSAS Standards"
-              className="w-full h-auto rounded-xl"
-            />
+            <Link
+              to="/training"
+              onClick={() => setShowTrainingNotice(false)}
+              aria-label="View training details"
+            >
+              <img
+                src={trainingNotice}
+                alt="FRC & ADRAC 2-Day Capacity Building – Emerging Trends in Valuation, Financial Reporting and Regulatory Oversight in Nigeria"
+                className="w-full h-auto rounded-xl cursor-pointer"
+              />
+            </Link>
+
           </div>
         </div>
       )}

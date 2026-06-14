@@ -42,7 +42,7 @@ const Training = () => {
                   </div>
                 </div>
                 <a
-                  href="https://tinyurl.com/FRC-New-Standards-Training"
+                  href="https://tinyurl.com/FRC-Training-Valuation"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-cta hover:bg-cta/90 text-cta-foreground font-heading font-semibold px-5 py-2.5 rounded-lg transition-all text-sm shrink-0"
