@@ -381,6 +381,7 @@ const BookCalebsApartments = () => {
           {selectedRoom && nights > 0 && step === 4 && (
             <div className="lg:hidden mt-8">
               <BookingSummary
+                house={selectedRoom.house}
                 roomLabel={selectedRoom.label}
                 roomPrice={selectedRoom.price}
                 nights={nights}
