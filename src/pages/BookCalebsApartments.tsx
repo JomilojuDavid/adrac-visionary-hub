@@ -305,8 +305,9 @@ const BookCalebsApartments = () => {
                         <div className="flex gap-4 items-center">
                           <img src={selectedRoom.image} alt={selectedRoom.label} className="w-24 h-20 rounded-lg object-cover" loading="lazy" />
                           <div>
+                            <p className="text-xs text-gold font-semibold uppercase tracking-wide">{selectedRoom.house}</p>
                             <h3 className="font-heading font-bold text-foreground">{selectedRoom.label}</h3>
-                            <p className="text-sm text-muted-foreground">{selectedRoom.size} · Up to {selectedRoom.maxGuests} guests</p>
+                            <p className truncated-foreground">{selectedRoom.size} · Up to {selectedRoom.maxGuests} guests</p>
                           </div>
                         </div>
                       )}
