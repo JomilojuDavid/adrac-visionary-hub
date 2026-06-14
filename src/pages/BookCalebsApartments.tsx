@@ -33,35 +33,42 @@ declare global {
 const PAYSTACK_PUBLIC_KEY = "pk_live_478b54a25ef0c1f91edf804a2afb6348d4fe9c9a";
 
 const roomTypes = [
+  // Caleb's House
   {
-    value: "three-bed", label: "Three Bedroom", price: 150000, image: executiveImg,
+    value: "calebs-3bed", house: "Caleb's House", label: "3 Bedroom", price: 130000, image: executiveImg,
     description: "Expansive three-bedroom apartment perfect for families or group stays with premium finishes.",
     maxGuests: 6, size: "120 m²", features: ["3 Bedrooms", "Living Room", "Full Kitchen", "Dining Area"],
   },
   {
-    value: "two-bed", label: "Two Bedroom", price: 100000, image: twoBedImg,
+    value: "calebs-2bed", house: "Caleb's House", label: "2 Bedroom", price: 100000, image: twoBedImg,
     description: "Spacious two-bedroom layout ideal for families or colleagues travelling together.",
     maxGuests: 4, size: "80 m²", features: ["2 Bedrooms", "Living Room", "Full Kitchen", "Balcony"],
   },
   {
-    value: "one-bed-diplomatic", label: "One Bedroom Diplomatic", price: 100000, image: oneBedImg,
-    description: "Top-tier one-bedroom suite with diplomatic-grade furnishings and exclusive amenities.",
-    maxGuests: 2, size: "65 m²", features: ["King Bed", "Lounge", "Smart TV", "Premium Finishes"],
-  },
-  {
-    value: "one-bed-executive", label: "One Bedroom Executive", price: 80000, image: oneBedImg,
+    value: "calebs-1bed-exec", house: "Caleb's House", label: "1 Bedroom Executive", price: 55000, image: executiveImg,
     description: "Elegantly appointed one-bedroom apartment with executive-level comfort and style.",
     maxGuests: 2, size: "55 m²", features: ["King Bed", "Work Desk", "Smart TV", "Kitchenette"],
   },
   {
-    value: "one-bed-classic", label: "One Bedroom Classic", price: 70000, image: studioImg,
-    description: "Well-furnished classic one-bedroom apartment with all essential comforts.",
-    maxGuests: 2, size: "45 m²", features: ["Queen Bed", "Kitchenette", "WiFi", "Smart TV"],
+    value: "calebs-1bed-deluxe", house: "Caleb's House", label: "1 Bedroom Deluxe", price: 45000, image: oneBedImg,
+    description: "Well-furnished deluxe one-bedroom apartment with enhanced amenities and comfort.",
+    maxGuests: 2, size: "48 m²", features: ["Queen Bed", "Kitchenette", "WiFi", "Smart TV"],
   },
   {
-    value: "one-bed-standard", label: "One Bedroom Standard", price: 60000, image: studioImg,
+    value: "calebs-1bed-std", house: "Caleb's House", label: "1 Bedroom Standard", price: 35000, image: studioImg,
     description: "Comfortable and affordable one-bedroom apartment for practical stays.",
     maxGuests: 2, size: "40 m²", features: ["Queen Bed", "Kitchenette", "WiFi", "Work Desk"],
+  },
+  // Arnold House
+  {
+    value: "arnold-2bed", house: "Arnold House", label: "2 Bedroom", price: 50000, image: twoBedImg,
+    description: "Spacious two-bedroom apartment ideal for families or colleagues at great value.",
+    maxGuests: 4, size: "75 m²", features: ["2 Bedrooms", "Living Room", "Kitchen", "Balcony"],
+  },
+  {
+    value: "arnold-1bed", house: "Arnold House", label: "1 Bedroom", price: 25000, image: studioImg,
+    description: "Comfortable one-bedroom apartment with all essential amenities at an affordable rate.",
+    maxGuests: 2, size: "38 m²", features: ["Queen Bed", "Kitchenette", "WiFi", "Smart TV"],
   },
 ];
 
