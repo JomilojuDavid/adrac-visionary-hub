@@ -117,7 +117,7 @@ const DefactConfywills = () => (
             <span className="text-xs">DISCOUNT</span>
           </div>
           <img
-            src={flyerAsset.url}
+            src={flyerImage}
             alt="defact & confywills - Exchange for a Better Tomorrow"
             className="rounded-2xl shadow-2xl w-full object-cover"
           />
