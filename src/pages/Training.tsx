@@ -20,6 +20,31 @@ const Training = () => {
         </div>
       </section>
 
+      <section className="py-12 md:py-16 bg-background">
+        <div className="container mx-auto px-4 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-4xl mx-auto"
+          >
+            <a
+              href="https://tinyurl.com/FRC-Training-Valuation"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Register for FRC training"
+            >
+              <img
+                src={trainingNotice}
+                alt="FRC & ADRAC 2-Day Capacity Building – Emerging Trends in Valuation, Financial Reporting and Regulatory Oversight in Nigeria"
+                className="w-full h-auto rounded-xl shadow-lg hover:shadow-xl transition-shadow cursor-pointer"
+              />
+            </a>
+          </motion.div>
+        </div>
+      </section>
+
       <section id="calendar" className="section-padding bg-background">
         <div className="container-narrow mx-auto">
           <SectionHeading title="Training Calendar" subtitle="Upcoming programmes for 2026. Click Register to sign up." />
