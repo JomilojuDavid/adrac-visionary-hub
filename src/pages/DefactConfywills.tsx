@@ -22,7 +22,7 @@ import {
 } from "lucide-react";
 import DefactConfywillsLayout from "@/components/layout/DefactConfywillsLayout";
 import SectionHeading from "@/components/ui/SectionHeading";
-import flyerAsset from "@/assets/defact-confywills-flyer.jpeg.asset.json";
+import flyerImage from "@/assets/defact-confywills-flyer.jpeg";
 
 const collectItems = [
   { icon: Tv, title: "Old Electronics", desc: "TVs, phones, laptops, speakers, etc." },
@@ -117,7 +117,7 @@ const DefactConfywills = () => (
             <span className="text-xs">DISCOUNT</span>
           </div>
           <img
-            src={flyerAsset.url}
+            src={flyerImage}
             alt="defact & confywills - Exchange for a Better Tomorrow"
             className="rounded-2xl shadow-2xl w-full object-cover"
           />
