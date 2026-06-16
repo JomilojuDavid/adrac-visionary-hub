@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { CheckCircle, BookOpen, Briefcase, Award, ArrowRight } from "lucide-react";
 import StockMarketTicker from "@/components/home/StockMarketTicker";
 import ExchangeRateTicker from "@/components/home/ExchangeRateTicker";
+import TrainingFlyerPopup from "@/components/TrainingFlyerPopup";
 import frcLogo from "@/assets/partners/FRC.jpg";
 import icanLogo from "@/assets/partners/ICAN.png";
 import ananLogo from "@/assets/partners/ANAN.png";
