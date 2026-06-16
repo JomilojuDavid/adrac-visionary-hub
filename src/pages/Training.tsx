@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { trainingEvents } from "@/lib/trainingData";
-import trainingNotice from "@/assets/frc-training-notice.jpeg";
 import { CalendarDays, MapPin, ArrowRight } from "lucide-react";
 
 const Training = () => {
@@ -17,31 +16,6 @@ const Training = () => {
           <p className="text-xl text-primary-foreground/80 max-w-2xl mx-auto">
             World-class professional development programmes tailored for today's finance and governance professionals.
           </p>
-        </div>
-      </section>
-
-      <section className="py-12 md:py-16 bg-background">
-        <div className="container mx-auto px-4 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: false, amount: 0.2 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl mx-auto"
-          >
-            <a
-              href="https://tinyurl.com/FRC-Training-Valuation"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Register for FRC training"
-            >
-              <img
-                src={trainingNotice}
-                alt="FRC & ADRAC 2-Day Capacity Building – Emerging Trends in Valuation, Financial Reporting and Regulatory Oversight in Nigeria"
-                className="w-full h-auto rounded-xl shadow-lg hover:shadow-xl transition-shadow cursor-pointer"
-              />
-            </a>
-          </motion.div>
         </div>
       </section>
 

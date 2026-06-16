@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { CheckCircle, BookOpen, Briefcase, Award, ArrowRight } from "lucide-react";
 import StockMarketTicker from "@/components/home/StockMarketTicker";
 import ExchangeRateTicker from "@/components/home/ExchangeRateTicker";
+import TrainingFlyerPopup from "@/components/TrainingFlyerPopup";
 import frcLogo from "@/assets/partners/FRC.jpg";
 import icanLogo from "@/assets/partners/ICAN.png";
 import ananLogo from "@/assets/partners/ANAN.png";
@@ -148,6 +149,7 @@ const Index = () => {
 
   return (
     <Layout>
+      <TrainingFlyerPopup />
       {/* Hero */}
       <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
         <img src={heroImage} alt="Corporate boardroom" className="absolute inset-0 w-full h-full object-cover" loading="eager" />
