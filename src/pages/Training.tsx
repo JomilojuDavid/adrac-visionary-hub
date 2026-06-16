@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { trainingEvents } from "@/lib/trainingData";
-import trainingNotice from "@/assets/frc-training-notice.jpeg";
 import { CalendarDays, MapPin, ArrowRight } from "lucide-react";
 
 const Training = () => {
