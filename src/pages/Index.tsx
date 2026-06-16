@@ -149,6 +149,7 @@ const Index = () => {
 
   return (
     <Layout>
+      <TrainingFlyerPopup />
       {/* Hero */}
       <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
         <img src={heroImage} alt="Corporate boardroom" className="absolute inset-0 w-full h-full object-cover" loading="eager" />
