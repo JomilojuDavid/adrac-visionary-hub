@@ -76,6 +76,7 @@ Deno.serve(async (req) => {
       src: r.secure_url,
       width: r.width,
       height: r.height,
+      created_at: r.created_at,
     }));
 
     const videos = vids.map((r: any) => ({
@@ -84,6 +85,7 @@ Deno.serve(async (req) => {
       poster: `https://res.cloudinary.com/${CLOUD_NAME}/video/upload/so_0/${r.public_id}.jpg`,
       width: r.width,
       height: r.height,
+      created_at: r.created_at,
     }));
 
     return new Response(JSON.stringify({ images, videos }), {
