@@ -59,22 +59,30 @@ const MediaGallery = () => {
     fetchMedia();
   }, []);
 
+  // Extract upload date from Cloudinary URL (e.g. /upload/v1782666014/...)
+  const dateFromSrc = (src: string): Date | null => {
+    const m = src.match(/\/v(\d{10})\//);
+    if (!m) return null;
+    return new Date(parseInt(m[1], 10) * 1000);
+  };
+
   const grouped = useMemo(() => {
     const bucket: Record<FolderKey, { images: GalleryImage[]; videos: GalleryVideo[] }> = {
       march: { images: [], videos: [] },
       june: { images: [], videos: [] },
     };
-    const inMonths = (dateStr: string | undefined, months: number[]) => {
-      if (!dateStr) return false;
-      const m = new Date(dateStr).getMonth();
-      return months.includes(m);
+    const inMonths = (src: string, dateStr: string | undefined, months: number[]) => {
+      const d = dateStr ? new Date(dateStr) : dateFromSrc(src);
+      if (!d || isNaN(d.getTime())) return false;
+      return months.includes(d.getUTCMonth());
     };
     for (const f of FOLDERS) {
-      bucket[f.key].images = images.filter((i) => inMonths(i.created_at, f.months));
-      bucket[f.key].videos = videos.filter((v) => inMonths(v.created_at, f.months));
+      bucket[f.key].images = images.filter((i) => inMonths(i.src, i.created_at, f.months));
+      bucket[f.key].videos = videos.filter((v) => inMonths(v.src, v.created_at, f.months));
     }
     return bucket;
   }, [images, videos]);
+
 
   const loadMore = () => setVisibleCount((p) => p + IMAGES_PER_LOAD);
   const breakpointColumnsObj = { default: 4, 1100: 3, 768: 2, 500: 1 };
