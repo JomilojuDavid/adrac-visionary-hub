@@ -95,10 +95,9 @@ const BookCalebsApartments = () => {
       return;
     }
     setIdInfo(info);
-    setForm((prev) => ({
-      ...prev,
-      fullName: info.fullName || prev.fullName,
-    }));
+    if (info.fullName) {
+      setForm((prev) => ({ ...prev, fullName: info.fullName || prev.fullName }));
+    }
   };
 
   const selectedRoom = roomTypes.find((r) => r.value === form.roomType);
@@ -112,7 +111,7 @@ const BookCalebsApartments = () => {
 
   const canProceed = (s: number) => {
     if (s === 1) return !!form.roomType;
-    if (s === 2) return !!(idInfo && idInfo.fullName);
+    if (s === 2) return !!(idInfo && Object.keys(idInfo).length > 0);
     if (s === 3) return !!(form.fullName.trim() && form.email.trim() && form.phone.trim() && form.checkIn && form.checkOut && nights > 0);
     return true;
   };
