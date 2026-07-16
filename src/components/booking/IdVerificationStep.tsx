@@ -12,6 +12,7 @@ export interface ExtractedIdInfo {
   nationality?: string;
   gender?: string;
   expiryDate?: string;
+  verificationStatus?: "verified" | "uploaded";
 }
 
 interface Props {
@@ -55,14 +56,15 @@ const IdVerificationStep = ({ onExtracted, extracted }: Props) => {
       });
 
       if (error || !data?.success) {
-        const msg = data?.error === "not_an_id"
-          ? "We couldn't recognize this as a valid ID. Please upload a clearer photo."
-          : data?.error || error?.message || "Extraction failed. Try a clearer photo.";
-        toast({ title: "ID verification failed", description: msg, variant: "destructive" });
+        onExtracted({ idType: "Uploaded ID", idNumber: "Pending review", verificationStatus: "uploaded" });
+        toast({
+          title: "ID uploaded",
+          description: "We couldn't extract the details automatically, but you can continue and complete the booking form.",
+        });
         return;
       }
 
-      onExtracted(data.data as ExtractedIdInfo);
+      onExtracted({ ...(data.data as ExtractedIdInfo), verificationStatus: "verified" });
       toast({ title: "ID verified ✓", description: "Your details have been pre-filled for you." });
     } catch (e) {
       toast({ title: "Upload failed", description: (e as Error).message, variant: "destructive" });
@@ -111,10 +113,10 @@ const IdVerificationStep = ({ onExtracted, extracted }: Props) => {
                     <Loader2 className="w-4 h-4 animate-spin" /> Extracting information…
                   </div>
                 )}
-                {!loading && extracted?.fullName && (
+                {!loading && extracted && Object.keys(extracted).length > 0 && (
                   <div className="rounded-lg bg-muted/50 p-3 text-sm space-y-1">
                     <div className="flex items-center gap-1.5 text-gold font-semibold mb-2">
-                      <ShieldCheck className="w-4 h-4" /> Verified
+                      <ShieldCheck className="w-4 h-4" /> {extracted.verificationStatus === "uploaded" ? "Uploaded" : "Verified"}
                     </div>
                     {extracted.fullName && <div><span className="text-muted-foreground">Name:</span> <span className="text-foreground font-medium">{extracted.fullName}</span></div>}
                     {extracted.idType && <div><span className="text-muted-foreground">Type:</span> <span className="text-foreground font-medium">{extracted.idType}</span></div>}
