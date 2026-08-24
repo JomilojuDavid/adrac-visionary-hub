@@ -21,6 +21,7 @@ const CalebsApartments = lazy(() => import("./pages/CalebsApartments"));
 const BookCalebsApartments = lazy(() => import("./pages/BookCalebsApartments"));
 const TrainingRegistration = lazy(() => import("./pages/TrainingRegistration"));
 const MediaGallery = lazy(() => import("./pages/MediaGallery"));
+const Careers = lazy(() => import("./pages/Careers"));
 const JobListings = lazy(() => import("./pages/JobListings"));
 const PostJob = lazy(() => import("./pages/PostJob"));
 const JobDetail = lazy(() => import("./pages/JobDetail"));
@@ -58,6 +59,7 @@ const App = () => (
             <Route path="/calebs-apartments" element={<CalebsApartments />} />
             <Route path="/calebs-apartments/book" element={<BookCalebsApartments />} />
             <Route path="/media-gallery" element={<MediaGallery />} />
+            <Route path="/careers" element={<Careers />} />
             <Route path="/jobs" element={<JobListings />} />
             <Route path="/jobs/post" element={<PostJob />} />
             <Route path="/jobs/:id" element={<JobDetail />} />

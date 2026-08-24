@@ -59,7 +59,7 @@ const JobBoardPopup = () => {
                 <Briefcase className="w-7 h-7 text-primary" />
               </div>
               <h2 className="text-2xl font-heading font-bold text-foreground mb-2">
-                ADRAC Job Board
+                ADRAC Careers
               </h2>
               <p className="text-muted-foreground text-sm">
                 Connect top talent with leading organisations. How can we help you today?
@@ -68,7 +68,7 @@ const JobBoardPopup = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <button
-                onClick={() => goTo("/jobs/post")}
+                onClick={() => goTo("/careers")}
                 className="group flex flex-col items-center gap-3 p-6 rounded-xl border-2 border-border hover:border-primary hover:bg-primary/5 transition-all"
               >
                 <div className="w-12 h-12 rounded-full bg-cta/10 flex items-center justify-center group-hover:bg-cta/20 transition-colors">
@@ -81,7 +81,7 @@ const JobBoardPopup = () => {
               </button>
 
               <button
-                onClick={() => goTo("/jobs")}
+                onClick={() => goTo("/careers")}
                 className="group flex flex-col items-center gap-3 p-6 rounded-xl border-2 border-border hover:border-gold hover:bg-gold/5 transition-all"
               >
                 <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center group-hover:bg-gold/20 transition-colors">
