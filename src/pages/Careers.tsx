@@ -33,11 +33,11 @@ const Careers = () => {
         </div>
       </section>
 
-      <section className="section-padding bg-background">
+      <section className="section-padding bg-surface">
         <div className="max-w-5xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-card border border-border rounded-2xl p-8 flex flex-col hover:shadow-lg hover:border-primary/30 transition-all">
-            <div className="w-14 h-14 rounded-full bg-cta/10 flex items-center justify-center mb-5">
-              <Users className="w-7 h-7 text-cta" />
+          <div className="bg-card border border-primary/15 border-t-4 border-t-primary rounded-2xl p-8 flex flex-col hover:shadow-lg hover:border-primary/40 transition-all">
+            <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-5">
+              <Users className="w-7 h-7 text-primary" />
             </div>
             <h2 className="text-xl font-heading font-bold text-card-foreground mb-2">I'm a Recruiter</h2>
             <p className="text-muted-foreground text-sm mb-6">
@@ -45,9 +45,9 @@ const Careers = () => {
               email address applicants should send their CVs to.
             </p>
             <ul className="space-y-2 text-sm text-muted-foreground mb-8">
-              <li className="flex items-start gap-2"><FileText className="w-4 h-4 text-cta mt-0.5" /> Free job posting</li>
-              <li className="flex items-start gap-2"><FileText className="w-4 h-4 text-cta mt-0.5" /> Applications straight to your inbox</li>
-              <li className="flex items-start gap-2"><FileText className="w-4 h-4 text-cta mt-0.5" /> Visible instantly to job seekers</li>
+              <li className="flex items-start gap-2"><FileText className="w-4 h-4 text-primary mt-0.5" /> Free job posting</li>
+              <li className="flex items-start gap-2"><FileText className="w-4 h-4 text-primary mt-0.5" /> Applications straight to your inbox</li>
+              <li className="flex items-start gap-2"><FileText className="w-4 h-4 text-primary mt-0.5" /> Visible instantly to job seekers</li>
             </ul>
             <Link
               to="/jobs/post"
@@ -57,7 +57,7 @@ const Careers = () => {
             </Link>
           </div>
 
-          <div className="bg-card border border-border rounded-2xl p-8 flex flex-col hover:shadow-lg hover:border-primary/30 transition-all">
+          <div className="bg-card border border-primary/15 border-t-4 border-t-primary rounded-2xl p-8 flex flex-col hover:shadow-lg hover:border-primary/40 transition-all">
             <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-5">
               <Search className="w-7 h-7 text-primary" />
             </div>
