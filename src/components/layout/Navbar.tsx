@@ -36,9 +36,10 @@ const navItems = [
     ],
   },
   {
-    label: "Jobs",
-    path: "/jobs",
+    label: "Careers",
+    path: "/careers",
     children: [
+      { label: "Careers Home", path: "/careers" },
       { label: "Browse Job Openings", path: "/jobs" },
       { label: "Post a Job", path: "/jobs/post" },
     ],
