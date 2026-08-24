@@ -17,15 +17,16 @@ const Careers = () => {
         />
       </Helmet>
 
-      <section className="section-padding bg-surface">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <span className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1.5 rounded-full text-xs font-heading font-semibold uppercase tracking-wide mb-5">
+      <section className="section-padding bg-gradient-to-br from-primary via-primary to-primary/80 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,hsl(var(--gold)/0.18),transparent_60%)]" />
+        <div className="max-w-4xl mx-auto px-4 text-center relative">
+          <span className="inline-flex items-center gap-2 bg-primary-foreground/15 text-primary-foreground px-4 py-1.5 rounded-full text-xs font-heading font-semibold uppercase tracking-wide mb-5 backdrop-blur-sm">
             <Briefcase className="w-3.5 h-3.5" /> ADRAC Job Board
           </span>
-          <h1 className="text-3xl md:text-5xl font-heading font-bold text-foreground mb-4">
+          <h1 className="text-3xl md:text-5xl font-heading font-bold text-primary-foreground mb-4">
             Careers at ADRAC & Beyond
           </h1>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-primary-foreground/85 max-w-2xl mx-auto">
             One place where organisations find qualified professionals and candidates find their next
             role. Choose the path that fits you.
           </p>
