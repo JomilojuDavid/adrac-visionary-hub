@@ -105,6 +105,47 @@
     @apply bg-background text-foreground font-body antialiased;
   }
 
+  .custom-cursor-dot {
+    display: none;
+  }
+
+  @media (min-width: 768px) and (pointer: fine) {
+    html.custom-cursor-active,
+    html.custom-cursor-active body,
+    html.custom-cursor-active button,
+    html.custom-cursor-active a,
+    html.custom-cursor-active input,
+    html.custom-cursor-active textarea,
+    html.custom-cursor-active select {
+      cursor: none;
+    }
+
+    .custom-cursor-dot {
+      display: block;
+      position: fixed;
+      top: -10px;
+      left: -10px;
+      width: 20px;
+      height: 20px;
+      border: 2px solid hsl(var(--gold));
+      border-radius: 9999px;
+      pointer-events: none;
+      opacity: 0;
+      z-index: 9999;
+      transition: opacity 150ms ease, width 150ms ease, height 150ms ease;
+    }
+
+    .custom-cursor-dot.is-visible {
+      opacity: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .custom-cursor-dot {
+      transition: none;
+    }
+  }
+
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading font-bold tracking-tight;
   }

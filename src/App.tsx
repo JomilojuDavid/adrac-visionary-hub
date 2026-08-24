@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -35,11 +35,46 @@ const PageLoader = () => (
   </div>
 );
 
+const CustomCursor = () => {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 768px) and (pointer: fine)");
+    if (!mediaQuery.matches) return;
+
+    const handlePointerMove = (event: PointerEvent) => {
+      setPosition({ x: event.clientX, y: event.clientY });
+      setVisible(true);
+    };
+    const handlePointerLeave = () => setVisible(false);
+
+    window.addEventListener("pointermove", handlePointerMove);
+    document.documentElement.classList.add("custom-cursor-active");
+    document.documentElement.addEventListener("mouseleave", handlePointerLeave);
+
+    return () => {
+      window.removeEventListener("pointermove", handlePointerMove);
+      document.documentElement.classList.remove("custom-cursor-active");
+      document.documentElement.removeEventListener("mouseleave", handlePointerLeave);
+    };
+  }, []);
+
+  return (
+    <span
+      aria-hidden="true"
+      className={`custom-cursor-dot${visible ? " is-visible" : ""}`}
+      style={{ transform: `translate3d(${position.x}px, ${position.y}px, 0)` }}
+    />
+  );
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <CustomCursor />
       <BrowserRouter>
         <Suspense fallback={<PageLoader />}>
           <Routes>
