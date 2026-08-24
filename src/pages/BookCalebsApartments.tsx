@@ -22,6 +22,9 @@ import oneBedImg from "@/assets/rooms/one-bed.jpg";
 import twoBedImg from "@/assets/rooms/two-bed.jpg";
 import executiveImg from "@/assets/rooms/executive.jpg";
 
+const calebsThreeBedImg = "https://lh3.googleusercontent.com/pw/AP1GczNGA4J08VvvKkP1J6NRNH5X61I6dz_lZXpqJsK39qZExg0P2KFaLyeQ-2nkzhCmiCOkj2KCTzye6e9MUZhaRDgWIutzhfRLrORQxJ2j_WTTbUhkRdU5BCWr9nApp9rWPlRFQzhNo9spoQKouxiQL6KvFw=w1164-h524-s-no-gm?authuser=0";
+const calebsTwoBedImg = "https://lh3.googleusercontent.com/pw/AP1GczMYnHXlydUYNxn4jMM00pino2lpHFoDgVocI8lyVey4lhDqv0qP0XGSgQJstvdMjHEuDBEwg1exVZwutVrMPjAfSj1C1PYW0uxRWTsU58-1H8IUNf4ugffnuU1EWt8bmWxKuy_L05C7OX87H9hQq834Ww=w1164-h525-s-no-gm?authuser=0";
+
 declare global {
   interface Window {
     PaystackPop: {
@@ -35,12 +38,12 @@ const PAYSTACK_PUBLIC_KEY = "pk_live_478b54a25ef0c1f91edf804a2afb6348d4fe9c9a";
 const roomTypes = [
   // Caleb's House
   {
-    value: "calebs-3bed", house: "Caleb's House", label: "3 Bedroom", price: 130000, image: executiveImg,
+    value: "calebs-3bed", house: "Caleb's House", label: "3 Bedroom", price: 130000, image: calebsThreeBedImg,
     description: "Expansive three-bedroom apartment perfect for families or group stays with premium finishes.",
     maxGuests: 6, size: "120 m²", features: ["3 Bedrooms", "Living Room", "Full Kitchen", "Dining Area"],
   },
   {
-    value: "calebs-2bed", house: "Caleb's House", label: "2 Bedroom", price: 100000, image: twoBedImg,
+    value: "calebs-2bed", house: "Caleb's House", label: "2 Bedroom", price: 100000, image: calebsTwoBedImg,
     description: "Spacious two-bedroom layout ideal for families or colleagues travelling together.",
     maxGuests: 4, size: "80 m²", features: ["2 Bedrooms", "Living Room", "Full Kitchen", "Balcony"],
   },
