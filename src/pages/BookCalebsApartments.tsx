@@ -25,6 +25,9 @@ import deluxe from "@/assets/rooms/deluxe.webp.asset.json";
 import arnoldTwoBed from "@/assets/rooms/arnold-two-bed.webp.asset.json";
 import arnoldOneBed from "@/assets/rooms/arnold-one-bed.webp.asset.json";
 
+// Use the hosted asset origin so these photos also display on shared hosting.
+const assetOrigin = "https://id-preview--6d364125-5ea2-4d9c-b14f-110ece93238e.lovable.app";
+
 declare global {
   interface Window {
     PaystackPop: {
@@ -38,22 +41,22 @@ const PAYSTACK_PUBLIC_KEY = "pk_live_478b54a25ef0c1f91edf804a2afb6348d4fe9c9a";
 const roomTypes = [
   // Caleb's House
   {
-    value: "calebs-3bed", house: "Caleb's House", label: "3 Bedroom", price: 130000, image: calebsThreeBed.url,
+    value: "calebs-3bed", house: "Caleb's House", label: "3 Bedroom", price: 130000, image: `${assetOrigin}${calebsThreeBed.url}`,
     description: "Expansive three-bedroom apartment perfect for families or group stays with premium finishes.",
     maxGuests: 6, size: "120 m²", features: ["3 Bedrooms", "Living Room", "Full Kitchen", "Dining Area"],
   },
   {
-    value: "calebs-2bed", house: "Caleb's House", label: "2 Bedroom", price: 100000, image: calebsTwoBed.url,
+    value: "calebs-2bed", house: "Caleb's House", label: "2 Bedroom", price: 100000, image: `${assetOrigin}${calebsTwoBed.url}`,
     description: "Spacious two-bedroom layout ideal for families or colleagues travelling together.",
     maxGuests: 4, size: "80 m²", features: ["2 Bedrooms", "Living Room", "Full Kitchen", "Balcony"],
   },
   {
-    value: "calebs-1bed-exec", house: "Caleb's House", label: "1 Bedroom Executive", price: 55000, image: executive.url,
+    value: "calebs-1bed-exec", house: "Caleb's House", label: "1 Bedroom Executive", price: 55000, image: `${assetOrigin}${executive.url}`,
     description: "Elegantly appointed one-bedroom apartment with executive-level comfort and style.",
     maxGuests: 2, size: "55 m²", features: ["King Bed", "Work Desk", "Smart TV", "Kitchenette"],
   },
   {
-    value: "calebs-1bed-deluxe", house: "Caleb's House", label: "1 Bedroom Deluxe", price: 45000, image: deluxe.url,
+    value: "calebs-1bed-deluxe", house: "Caleb's House", label: "1 Bedroom Deluxe", price: 45000, image: `${assetOrigin}${deluxe.url}`,
     description: "Well-furnished deluxe one-bedroom apartment with enhanced amenities and comfort.",
     maxGuests: 2, size: "48 m²", features: ["Queen Bed", "Kitchenette", "WiFi", "Smart TV"],
   },
@@ -64,12 +67,12 @@ const roomTypes = [
   },
   // Arnold House
   {
-    value: "arnold-2bed", house: "Arnold House", label: "2 Bedroom", price: 50000, image: arnoldTwoBed.url,
+    value: "arnold-2bed", house: "Arnold House", label: "2 Bedroom", price: 50000, image: `${assetOrigin}${arnoldTwoBed.url}`,
     description: "Spacious two-bedroom apartment ideal for families or colleagues at great value.",
     maxGuests: 4, size: "75 m²", features: ["2 Bedrooms", "Living Room", "Kitchen", "Balcony"],
   },
   {
-    value: "arnold-1bed", house: "Arnold House", label: "1 Bedroom", price: 25000, image: arnoldOneBed.url,
+    value: "arnold-1bed", house: "Arnold House", label: "1 Bedroom", price: 25000, image: `${assetOrigin}${arnoldOneBed.url}`,
     description: "Comfortable one-bedroom apartment with all essential amenities at an affordable rate.",
     maxGuests: 2, size: "38 m²", features: ["Queen Bed", "Kitchenette", "WiFi", "Smart TV"],
   },
