@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import Layout from "@/components/layout/Layout";
-import founderImage from "@/assets/founder-portrait.jpg";
+import founderImage from "@/assets/3.jpg";
 import { Award, BookOpen, Globe, Users, Briefcase, GraduationCap } from "lucide-react";
 
 const sections = [
