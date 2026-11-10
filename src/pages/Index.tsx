@@ -326,13 +326,18 @@ const Index = () => {
       <section className="section-padding bg-primary">
         <div className="container-narrow mx-auto">
           <SectionHeading title="What Our Clients Say" light />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
             {[
               { id: "Pp7kut9vZm8", title: "Our Founder's Interview on BVN" },
               { id: "V1kw3UYqPls", title: "Interview with our Founder on Treasury Single Account" },
               {
                 src: "https://res.cloudinary.com/dwxlbgncw/video/upload/f_mp4,q_auto/v1778925843/copy_DA55D8EC-CD44-4696-898A-8A204990DE5C_hvt1zg",
                 title: "Our Founder's Interview at Our Last Training",
+                type: "cloudinary",
+              },
+              {
+                src: "https://res.cloudinary.com/dwxlbgncw/video/upload/v1794334855/WhatsApp_Video_2026-11-09_at_11.44.58_AM_zeek4j.mp4",
+                title: "Highlight from last training",
                 type: "cloudinary",
               },
             ].map((video, i) => (
