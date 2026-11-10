@@ -13,7 +13,7 @@ import faanLogo from "@/assets/partners/FAAN.jpg";
 import Layout from "@/components/layout/Layout";
 import SectionHeading from "@/components/ui/SectionHeading";
 import heroImage from "@/assets/hero-boardroom.jpg";
-import founderImage from "@/assets/founder-portrait.jpg";
+import founderImage from "@/assets/3.jpg";
 import businessSchoolImage from "@/assets/business-school.jpg";
 import defactImage from "@/assets/defact-consult.jpg";
 import apartmentsImage from "@/assets/calebs-apartments.jpg";
