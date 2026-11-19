@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ArrowRight, Wifi, Car, Shield, Coffee, Users, MapPin } from "lucide-react";
+import { ArrowLeft, ArrowRight, Wifi, Car, Shield, Coffee, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import CalebsLayout from "@/components/layout/CalebsLayout";
 import { Input } from "@/components/ui/input";
@@ -42,37 +42,44 @@ const roomTypes = [
   // Caleb's House
   {
     value: "calebs-3bed", house: "Caleb's House", label: "3 Bedroom Ensuite", price: 150000, image: `${assetOrigin}${calebsThreeBed.url}`,
+    galleryUrl: "https://drive.google.com/drive/folders/1TyAkKtYGVWh-xhHKcg-uGvaTHVpbRiJY?usp=drive_link",
     description: "Expansive three-bedroom apartment perfect for families or group stays with premium finishes.",
     maxGuests: 6, size: "120 m²", features: ["3 Bedrooms", "Living Room", "Full Kitchen", "Dining Area"],
   },
   {
     value: "calebs-2bed", house: "Caleb's House", label: "2 Bedroom Ensuite", price: 110000, image: `${assetOrigin}${calebsTwoBed.url}`,
+    galleryUrl: "https://drive.google.com/drive/folders/13v9LXsxXqn-0v-FJTCYYWitBfQqKfky3?usp=drive_link",
     description: "Spacious two-bedroom layout ideal for families or colleagues travelling together.",
     maxGuests: 4, size: "80 m²", features: ["2 Bedrooms", "Living Room", "Full Kitchen", "Balcony"],
   },
   {
     value: "calebs-1bed-exec", house: "Caleb's House", label: "1 Bedroom Executive Ensuite", price: 60000, image: `${assetOrigin}${executive.url}`,
+    galleryUrl: "https://drive.google.com/drive/folders/1Q0NbSVJ9g7sl73bzprzxr0im4QiIFZeG?usp=drive_link",
     description: "Elegantly appointed one-bedroom apartment with executive-level comfort and style.",
     maxGuests: 2, size: "55 m²", features: ["King Bed", "Work Desk", "Smart TV", "Kitchenette"],
   },
   {
     value: "calebs-1bed-deluxe", house: "Caleb's House", label: "1 Bedroom Deluxe Ensuite", price: 50000, image: `${assetOrigin}${deluxe.url}`,
+    galleryUrl: "https://drive.google.com/drive/folders/1ydJBo5g4KEfRwhAtuNKeVMOASagl19Xu?usp=drive_link",
     description: "Well-furnished deluxe one-bedroom apartment with enhanced amenities and comfort.",
     maxGuests: 2, size: "48 m²", features: ["Queen Bed", "Kitchenette", "WiFi", "Smart TV"],
   },
   {
     value: "calebs-1bed-std", house: "Caleb's House", label: "1 Bedroom Standard Ensuite", price: 35000, image: studioImg,
+    galleryUrl: "https://drive.google.com/drive/folders/1ydJBo5g4KEfRwhAtuNKeVMOASagl19Xu?usp=drive_link",
     description: "Comfortable and affordable one-bedroom apartment for practical stays.",
     maxGuests: 2, size: "40 m²", features: ["Queen Bed", "Kitchenette", "WiFi", "Work Desk"],
   },
   // Arnold House
   {
     value: "arnold-2bed", house: "Arnold House", label: "2 Bedroom Ensuite", price: 60000, image: `${assetOrigin}${arnoldTwoBed.url}`,
+    galleryUrl: "https://drive.google.com/drive/folders/1mzDtnXbVmpUsjrc8LeFYxC6OegmANbqL?usp=drive_link",
     description: "Spacious two-bedroom apartment ideal for families or colleagues at great value.",
     maxGuests: 4, size: "75 m²", features: ["2 Bedrooms", "Living Room", "Kitchen", "Balcony"],
   },
   {
     value: "arnold-1bed", house: "Arnold House", label: "1 Bedroom Ensuite", price: 30000, image: `${assetOrigin}${arnoldOneBed.url}`,
+    galleryUrl: "https://drive.google.com/drive/folders/1mzDtnXbVmpUsjrc8LeFYxC6OegmANbqL?usp=drive_link",
     description: "Comfortable one-bedroom apartment with all essential amenities at an affordable rate.",
     maxGuests: 2, size: "38 m²", features: ["Queen Bed", "Kitchenette", "WiFi", "Smart TV"],
   },
@@ -188,7 +195,6 @@ const BookCalebsApartments = () => {
 
   return (
     <CalebsLayout>
-      {/* Hero */}
       <section className="relative py-20 md:py-28 overflow-hidden">
         <img src={apartmentsImage} alt="Caleb's Apartments" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
         <div className="hero-overlay absolute inset-0" />
@@ -198,7 +204,7 @@ const BookCalebsApartments = () => {
             <h1 className="text-4xl md:text-5xl font-heading font-bold text-primary-foreground mb-4">Book Your Stay</h1>
             <p className="text-lg text-primary-foreground/80 max-w-xl mx-auto">Premium serviced apartments — select your room, choose dates, and pay securely.</p>
             <div className="flex items-center justify-center gap-4 mt-6 text-primary-foreground/70 text-sm">
-              <span className="flex items-center gap-1"><MapPin className="w-4 h-4" /> Bluestone Estate BlueStone Estate Local Government, Deji Awobotu Avenue, Mowe, Obafemi Owode 110113, Ogun State</span>
+              <span className="flex items-center gap-1"><MapPin className="w-4 h-4" /> Bluestone Estate, Deji Awobotu Avenue, Mowe, Ogun State</span>
               <span className="flex items-center gap-1"><Wifi className="w-4 h-4" /> Free WiFi</span>
               <span className="flex items-center gap-1"><Car className="w-4 h-4" /> Parking</span>
               <span className="flex items-center gap-1"><Shield className="w-4 h-4" /> 24/7 Security</span>
@@ -207,7 +213,6 @@ const BookCalebsApartments = () => {
         </div>
       </section>
 
-      {/* Booking Section */}
       <section className="section-padding bg-background">
         <div className="container mx-auto px-4 lg:px-8 max-w-6xl">
           <Link to="/calebs-apartments" className="inline-flex items-center gap-2 text-primary hover:underline mb-6 text-sm">
@@ -217,7 +222,6 @@ const BookCalebsApartments = () => {
           <StepIndicator current={step} />
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Main Content */}
             <div className="lg:col-span-2">
               <AnimatePresence mode="wait" custom={direction}>
                 {step === 1 && (
@@ -291,7 +295,7 @@ const BookCalebsApartments = () => {
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="specialRequests">Special Requests</Label>
-                        <Textarea id="specialRequests" placeholder="Any special requirements or requests..." value={form.specialRequests} onChange={(e) => handleChange("specialRequests", e.target.value)} maxLength={500} />
+                        <Textarea id="specialRequests" placeholder="Any special requirements or requests..." value={form.specialRequests} onChange={(e) => handleChange("specialRequests", e.target.value)} maxLength={1000} />
                       </div>
                       {idInfo && (
                         <div className="rounded-lg bg-muted/40 border border-border p-3 text-xs text-muted-foreground">
@@ -336,7 +340,7 @@ const BookCalebsApartments = () => {
                       {form.specialRequests && (
                         <div className="text-sm">
                           <span className="text-muted-foreground">Special Requests:</span>
-                          <p className="mt-1 text-foreground">{form.specialRequests}</p>
+                          <p class="mt-1 text-foreground">{form.specialRequests}</p>
                         </div>
                       )}
                       <div className="flex items-center gap-2 p-3 rounded-lg bg-muted text-sm text-muted-foreground">
@@ -348,7 +352,6 @@ const BookCalebsApartments = () => {
                 )}
               </AnimatePresence>
 
-              {/* Navigation */}
               <div className="flex justify-between mt-8">
                 {step > 1 ? (
                   <Button variant="outline" onClick={() => goTo(step - 1)} className="font-heading">
@@ -363,7 +366,6 @@ const BookCalebsApartments = () => {
               </div>
             </div>
 
-            {/* Sidebar Summary */}
             <div className="hidden lg:block">
               <BookingSummary
                 house={selectedRoom?.house || ""}
@@ -382,7 +384,6 @@ const BookCalebsApartments = () => {
             </div>
           </div>
 
-          {/* Mobile Summary */}
           {selectedRoom && nights > 0 && step === 4 && (
             <div className="lg:hidden mt-8">
               <BookingSummary

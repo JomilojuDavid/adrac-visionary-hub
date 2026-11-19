@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Users, Maximize, Check } from "lucide-react";
+import { Users, Maximize, Check, Images } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface RoomCardProps {
@@ -7,6 +7,7 @@ interface RoomCardProps {
   label: string;
   price: number;
   image: string;
+  galleryUrl: string;
   description: string;
   maxGuests: number;
   size: string;
@@ -15,7 +16,7 @@ interface RoomCardProps {
   onSelect: (value: string) => void;
 }
 
-const RoomCard = ({ value, label, price, image, description, maxGuests, size, features, selected, onSelect }: RoomCardProps) => (
+const RoomCard = ({ value, label, price, image, galleryUrl, description, maxGuests, size, features, selected, onSelect }: RoomCardProps) => (
   <motion.div
     whileHover={{ y: -4 }}
     whileTap={{ scale: 0.98 }}
@@ -49,9 +50,21 @@ const RoomCard = ({ value, label, price, image, description, maxGuests, size, fe
           <span key={f} className="text-xs bg-muted text-muted-foreground px-2 py-0.5 rounded-full">{f}</span>
         ))}
       </div>
-      <div className="pt-2 border-t border-border">
-        <span className="font-heading font-bold text-foreground text-xl">₦{price.toLocaleString()}</span>
-        <span className="text-sm text-muted-foreground"> / night</span>
+      <div className="pt-2 border-t border-border flex items-end justify-between gap-3">
+        <div>
+          <span className="font-heading font-bold text-foreground text-xl">₦{price.toLocaleString()}</span>
+          <span className="text-sm text-muted-foreground"> / night</span>
+        </div>
+        <a
+          href={galleryUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(event) => event.stopPropagation()}
+          className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-background px-3 py-2 text-sm font-medium text-foreground transition-colors hover:border-gold hover:text-gold"
+          aria-label={`View photos for ${label}`}
+        >
+          <Images className="h-4 w-4" /> View photos
+        </a>
       </div>
     </div>
   </motion.div>
