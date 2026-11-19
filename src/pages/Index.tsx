@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { CheckCircle, BookOpen, Briefcase, Award, ArrowRight } from "lucide-react";
+import { BookOpen, Briefcase, Award, ArrowRight } from "lucide-react";
 import StockMarketTicker from "@/components/home/StockMarketTicker";
 import ExchangeRateTicker from "@/components/home/ExchangeRateTicker";
-
 import frcLogo from "@/assets/partners/FRC.jpg";
 import icanLogo from "@/assets/partners/ICAN.png";
 import ananLogo from "@/assets/partners/ANAN.png";
@@ -16,7 +15,6 @@ import heroImage from "@/assets/hero-boardroom.jpg";
 import founderImage from "@/assets/3.jpg";
 import businessSchoolImage from "@/assets/business-school.jpg";
 import defactImage from "@/assets/defact-consult.jpg";
-import Lightbox from "yet-another-react-lightbox";
 import { useEffect, useState } from "react";
 
 const fadeUp = {
@@ -40,24 +38,6 @@ const services = [
     title: "Executive Programmes",
     description: "Leadership seminars, industry masterclasses, regulatory-focused programmes, digital-age internal audit.",
   },
-];
-
-const trustReasons = [
-  "Strong regulatory collaborations (FRC, NRS, SEC, NGS, PENCOM ICAN, NUPRC, NCAA)",
-  "Expert trainers with real industry experience",
-  "Nationwide technical training footprint",
-  "Practical knowledge that improves corporate performance",
-  "Professional, reliable and ethical delivery",
-];
-
-const programmes = [
-  "IFRS and IPSAS Certification",
-  "Forensic Accounting & Anti-Fraud",
-  "Corporate Governance & Ethics",
-  "Digital Audit & Data Analytics",
-  "Transfer Pricing & Taxation",
-  "Leadership & Executive Education",
-  "Industry-Specific Technical Training",
 ];
 
 const subEntities = [
@@ -93,7 +73,7 @@ const Index = () => {
   const [latestNews, setLatestNews] = useState<Article[]>([]);
 
   useEffect(() => {
-    const SOURCES = [
+    const sources = [
       { name: "Punch", url: "https://punchng.com/feed/" },
       { name: "Guardian Nigeria", url: "https://guardian.ng/feed/" },
       { name: "Vanguard", url: "https://www.vanguardngr.com/feed/" },
@@ -106,35 +86,35 @@ const Index = () => {
     const fetchNews = async () => {
       try {
         const results = await Promise.allSettled(
-          SOURCES.map((s) =>
-            fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(s.url)}`)
-              .then((r) => r.json())
-              .then((d) =>
-                (d.items || []).slice(0, 3).map((item: any) => ({
+          sources.map((source) =>
+            fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(source.url)}`)
+              .then((response) => response.json())
+              .then((data) =>
+                (data.items || []).slice(0, 3).map((item: any) => ({
                   title: item.title,
                   link: item.link,
                   pubDate: new Date(item.pubDate).toDateString(),
                   contentSnippet: stripHtml(item.description).slice(0, 160),
-                  category: s.name,
+                  category: source.name,
                 }))
               )
           )
         );
 
         const merged: Article[] = results
-          .filter((r): r is PromiseFulfilledResult<Article[]> => r.status === "fulfilled")
-          .flatMap((r) => r.value);
-
-        // pick top 3 (one per source preferred)
+          .filter((result): result is PromiseFulfilledResult<Article[]> => result.status === "fulfilled")
+          .flatMap((result) => result.value);
         const seen = new Set<string>();
         const top: Article[] = [];
-        for (const a of merged) {
-          if (!seen.has(a.category || "")) {
-            top.push(a);
-            seen.add(a.category || "");
+
+        for (const article of merged) {
+          if (!seen.has(article.category || "")) {
+            top.push(article);
+            seen.add(article.category || "");
           }
           if (top.length === 3) break;
         }
+
         setLatestNews(top.length ? top : merged.slice(0, 3));
       } catch (error) {
         console.error("Failed to fetch news:", error);
@@ -145,6 +125,30 @@ const Index = () => {
     const interval = setInterval(fetchNews, 30 * 60 * 1000);
     return () => clearInterval(interval);
   }, []);
+
+  const partners = [
+    { src: frcLogo, name: "FRC" },
+    { src: icanLogo, name: "ICAN" },
+    { src: ananLogo, name: "ANAN" },
+    { src: nuprcLogo, name: "NUPRC" },
+    { src: ncaaLogo, name: "NCAA" },
+    { src: faanLogo, name: "FAAN" },
+  ];
+
+  const videos = [
+    { id: "Pp7kut9vZm8", title: "Our Founder's Interview on BVN" },
+    { id: "V1kw3UYqPls", title: "Interview with our Founder on Treasury Single Account" },
+    {
+      src: "https://res.cloudinary.com/dwxlbgncw/video/upload/f_mp4,q_auto/v1778925843/copy_DA55D8EC-CD44-4696-898A-8A204990DE5C_hvt1zg",
+      title: "Our Founder's Interview at Our Last Training",
+      type: "cloudinary",
+    },
+    {
+      src: "https://res.cloudinary.com/dwxlbgncw/video/upload/v1794334855/WhatsApp_Video_2026-11-09_at_11.44.58_AM_zeek4j.mp4",
+      title: "Highlight from last training",
+      type: "cloudinary",
+    },
+  ];
 
   return (
     <Layout>
@@ -175,13 +179,22 @@ const Index = () => {
             transition={{ duration: 0.7, delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <Link to="/services" className="inline-flex items-center gap-2 bg-gold hover:bg-gold/90 text-gold-foreground font-heading font-semibold px-8 py-4 rounded-lg transition-all hover:scale[...]
+            <Link
+              to="/services"
+              className="inline-flex items-center gap-2 bg-gold hover:bg-gold/90 text-gold-foreground font-heading font-semibold px-8 py-4 rounded-lg transition-all hover:scale-105"
+            >
               View Our Services <ArrowRight className="w-4 h-4" />
             </Link>
-            <Link to="/training#register" className="inline-flex items-center gap-2 border-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 font-heading font-[...]
+            <Link
+              to="/training#register"
+              className="inline-flex items-center gap-2 border-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 font-heading font-semibold px-8 py-4 rounded-lg transition-all hover:scale-105"
+            >
               Register for Training
             </Link>
-            <Link to="/careers" className="inline-flex items-center gap-2 border-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 font-heading font-semibold p[...]
+            <Link
+              to="/careers"
+              className="inline-flex items-center gap-2 border-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 font-heading font-semibold px-8 py-4 rounded-lg transition-all hover:scale-105"
+            >
               Careers
             </Link>
           </motion.div>
@@ -193,11 +206,19 @@ const Index = () => {
         <div className="container-narrow mx-auto">
           <SectionHeading title="What We Do" subtitle="Comprehensive professional services designed to elevate corporate performance and build sustainable institutional capacity." />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {services.map((svc, i) => (
-              <motion.div key={svc.title} custom={i} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.2 }} variants={fadeUp} className="bg-card border border-border round[...]
-                <svc.icon className="w-10 h-10 text-primary mb-4 group-hover:scale-110 transition-transform" />
-                <h3 className="text-xl font-heading font-semibold mb-3 text-card-foreground">{svc.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{svc.description}</p>
+            {services.map((service, index) => (
+              <motion.div
+                key={service.title}
+                custom={index}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.2 }}
+                variants={fadeUp}
+                className="bg-card border border-border rounded-xl p-8 hover:shadow-lg transition-all group"
+              >
+                <service.icon className="w-10 h-10 text-primary mb-4 group-hover:scale-110 transition-transform" />
+                <h3 className="text-xl font-heading font-semibold mb-3 text-card-foreground">{service.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{service.description}</p>
               </motion.div>
             ))}
           </div>
@@ -209,13 +230,13 @@ const Index = () => {
         <div className="container-narrow mx-auto">
           <SectionHeading title="Latest Insights" subtitle="Expert perspectives on finance, governance, and professional development." />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
-            {latestNews.map((post, i) => (
+            {latestNews.map((post, index) => (
               <motion.a
                 key={post.link || post.title}
                 href={post.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                custom={i}
+                custom={index}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.2 }}
@@ -233,7 +254,10 @@ const Index = () => {
             ))}
           </div>
           <div className="text-center">
-            <Link to="/insights" className="inline-flex items-center gap-2 bg-cta hover:bg-cta/90 text-cta-foreground font-heading font-semibold px-8 py-3 rounded-lg transition-all hover:scale-10[...]
+            <Link
+              to="/insights"
+              className="inline-flex items-center gap-2 bg-cta hover:bg-cta/90 text-cta-foreground font-heading font-semibold px-8 py-3 rounded-lg transition-all hover:scale-105"
+            >
               View All Insights <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -279,7 +303,7 @@ const Index = () => {
               </h2>
               <p className="text-muted-foreground font-heading text-lg mb-4">Founder & Chief Executive</p>
               <p className="text-muted-foreground leading-relaxed mb-6">
-                A finance and accounting expert, policy strategist and capacity-building specialist with extensive experience across Nigeria's public and private sectors. He has played a signific[...]
+                A finance and accounting expert, policy strategist and capacity-building specialist with extensive experience across Nigeria's public and private sectors. He has played a significant role in strengthening financial reporting, governance and professional education through regulatory collaboration, executive training and institutional development.
               </p>
               <Link
                 to="/founder"
@@ -297,10 +321,10 @@ const Index = () => {
         <div className="container-narrow mx-auto">
           <SectionHeading title="Our Sub-Entities" subtitle="A family of brands delivering excellence across education, consulting, and hospitality." />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {subEntities.map((entity, i) => (
+            {subEntities.map((entity, index) => (
               <motion.div
                 key={entity.name}
-                custom={i}
+                custom={index}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.2 }}
@@ -326,23 +350,10 @@ const Index = () => {
         <div className="container-narrow mx-auto">
           <SectionHeading title="What Our Clients Say" light />
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
-            {[
-              { id: "Pp7kut9vZm8", title: "Our Founder's Interview on BVN" },
-              { id: "V1kw3UYqPls", title: "Interview with our Founder on Treasury Single Account" },
-              {
-                src: "https://res.cloudinary.com/dwxlbgncw/video/upload/f_mp4,q_auto/v1778925843/copy_DA55D8EC-CD44-4696-898A-8A204990DE5C_hvt1zg",
-                title: "Our Founder's Interview at Our Last Training",
-                type: "cloudinary",
-              },
-              {
-                src: "https://res.cloudinary.com/dwxlbgncw/video/upload/v1794334855/WhatsApp_Video_2026-11-09_at_11.44.58_AM_zeek4j.mp4",
-                title: "Highlight from last training",
-                type: "cloudinary",
-              },
-            ].map((video, i) => (
+            {videos.map((video, index) => (
               <motion.div
-                key={i}
-                custom={i}
+                key={video.id ?? video.src}
+                custom={index}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.2 }}
@@ -382,22 +393,9 @@ const Index = () => {
         </div>
         <div className="relative">
           <div className="flex animate-[scroll_25s_linear_infinite] w-max gap-16 items-center px-8">
-            {[
-              { src: frcLogo, name: "FRC" },
-              { src: icanLogo, name: "ICAN" },
-              { src: ananLogo, name: "ANAN" },
-              { src: nuprcLogo, name: "NUPRC" },
-              { src: ncaaLogo, name: "NCAA" },
-              { src: faanLogo, name: "FAAN" },
-              { src: frcLogo, name: "FRC" },
-              { src: icanLogo, name: "ICAN" },
-              { src: ananLogo, name: "ANAN" },
-              { src: nuprcLogo, name: "NUPRC" },
-              { src: ncaaLogo, name: "NCAA" },
-              { src: faanLogo, name: "FAAN" },
-            ].map((partner, i) => (
+            {[...partners, ...partners].map((partner, index) => (
               <img
-                key={i}
+                key={`${partner.name}-${index}`}
                 src={partner.src}
                 alt={partner.name}
                 className="h-16 md:h-20 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
@@ -417,10 +415,16 @@ const Index = () => {
             Partner with ADRAC for world-class training, advisory, and professional development services.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact" className="inline-flex items-center gap-2 bg-cta hover:bg-cta/90 text-cta-foreground font-heading font-semibold px-8 py-4 rounded-lg transition-all hover:scale-105[...]
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 bg-cta hover:bg-cta/90 text-cta-foreground font-heading font-semibold px-8 py-4 rounded-lg transition-all hover:scale-105"
+            >
               Contact Us <ArrowRight className="w-4 h-4" />
             </Link>
-            <Link to="/training#register" className="inline-flex items-center gap-2 border-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 font-heading font-[...]
+            <Link
+              to="/training#register"
+              className="inline-flex items-center gap-2 border-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 font-heading font-semibold px-8 py-4 rounded-lg transition-all hover:scale-105"
+            >
               Register for Training
             </Link>
           </div>
