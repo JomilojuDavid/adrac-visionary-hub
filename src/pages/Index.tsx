@@ -16,7 +16,6 @@ import heroImage from "@/assets/hero-boardroom.jpg";
 import founderImage from "@/assets/3.jpg";
 import businessSchoolImage from "@/assets/business-school.jpg";
 import defactImage from "@/assets/defact-consult.jpg";
-import apartmentsImage from "@/assets/calebs-apartments.jpg";
 import Lightbox from "yet-another-react-lightbox";
 import { useEffect, useState } from "react";
 
@@ -77,7 +76,7 @@ const subEntities = [
   {
     name: "Caleb's Apartments",
     description: "Premium serviced accommodation for corporate travellers and training participants in a serene, professional environment.",
-    image: apartmentsImage,
+    image: "https://drive.google.com/uc?export=view&id=1BM77RC5BW1ztKYtdllfgZe9hWpj5jN-s",
     path: "/calebs-apartments",
   },
 ];
@@ -176,13 +175,13 @@ const Index = () => {
             transition={{ duration: 0.7, delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <Link to="/services" className="inline-flex items-center gap-2 bg-gold hover:bg-gold/90 text-gold-foreground font-heading font-semibold px-8 py-4 rounded-lg transition-all hover:scale-105">
+            <Link to="/services" className="inline-flex items-center gap-2 bg-gold hover:bg-gold/90 text-gold-foreground font-heading font-semibold px-8 py-4 rounded-lg transition-all hover:scale[...]
               View Our Services <ArrowRight className="w-4 h-4" />
             </Link>
-            <Link to="/training#register" className="inline-flex items-center gap-2 border-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 font-heading font-semibold px-8 py-4 rounded-lg transition-all">
+            <Link to="/training#register" className="inline-flex items-center gap-2 border-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 font-heading font-[...]
               Register for Training
             </Link>
-            <Link to="/careers" className="inline-flex items-center gap-2 border-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 font-heading font-semibold px-8 py-4 rounded-lg transition-all">
+            <Link to="/careers" className="inline-flex items-center gap-2 border-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 font-heading font-semibold p[...]
               Careers
             </Link>
           </motion.div>
@@ -195,7 +194,7 @@ const Index = () => {
           <SectionHeading title="What We Do" subtitle="Comprehensive professional services designed to elevate corporate performance and build sustainable institutional capacity." />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {services.map((svc, i) => (
-              <motion.div key={svc.title} custom={i} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.2 }} variants={fadeUp} className="bg-card border border-border rounded-xl p-8 hover:shadow-lg hover:border-primary/20 transition-all group">
+              <motion.div key={svc.title} custom={i} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.2 }} variants={fadeUp} className="bg-card border border-border round[...]
                 <svc.icon className="w-10 h-10 text-primary mb-4 group-hover:scale-110 transition-transform" />
                 <h3 className="text-xl font-heading font-semibold mb-3 text-card-foreground">{svc.title}</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">{svc.description}</p>
@@ -234,7 +233,7 @@ const Index = () => {
             ))}
           </div>
           <div className="text-center">
-            <Link to="/insights" className="inline-flex items-center gap-2 bg-cta hover:bg-cta/90 text-cta-foreground font-heading font-semibold px-8 py-3 rounded-lg transition-all hover:scale-105">
+            <Link to="/insights" className="inline-flex items-center gap-2 bg-cta hover:bg-cta/90 text-cta-foreground font-heading font-semibold px-8 py-3 rounded-lg transition-all hover:scale-10[...]
               View All Insights <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -280,7 +279,7 @@ const Index = () => {
               </h2>
               <p className="text-muted-foreground font-heading text-lg mb-4">Founder & Chief Executive</p>
               <p className="text-muted-foreground leading-relaxed mb-6">
-                A finance and accounting expert, policy strategist and capacity-building specialist with extensive experience across Nigeria's public and private sectors. He has played a significant role in strengthening financial reporting, governance and professional education through regulatory collaboration, executive training and institutional development.
+                A finance and accounting expert, policy strategist and capacity-building specialist with extensive experience across Nigeria's public and private sectors. He has played a signific[...]
               </p>
               <Link
                 to="/founder"
@@ -418,10 +417,10 @@ const Index = () => {
             Partner with ADRAC for world-class training, advisory, and professional development services.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact" className="inline-flex items-center gap-2 bg-cta hover:bg-cta/90 text-cta-foreground font-heading font-semibold px-8 py-4 rounded-lg transition-all hover:scale-105">
+            <Link to="/contact" className="inline-flex items-center gap-2 bg-cta hover:bg-cta/90 text-cta-foreground font-heading font-semibold px-8 py-4 rounded-lg transition-all hover:scale-105[...]
               Contact Us <ArrowRight className="w-4 h-4" />
             </Link>
-            <Link to="/training#register" className="inline-flex items-center gap-2 border-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 font-heading font-semibold px-8 py-4 rounded-lg transition-all">
+            <Link to="/training#register" className="inline-flex items-center gap-2 border-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 font-heading font-[...]
               Register for Training
             </Link>
           </div>
