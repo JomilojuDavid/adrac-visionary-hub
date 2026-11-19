@@ -73,13 +73,13 @@ const roomTypes = [
   // Arnold House
   {
     value: "arnold-2bed", house: "Arnold House", label: "2 Bedroom Ensuite", price: 60000, image: `${assetOrigin}${arnoldTwoBed.url}`,
-    galleryUrl: "https://drive.google.com/drive/folders/1mzDtnXbVmpUsjrc8LeFYxC6OegmANbqL?usp=drive_link",
+    galleryUrl: "https://drive.google.com/drive/folders/1mzDtnZbVmpUsjrc8LeFYxC6OegmANbqL?usp=drive_link",
     description: "Spacious two-bedroom apartment ideal for families or colleagues at great value.",
     maxGuests: 4, size: "75 m²", features: ["2 Bedrooms", "Living Room", "Kitchen", "Balcony"],
   },
   {
     value: "arnold-1bed", house: "Arnold House", label: "1 Bedroom Ensuite", price: 30000, image: `${assetOrigin}${arnoldOneBed.url}`,
-    galleryUrl: "https://drive.google.com/drive/folders/1mzDtnXbVmpUsjrc8LeFYxC6OegmANbqL?usp=drive_link",
+    galleryUrl: "https://drive.google.com/drive/folders/1mzDtnZbVmpUsjrc8LeFYxC6OegmANbqL?usp=drive_link",
     description: "Comfortable one-bedroom apartment with all essential amenities at an affordable rate.",
     maxGuests: 2, size: "38 m²", features: ["Queen Bed", "Kitchenette", "WiFi", "Smart TV"],
   },
@@ -340,7 +340,7 @@ const BookCalebsApartments = () => {
                       {form.specialRequests && (
                         <div className="text-sm">
                           <span className="text-muted-foreground">Special Requests:</span>
-                          <p class="mt-1 text-foreground">{form.specialRequests}</p>
+                          <p className="mt-1 text-foreground">{form.specialRequests}</p>
                         </div>
                       )}
                       <div className="flex items-center gap-2 p-3 rounded-lg bg-muted text-sm text-muted-foreground">
