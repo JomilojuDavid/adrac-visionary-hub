@@ -4,7 +4,7 @@ const corsHeaders = {
 };
 
 const CLOUD_NAME = "dwxlbgncw";
-const FOLDER = ""; // empty = fetch all assets across the account (v2)
+const FOLDER = "";
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -20,7 +20,17 @@ Deno.serve(async (req) => {
 
     const url = new URL(req.url);
     const debug = url.searchParams.get("debug") === "1";
-    const folderParam = url.searchParams.get("folder") ?? FOLDER;
+    let folderParam = url.searchParams.get("folder");
+
+    if (req.method !== "GET") {
+      try {
+        const body = await req.json();
+        if (typeof body.folder === "string") folderParam = body.folder;
+      } catch {
+        // Use the query parameter or default folder when no JSON body is supplied.
+      }
+    }
+    folderParam ??= FOLDER;
 
     const auth = btoa(`${apiKey}:${apiSecret}`);
 
@@ -52,7 +62,6 @@ Deno.serve(async (req) => {
     const [imgs, vids] = await Promise.all([fetchType("image"), fetchType("video")]);
 
     if (debug) {
-      // Also list root folders for inspection
       const foldersRes = await fetch(
         `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/folders`,
         { headers: { Authorization: `Basic ${auth}` } },
